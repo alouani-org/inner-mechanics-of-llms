@@ -1,0 +1,71 @@
+{
+  "statut": "règlement fictif fabriqué pour la pédagogie, pas un contrat réel",
+  "documents": [
+    [
+      "remboursement",
+      "Une commande annulée est remboursée sur le moyen de paiement initial dans un délai de dix jours."
+    ],
+    [
+      "motdepasse",
+      "Pour réinitialiser un mot de passe oublié, utiliser le lien de récupération sur la page de connexion."
+    ],
+    [
+      "livraison",
+      "La livraison standard prend trois jours ouvrés ; le suivi du colis est envoyé par courriel."
+    ],
+    [
+      "adresse",
+      "Une adresse de livraison peut être modifiée avant la préparation du colis, depuis la commande."
+    ],
+    [
+      "garantie",
+      "La garantie couvre les défauts de fabrication pendant deux ans ; les dommages accidentels sont exclus."
+    ],
+    [
+      "facture",
+      "La facture peut être téléchargée au format PDF depuis la rubrique commandes du compte."
+    ],
+    [
+      "retour",
+      "Un produit non utilisé peut être retourné dans les trente jours, après demande au service client."
+    ],
+    [
+      "abonnement",
+      "La résiliation prend effet à la fin de la période payée ; le service reste accessible jusque-là."
+    ]
+  ],
+  "queries": [
+    [
+      "remboursement",
+      "Quand vais-je récupérer mon argent après annulation ?"
+    ],
+    [
+      "motdepasse",
+      "Je ne connais plus mon code secret pour entrer dans mon compte."
+    ],
+    [
+      "livraison",
+      "Combien de temps faut-il pour recevoir mon achat ?"
+    ],
+    [
+      "adresse",
+      "Peut-on changer le lieu où mon paquet sera envoyé ?"
+    ],
+    [
+      "garantie",
+      "Mon appareil présente un défaut de fabrication : suis-je couvert ?"
+    ],
+    [
+      "facture",
+      "Où obtenir le justificatif PDF de mon achat ?"
+    ],
+    [
+      "retour",
+      "Je veux renvoyer un article intact."
+    ],
+    [
+      "abonnement",
+      "Puis-je continuer à utiliser le service après avoir demandé sa résiliation ?"
+    ]
+  ]
+}

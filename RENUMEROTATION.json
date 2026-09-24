@@ -1,0 +1,1127 @@
+{
+  "date": "2026-09-23",
+  "objet": "Renumérotation des expériences dans l'ordre du livre (E01 à E24). Les programmes et les dossiers de sortie ont été renommés ; les identifiants, chemins et imports ont été remplacés ligne à ligne, sans ajout ni suppression de ligne. Les manifestes (metadata.json) et les journaux d'exécution n'ont pas été modifiés : ils gardent les noms en vigueur au moment de l'exécution. Pour vérifier qu'un programme renommé est bien celui qui a produit un manifeste, on remet les lignes « apres » à leur valeur « avant » et l'on compare l'empreinte SHA-256 obtenue au champ script_sha256 du manifeste (tests/check_package.py le fait).",
+  "cles_de_donnees": "Les clés internes des résultats (par exemple « E7 » dans E22, « E1_validation » et « E2_mrr » dans E04) gardent l'ancien nom, pour rester lisibles par les programmes qui relisent les sorties enregistrées.",
+  "experiences": [
+    {
+      "id": "E01",
+      "ancien_nom": "E1",
+      "titre": "Classer des messages : la longueur suffit-elle ?",
+      "chapitres": "1, 4",
+      "programmes": [
+        "experiences/E01_classification.py"
+      ],
+      "sortie": "outputs/E01_classification/"
+    },
+    {
+      "id": "E02",
+      "ancien_nom": "calcul-observe",
+      "titre": "Observer le calcul de GPT-2",
+      "chapitres": "2",
+      "programmes": [
+        "experiences/E02_calcul_observe.py"
+      ],
+      "sortie": "outputs/E02_calcul_observe/"
+    },
+    {
+      "id": "E03",
+      "ancien_nom": "calculs",
+      "titre": "Calculs guidés sur données fabriquées",
+      "chapitres": "2, 3, 5, 7, 12",
+      "programmes": [
+        "experiences/E03_calculs_guides.py"
+      ],
+      "sortie": "outputs/E03_calculs_guides/"
+    },
+    {
+      "id": "E04",
+      "ancien_nom": "intervalles",
+      "titre": "Intervalles de rééchantillonnage",
+      "chapitres": "3, 4, 5",
+      "programmes": [
+        "experiences/E04_intervalles.py"
+      ],
+      "sortie": "outputs/E04_intervalles/"
+    },
+    {
+      "id": "E05",
+      "ancien_nom": "E1-validation",
+      "titre": "Valider le classificateur sur des messages neufs",
+      "chapitres": "4",
+      "programmes": [
+        "experiences/E05_validation_classificateur.py"
+      ],
+      "sortie": "outputs/E05_validation_classificateur/"
+    },
+    {
+      "id": "E06",
+      "ancien_nom": "prédiction",
+      "titre": "Prédire avec le pipeline sauvegardé",
+      "chapitres": "4",
+      "programmes": [
+        "experiences/E06_prediction.py",
+        "experiences/E06_verifier_prediction.py"
+      ],
+      "sortie": "outputs/E06_prediction/"
+    },
+    {
+      "id": "E07",
+      "ancien_nom": "E2",
+      "titre": "Recherche lexicale et dense",
+      "chapitres": "5",
+      "programmes": [
+        "experiences/E07_recherche.py"
+      ],
+      "sortie": "outputs/E07_recherche/"
+    },
+    {
+      "id": "E08",
+      "ancien_nom": "E2-geometrie",
+      "titre": "Géométrie de la recherche et niveau de fond",
+      "chapitres": "5",
+      "programmes": [
+        "experiences/E08_geometrie_recherche.py"
+      ],
+      "sortie": "outputs/E08_geometrie_recherche/"
+    },
+    {
+      "id": "E09",
+      "ancien_nom": "E3",
+      "titre": "Extraction libre et contrainte",
+      "chapitres": "6",
+      "programmes": [
+        "experiences/E09_extraction.py"
+      ],
+      "sortie": "outputs/E09_extraction/"
+    },
+    {
+      "id": "E10",
+      "ancien_nom": "E3-defis",
+      "titre": "Défis d'extraction : ordre des exemples, calibration",
+      "chapitres": "6, 7",
+      "programmes": [
+        "experiences/E10_extraction_defis.py"
+      ],
+      "sortie": "outputs/E10_extraction_defis/"
+    },
+    {
+      "id": "E11",
+      "ancien_nom": "E4",
+      "titre": "Choisir et s'abstenir",
+      "chapitres": "7",
+      "programmes": [
+        "experiences/E11_choix_abstention.py"
+      ],
+      "sortie": "outputs/E11_choix_abstention/"
+    },
+    {
+      "id": "E12",
+      "ancien_nom": "latence",
+      "titre": "Mesurer la latence",
+      "chapitres": "7",
+      "programmes": [
+        "experiences/E12_latence.py"
+      ],
+      "sortie": "outputs/E12_latence/"
+    },
+    {
+      "id": "E13",
+      "ancien_nom": "inspection",
+      "titre": "Logit Lens et pilotage",
+      "chapitres": "8, 10",
+      "programmes": [
+        "experiences/E13_inspection.py"
+      ],
+      "sortie": "outputs/E13_inspection/"
+    },
+    {
+      "id": "E14",
+      "ancien_nom": "attention",
+      "titre": "Lire l'attention, têtes d'induction",
+      "chapitres": "8",
+      "programmes": [
+        "experiences/E14_attention.py"
+      ],
+      "sortie": "outputs/E14_attention/"
+    },
+    {
+      "id": "E15",
+      "ancien_nom": "sondes",
+      "titre": "Sondes et témoins",
+      "chapitres": "8",
+      "programmes": [
+        "experiences/E15_sondes.py"
+      ],
+      "sortie": "outputs/E15_sondes/"
+    },
+    {
+      "id": "E16",
+      "ancien_nom": "E5",
+      "titre": "Intervention causale (patching d'activation)",
+      "chapitres": "9",
+      "programmes": [
+        "experiences/E16_intervention.py"
+      ],
+      "sortie": "outputs/E16_intervention/"
+    },
+    {
+      "id": "E17",
+      "ancien_nom": "patching",
+      "titre": "Carte de patching couche × position",
+      "chapitres": "9",
+      "programmes": [
+        "experiences/E17_carte_patching.py"
+      ],
+      "sortie": "outputs/E17_carte_patching/"
+    },
+    {
+      "id": "E18",
+      "ancien_nom": "tetes",
+      "titre": "Patching tête par tête",
+      "chapitres": "9",
+      "programmes": [
+        "experiences/E18_tetes.py"
+      ],
+      "sortie": "outputs/E18_tetes/"
+    },
+    {
+      "id": "E19",
+      "ancien_nom": "E6",
+      "titre": "Adaptation LoRA et retour arrière",
+      "chapitres": "10",
+      "programmes": [
+        "experiences/E19_adaptation.py"
+      ],
+      "sortie": "outputs/E19_adaptation/"
+    },
+    {
+      "id": "E20",
+      "ancien_nom": "pilotage",
+      "titre": "Pilotage : témoins et effets collatéraux",
+      "chapitres": "10",
+      "programmes": [
+        "experiences/E20_pilotage.py"
+      ],
+      "sortie": "outputs/E20_pilotage/"
+    },
+    {
+      "id": "E21",
+      "ancien_nom": "E7",
+      "titre": "Même question, quatre langues",
+      "chapitres": "11",
+      "programmes": [
+        "experiences/E21_langues.py"
+      ],
+      "sortie": "outputs/E21_langues/"
+    },
+    {
+      "id": "E22",
+      "ancien_nom": "E7-formulations",
+      "titre": "Formulations par langue",
+      "chapitres": "11",
+      "programmes": [
+        "experiences/E22_langues_formulations.py"
+      ],
+      "sortie": "outputs/E22_langues_formulations/"
+    },
+    {
+      "id": "E23",
+      "ancien_nom": "E7-tache",
+      "titre": "Tâche d'extraction en quatre langues",
+      "chapitres": "11",
+      "programmes": [
+        "experiences/E23_langues_tache.py"
+      ],
+      "sortie": "outputs/E23_langues_tache/"
+    },
+    {
+      "id": "E24",
+      "ancien_nom": "E8",
+      "titre": "Vérifier des résultats historiques",
+      "chapitres": "12",
+      "programmes": [
+        "experiences/E24_corpus_historique.py"
+      ],
+      "sortie": "outputs/E24_corpus_historique/"
+    }
+  ],
+  "dossiers": {
+    "E1-validation": "E05_validation_classificateur",
+    "E2-geometrie": "E08_geometrie_recherche",
+    "E3-defis": "E10_extraction_defis",
+    "E7-formulations": "E22_langues_formulations",
+    "E7-tache": "E23_langues_tache",
+    "calcul-observe": "E02_calcul_observe",
+    "E1": "E01_classification",
+    "E2": "E07_recherche",
+    "E3": "E09_extraction",
+    "E4": "E11_choix_abstention",
+    "E5": "E16_intervention",
+    "E6": "E19_adaptation",
+    "E7": "E21_langues",
+    "E8": "E24_corpus_historique",
+    "calculs": "E03_calculs_guides",
+    "intervalles": "E04_intervalles",
+    "latence": "E12_latence",
+    "inspection": "E13_inspection",
+    "attention": "E14_attention",
+    "sondes": "E15_sondes",
+    "patching": "E17_carte_patching",
+    "tetes": "E18_tetes",
+    "pilotage": "E20_pilotage",
+    "predictions-exemple.csv": "E06_prediction/predictions-exemple.csv",
+    "verification/inference.json": "E06_prediction/inference.json"
+  },
+  "programmes": [
+    {
+      "ancien": "experiences_cpu.py",
+      "nouveau": "socle_experiences.py",
+      "sha256_ancien": "2b13f47e82c385a6fcdb9df9537c9cc5796c32765f2eba2d4b639c3d7177b4b2",
+      "sha256_nouveau": "90601876703cd9bf281ae79ff9590103d9d00de4505f5d85a552190d9dc26d71",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"Expériences du tome 2. CPU imposé, résultats écrits après calcul uniquement.\r",
+          "apres": "\"\"\"Socle commun et expériences E01, E07, E09, E16 et E21 du tome 2. CPU imposé, résultats écrits après calcul uniquement."
+        },
+        {
+          "ligne": 3,
+          "avant": "Usage : python experiences/experiences_cpu.py --experience all\r",
+          "apres": "Usage : python experiences/socle_experiences.py --experience all   (ou E01, E07, E09, E16, E21 ; les programmes E01_classification.py, etc. en lancent une seule)"
+        },
+        {
+          "ligne": 49,
+          "avant": "            'script':entry.name,'script_sha256':sha(entry),'dependencies':{'experiences_cpu.py':sha(__file__)},'device':'cpu','dtype':'float32',\r",
+          "apres": "            'script':entry.name,'script_sha256':sha(entry),'dependencies':{'socle_experiences.py':sha(__file__)},'device':'cpu','dtype':'float32',\r"
+        },
+        {
+          "ligne": 98,
+          "avant": "    folder=OUT/'E1';folder.mkdir(parents=True,exist_ok=True)\r",
+          "apres": "    folder=OUT/'E01_classification';folder.mkdir(parents=True,exist_ok=True)\r"
+        },
+        {
+          "ligne": 106,
+          "avant": "    save('E1',{'n_train':len(train),'n_test':len(test),'accuracy_train_longueur':float(length.score([[len(t)] for t in train],yt)),\r",
+          "apres": "    save('E01_classification',{'n_train':len(train),'n_test':len(test),'accuracy_train_longueur':float(length.score([[len(t)] for t in train],yt)),\r"
+        },
+        {
+          "ligne": 140,
+          "avant": "    save('E2',data,'Quelle recherche retrouve le paragraphe pertinent ?', ['Même collection et mêmes questions','Une référence par question, définie avant calcul'],\r",
+          "apres": "    save('E07_recherche',data,'Quelle recherche retrouve le paragraphe pertinent ?', ['Même collection et mêmes questions','Une référence par question, définie avant calcul'],\r"
+        },
+        {
+          "ligne": 173,
+          "avant": "    save('E3',{'n':len(rows),'scores':totals,'rows':rows},'Contraindre le format garantit-il le bon champ ?',\r",
+          "apres": "    save('E09_extraction',{'n':len(rows),'scores':totals,'rows':rows},'Contraindre le format garantit-il le bon champ ?',\r"
+        },
+        {
+          "ligne": 222,
+          "avant": "    save('E5',{'discovery':discovery,'selected_layer':chosen,'test':rows},'Un site choisi sur deux exemples restaure-t-il des exemples distincts ?',\r",
+          "apres": "    save('E16_intervention',{'discovery':discovery,'selected_layer':chosen,'test':rows},'Un site choisi sur deux exemples restaure-t-il des exemples distincts ?',\r"
+        },
+        {
+          "ligne": 237,
+          "avant": "    save('E7',result,'Que change la langue de la même question factuelle ?', ['Même modèle et cible tokenisée Paris','Quatre formulations explicites'],\r",
+          "apres": "    save('E21_langues',result,'Que change la langue de la même question factuelle ?', ['Même modèle et cible tokenisée Paris','Quatre formulations explicites'],\r"
+        },
+        {
+          "ligne": 241,
+          "avant": "    p=argparse.ArgumentParser();p.add_argument('--experience',choices=['all','E1','E2','E3','E5','E7'],default='all');a=p.parse_args()\r",
+          "apres": "    p=argparse.ArgumentParser();p.add_argument('--experience',choices=['all','E01','E07','E09','E16','E21'],default='all');a=p.parse_args()"
+        },
+        {
+          "ligne": 242,
+          "avant": "    for name,fn in [('E1',classification),('E2',retrieval),('E3',extraction),('E5',causal),('E7',languages)]:\r",
+          "apres": "    for name,fn in [('E01',classification),('E07',retrieval),('E09',extraction),('E16',causal),('E21',languages)]:"
+        }
+      ]
+    },
+    {
+      "ancien": "observer_calcul.py",
+      "nouveau": "E02_calcul_observe.py",
+      "sha256_ancien": "cf3576936251e41c279ac3b8cb4519332684c2f7fcc88b5377c7773610a708a2",
+      "sha256_nouveau": "8db57432ccf836edf6626276dd64b859a8bd5b7e7e9705b40acaf3dace708f2d",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"Suivre une phrase dans GPT-2 : tokens, états internes, logits et masque.",
+          "apres": "\"\"\"E02 : suivre une phrase dans GPT-2 : tokens, états internes, logits et masque."
+        },
+        {
+          "ligne": 7,
+          "avant": "Usage : python experiences/observer_calcul.py",
+          "apres": "Usage : python experiences/E02_calcul_observe.py"
+        },
+        {
+          "ligne": 8,
+          "avant": "Sortie : outputs/calcul-observe/metadata.json",
+          "apres": "Sortie : outputs/E02_calcul_observe/metadata.json"
+        },
+        {
+          "ligne": 16,
+          "avant": "from experiences_cpu import model, snapshot, save",
+          "apres": "from socle_experiences import model, snapshot, save"
+        },
+        {
+          "ligne": 30,
+          "avant": "# Prompt et grammaire de l'expérience E3 (experiences_cpu.py, fonction extraction),",
+          "apres": "# Prompt et grammaire de l'expérience E09 (socle_experiences.py, fonction extraction),"
+        },
+        {
+          "ligne": 99,
+          "avant": "    \"\"\"Suivre, pas à pas, le décodage contraint de E3 sur un document ambigu.\"\"\"",
+          "apres": "    \"\"\"Suivre, pas à pas, le décodage contraint de E09 sur un document ambigu.\"\"\""
+        },
+        {
+          "ligne": 162,
+          "avant": "    save(\"calcul-observe\", resultats,",
+          "apres": "    save(\"E02_calcul_observe\", resultats,"
+        },
+        {
+          "ligne": 166,
+          "avant": "          \"Prompt E3 recopié à l'identique ; masque appliqué aux mêmes logits\"],",
+          "apres": "          \"Prompt E09 recopié à l'identique ; masque appliqué aux mêmes logits\"],"
+        }
+      ]
+    },
+    {
+      "ancien": "exemples_calculables.py",
+      "nouveau": "E03_calculs_guides.py",
+      "sha256_ancien": "505469f444becdb95736b8695e5d62833000e6b67f7d41d4b9ea26a5d67b47b1",
+      "sha256_nouveau": "d9eba2cceafae3b58e835cbd1116fe5d18ae795defac7cbbb0e026676bf66a23",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"Calculs didactiques sur données fabriquées : aucun résultat de modèle.\"\"\"",
+          "apres": "\"\"\"E03 : calculs didactiques sur données fabriquées : aucun résultat de modèle.\"\"\""
+        },
+        {
+          "ligne": 198,
+          "avant": "    dest = ROOT/'outputs/calculs'",
+          "apres": "    dest = ROOT/'outputs/E03_calculs_guides'"
+        }
+      ]
+    },
+    {
+      "ancien": "intervalles.py",
+      "nouveau": "E04_intervalles.py",
+      "sha256_ancien": "e08ca2a57b1bd0d64bc3a6d20d4a025c784b09cb5c1c30682e91b0018d80a5dc",
+      "sha256_nouveau": "b3f96a5a0486ee190933a0953deb189b3fe7719805fd22230ec436c17c7be509",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"Intervalles de rééchantillonnage pour trois résultats du livre, sans nouveau calcul de modèle.",
+          "apres": "\"\"\"E04 : intervalles de rééchantillonnage pour trois résultats du livre, sans nouveau calcul de modèle."
+        },
+        {
+          "ligne": 5,
+          "avant": "existantes (outputs/E1-validation, outputs/E2) et la table d'accord fabriquée",
+          "apres": "existantes (outputs/E05_validation_classificateur, outputs/E07_recherche) et la table d'accord fabriquée"
+        },
+        {
+          "ligne": 6,
+          "avant": "de exemples_calculables.py, puis demande quelle incertitude accompagne chaque",
+          "apres": "de E03_calculs_guides.py, puis demande quelle incertitude accompagne chaque"
+        },
+        {
+          "ligne": 16,
+          "avant": "- pour la validation de E1, on donne aussi l'intervalle de Wilson et le test",
+          "apres": "- pour la validation du classificateur (E05), on donne aussi l'intervalle de Wilson et le test"
+        },
+        {
+          "ligne": 19,
+          "avant": "Usage : python experiences/intervalles.py",
+          "apres": "Usage : python experiences/E04_intervalles.py"
+        },
+        {
+          "ligne": 20,
+          "avant": "Sortie : outputs/intervalles/resultats.json",
+          "apres": "Sortie : outputs/E04_intervalles/resultats.json"
+        },
+        {
+          "ligne": 27,
+          "avant": "from exemples_calculables import kappa",
+          "apres": "from E03_calculs_guides import kappa"
+        },
+        {
+          "ligne": 79,
+          "avant": "    # 2. Validation de E1 : 24 messages, avant et après équilibrage.",
+          "apres": "    # 2. Validation du classificateur (E05) : 24 messages, avant et après équilibrage."
+        },
+        {
+          "ligne": 80,
+          "avant": "    v = json.loads((RACINE / \"outputs/E1-validation/metadata.json\").read_text(encoding=\"utf-8\"))[\"results\"]",
+          "apres": "    v = json.loads((RACINE / \"outputs/E05_validation_classificateur/metadata.json\").read_text(encoding=\"utf-8\"))[\"results\"]"
+        },
+        {
+          "ligne": 94,
+          "avant": "    # 3. E2 : huit questions, rangs des deux méthodes.",
+          "apres": "    # 3. E07 : huit questions, rangs des deux méthodes."
+        },
+        {
+          "ligne": 95,
+          "avant": "    e2 = json.loads((RACINE / \"outputs/E2/metadata.json\").read_text(encoding=\"utf-8\"))[\"results\"]",
+          "apres": "    e2 = json.loads((RACINE / \"outputs/E07_recherche/metadata.json\").read_text(encoding=\"utf-8\"))[\"results\"]"
+        },
+        {
+          "ligne": 110,
+          "avant": "    sortie = RACINE / \"outputs/intervalles\"",
+          "apres": "    sortie = RACINE / \"outputs/E04_intervalles\""
+        }
+      ]
+    },
+    {
+      "ancien": "valider_classificateur.py",
+      "nouveau": "E05_validation_classificateur.py",
+      "sha256_ancien": "1aec51e611ee6316ab58d8326bbe9ecfae13b968e7edf0fbca7cca1f7cb80f4f",
+      "sha256_nouveau": "182a82974e7018527531271ff52e4fb81feaf52e6cd0669eb102c959144a922a",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"E1-validation : le classificateur réparé tient-il sur des messages neufs ?",
+          "apres": "\"\"\"E05 : le classificateur réparé tient-il sur des messages neufs ?"
+        },
+        {
+          "ligne": 3,
+          "avant": "Chapitre « Classer : baseline, puis représentations ». La réparation de E1 a été",
+          "apres": "Chapitre « Classer : baseline, puis représentations ». La réparation de E01 a été"
+        },
+        {
+          "ligne": 5,
+          "avant": "programme applique les deux pipelines lexicaux sauvegardés par E1 (avant et après",
+          "apres": "programme applique les deux pipelines lexicaux sauvegardés par E01 (avant et après"
+        },
+        {
+          "ligne": 8,
+          "avant": "la moitié de chaque groupe porte la formule de politesse de E1. Une partie du",
+          "apres": "la moitié de chaque groupe porte la formule de politesse de E01. Une partie du"
+        },
+        {
+          "ligne": 11,
+          "avant": "Usage : python experiences/valider_classificateur.py   (après E1)",
+          "apres": "Usage : python experiences/E05_validation_classificateur.py   (après E01)"
+        },
+        {
+          "ligne": 12,
+          "avant": "Sortie : outputs/E1-validation/metadata.json",
+          "apres": "Sortie : outputs/E05_validation_classificateur/metadata.json"
+        },
+        {
+          "ligne": 19,
+          "avant": "from experiences_cpu import OUT, save",
+          "apres": "from socle_experiences import OUT, save"
+        },
+        {
+          "ligne": 47,
+          "avant": "    pipeline = joblib.load(chemin)      # artefact produit par E1 dans ce dépôt",
+          "apres": "    pipeline = joblib.load(chemin)      # artefact produit par E01 dans ce dépôt"
+        },
+        {
+          "ligne": 64,
+          "avant": "    dossier = OUT / \"E1\"",
+          "apres": "    dossier = OUT / \"E01_classification\""
+        },
+        {
+          "ligne": 68,
+          "avant": "    save(\"E1-validation\", resultats,",
+          "apres": "    save(\"E05_validation_classificateur\", resultats,"
+        },
+        {
+          "ligne": 69,
+          "avant": "         \"La réparation post hoc de E1 tient-elle sur des messages écrits après elle ?\",",
+          "apres": "         \"La réparation post hoc de E01 tient-elle sur des messages écrits après elle ?\","
+        },
+        {
+          "ligne": 75,
+          "avant": "          \"Seuls les pipelines lexicaux sont sauvegardés par E1 ; la sonde n'est pas réévaluée\"],",
+          "apres": "          \"Seuls les pipelines lexicaux sont sauvegardés par E01 ; la sonde n'est pas réévaluée\"],"
+        }
+      ]
+    },
+    {
+      "ancien": "predire.py",
+      "nouveau": "E06_prediction.py",
+      "sha256_ancien": "75ea51d37e96131be560c456b2651e51b542700e1c89602cff4f621c89d3e036",
+      "sha256_nouveau": "cb1bc4339c6c66cb76cc0e61177ca03f3cb0737e9c1ba958355ddd426e7df990",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"Appliquer un pipeline lexical sauvegardé à un fichier : une ligne = un message.\"\"\"",
+          "apres": "\"\"\"E06 : appliquer un pipeline lexical sauvegardé à un fichier ; une ligne = un message.\"\"\""
+        },
+        {
+          "ligne": 7,
+          "avant": "    p.add_argument('--model',type=Path,default=Path(__file__).resolve().parents[1]/'outputs/E1/classificateur-equilibre.joblib')",
+          "apres": "    p.add_argument('--model',type=Path,default=Path(__file__).resolve().parents[1]/'outputs/E01_classification/classificateur-equilibre.joblib')"
+        }
+      ]
+    },
+    {
+      "ancien": "verifier_inference.py",
+      "nouveau": "E06_verifier_prediction.py",
+      "sha256_ancien": "368284f562f1dc8bf8eb094b2188d1f17ca3363a02b892226b458a016737fa80",
+      "sha256_nouveau": "7c6a422f2a3f40f5b48d3950a11b47a5fe2926d89b3a819245c8dfc76d674eb7",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"Contrôler la commande de prédiction et conserver aussi ses erreurs sémantiques.\"\"\"\r",
+          "apres": "\"\"\"E06 : contrôler la commande de prédiction et conserver aussi ses erreurs sémantiques.\"\"\""
+        },
+        {
+          "ligne": 14,
+          "avant": "    destination = ROOT/'outputs/predictions-exemple.csv'\r",
+          "apres": "    destination = ROOT/'outputs/E06_prediction/predictions-exemple.csv';destination.parent.mkdir(parents=True,exist_ok=True)"
+        },
+        {
+          "ligne": 15,
+          "avant": "    subprocess.run([sys.executable, str(ROOT/'experiences/predire.py'), str(source), str(destination)], check=True)\r",
+          "apres": "    subprocess.run([sys.executable, str(ROOT/'experiences/E06_prediction.py'), str(source), str(destination)], check=True)\r"
+        },
+        {
+          "ligne": 25,
+          "avant": "                           [source, ROOT/'experiences/predire.py',ROOT/'outputs/E1/classificateur-equilibre.joblib']}}\r",
+          "apres": "                           [source, ROOT/'experiences/E06_prediction.py',ROOT/'outputs/E01_classification/classificateur-equilibre.joblib']}}\r"
+        },
+        {
+          "ligne": 26,
+          "avant": "    (ROOT/'outputs/verification').mkdir(parents=True,exist_ok=True)\r",
+          "apres": "    (ROOT/'outputs/E06_prediction').mkdir(parents=True,exist_ok=True)"
+        },
+        {
+          "ligne": 27,
+          "avant": "    (ROOT/'outputs/verification/inference.json').write_text(json.dumps(resultat,ensure_ascii=False,indent=2),encoding='utf-8')\r",
+          "apres": "    (ROOT/'outputs/E06_prediction/inference.json').write_text(json.dumps(resultat,ensure_ascii=False,indent=2),encoding='utf-8')"
+        }
+      ]
+    },
+    {
+      "ancien": "geometrie_recherche.py",
+      "nouveau": "E08_geometrie_recherche.py",
+      "sha256_ancien": "def18deb199b49124ddb85f871ffc6a0368a3f770bef2bd2e3853c30cb27d6b7",
+      "sha256_nouveau": "8a1f7011c3b80358db6c928cca0af51715235692702b814a6bc1c64acef42b1e",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"Lire les scores de la recherche dense : niveau de fond, marges et témoin aléatoire.",
+          "apres": "\"\"\"E08 : lire les scores de la recherche dense : niveau de fond, marges et témoin aléatoire."
+        },
+        {
+          "ligne": 3,
+          "avant": "Chapitre « Trouver les bons documents ». Reprend la base et les questions de E2",
+          "apres": "Chapitre « Trouver les bons documents ». Reprend la base et les questions de E07"
+        },
+        {
+          "ligne": 4,
+          "avant": "(experiences_cpu.py, constantes DOCS et QUERIES) et le même encodeur. Mesure :",
+          "apres": "(socle_experiences.py, constantes DOCS et QUERIES) et le même encodeur. Mesure :"
+        },
+        {
+          "ligne": 10,
+          "avant": "Usage : python experiences/geometrie_recherche.py",
+          "apres": "Usage : python experiences/E08_geometrie_recherche.py"
+        },
+        {
+          "ligne": 11,
+          "avant": "Sortie : outputs/E2-geometrie/metadata.json",
+          "apres": "Sortie : outputs/E08_geometrie_recherche/metadata.json"
+        },
+        {
+          "ligne": 17,
+          "avant": "from experiences_cpu import DOCS, QUERIES, encoder, save",
+          "apres": "from socle_experiences import DOCS, QUERIES, encoder, save"
+        },
+        {
+          "ligne": 51,
+          "avant": "    save(\"E2-geometrie\", {",
+          "apres": "    save(\"E08_geometrie_recherche\", {"
+        }
+      ]
+    },
+    {
+      "ancien": "extraction_defis.py",
+      "nouveau": "E10_extraction_defis.py",
+      "sha256_ancien": "8f687c0c21d4b8e760553f0d0c800cf5a6096a91a86000a637d082d98fe52af1",
+      "sha256_nouveau": "82530db35385a131ababe9c4e4e037acf9a4625c58485b00a5aaf568799ac6e0",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"E3-bis et E4-bis : pourquoi le décodage contraint de E3 répond-il toujours null ?",
+          "apres": "\"\"\"E10 (prolonge E09 et E11) : pourquoi le décodage contraint de E09 répond-il toujours null ?"
+        },
+        {
+          "ligne": 4,
+          "avant": "budget ». Expérience exploratoire, postérieure à E3 : elle part d'un constat (E3",
+          "apres": "budget ». Expérience exploratoire, postérieure à E09 : elle part d'un constat (E09"
+        },
+        {
+          "ligne": 5,
+          "avant": "et E7-tâche produisent {\"ville\":null} pour toutes les entrées) et teste des",
+          "apres": "et E23 produisent {\"ville\":null} pour toutes les entrées) et teste des"
+        },
+        {
+          "ligne": 14,
+          "avant": "2. Même GPT-2, même grammaire à quatre objets que E3. Deux ordres des exemples",
+          "apres": "2. Même GPT-2, même grammaire à quatre objets que E09. Deux ordres des exemples"
+        },
+        {
+          "ligne": 15,
+          "avant": "   de démonstration : A (celui de E3 : Paris puis null) et B (null puis Paris).",
+          "apres": "   de démonstration : A (celui de E09 : Paris puis null) et B (null puis Paris)."
+        },
+        {
+          "ligne": 16,
+          "avant": "3. Trois règles de décision : (i) décodage contraint glouton, comme E3 ;",
+          "apres": "3. Trois règles de décision : (i) décodage contraint glouton, comme E09 ;"
+        },
+        {
+          "ligne": 25,
+          "avant": "Usage : python experiences/extraction_defis.py",
+          "apres": "Usage : python experiences/E10_extraction_defis.py"
+        },
+        {
+          "ligne": 26,
+          "avant": "Sortie : outputs/E3-defis/metadata.json",
+          "apres": "Sortie : outputs/E10_extraction_defis/metadata.json"
+        },
+        {
+          "ligne": 34,
+          "avant": "from experiences_cpu import model, snapshot, save",
+          "apres": "from socle_experiences import model, snapshot, save"
+        },
+        {
+          "ligne": 41,
+          "avant": "ORDRES = {\"A\": CONSIGNE + EXEMPLE_VILLE + EXEMPLE_NULL,   # ordre de E3",
+          "apres": "ORDRES = {\"A\": CONSIGNE + EXEMPLE_VILLE + EXEMPLE_NULL,   # ordre de E09"
+        },
+        {
+          "ligne": 221,
+          "avant": "    save(\"E3-defis\", {",
+          "apres": "    save(\"E10_extraction_defis\", {"
+        },
+        {
+          "ligne": 231,
+          "avant": "    }, \"Pourquoi le décodage contraint de E3 répond-il toujours null, et quelle règle de décision le corrige ?\",",
+          "apres": "    }, \"Pourquoi le décodage contraint de E09 répond-il toujours null, et quelle règle de décision le corrige ?\","
+        },
+        {
+          "ligne": 237,
+          "avant": "         \"Analyse exploratoire décidée après le constat de E3 ; pas de préenregistrement\",",
+          "apres": "         \"Analyse exploratoire décidée après le constat de E09 ; pas de préenregistrement\","
+        }
+      ]
+    },
+    {
+      "ancien": "choix_cpu.py",
+      "nouveau": "E11_choix_abstention.py",
+      "sha256_ancien": "2aecda42d7bccb7a8f34125ca120387c6db4e7614f96c13b78ab626412b66d0c",
+      "sha256_nouveau": "f62a87dc22653d90654ce6bd5cfa08296c04a7618e9fd611159b3e2d0d457458",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"E4 : règle extractive, abstention déclarée, coût mesuré ; pas de seuil optimisé.\"\"\"",
+          "apres": "\"\"\"E11 : règle extractive, abstention déclarée, coût mesuré ; pas de seuil optimisé.\"\"\""
+        },
+        {
+          "ligne": 16,
+          "avant": "    source=ROOT/'outputs/E3/metadata.json';exp=json.loads(source.read_text(encoding='utf-8'))",
+          "apres": "    source=ROOT/'outputs/E09_extraction/metadata.json';exp=json.loads(source.read_text(encoding='utf-8'))"
+        },
+        {
+          "ligne": 22,
+          "avant": "    # Ces contre-exemples de défi sont déclarés séparément de la comparaison sur E3.",
+          "apres": "    # Ces contre-exemples de défi sont déclarés séparément de la comparaison sur E09."
+        },
+        {
+          "ligne": 30,
+          "avant": "            'controls':['Même jeu E3, sans réglage de seuil','Abstention sur pluralité de villes écrite avant ce calcul','Contre-exemples de défi conservés séparément'],",
+          "apres": "            'controls':['Même jeu E09, sans réglage de seuil','Abstention sur pluralité de villes écrite avant ce calcul','Contre-exemples de défi conservés séparément'],"
+        },
+        {
+          "ligne": 36,
+          "avant": "    out=ROOT/'outputs/E4';out.mkdir(exist_ok=True)",
+          "apres": "    out=ROOT/'outputs/E11_choix_abstention';out.mkdir(exist_ok=True)"
+        }
+      ]
+    },
+    {
+      "ancien": "mesurer_latence.py",
+      "nouveau": "E12_latence.py",
+      "sha256_ancien": "6f41192a57daf3ace76424847fe69495fc3eb4e6d9a7d2a9c140596a6cd834f4",
+      "sha256_nouveau": "52bc106ccf6d2bf4a240fb83bc3e7a82646bee6e029fff369e8934ade6fb1648",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"Mesurer la latence de l'extraction libre et contrainte avec échauffement et répétitions.",
+          "apres": "\"\"\"E12 : mesurer la latence de l'extraction libre et contrainte avec échauffement et répétitions."
+        },
+        {
+          "ligne": 3,
+          "avant": "Chapitre « Choisir un modèle ». Le manifeste de E3 donne une durée médiane par",
+          "apres": "Chapitre « Choisir un modèle ». Le manifeste de E09 donne une durée médiane par"
+        },
+        {
+          "ligne": 7,
+          "avant": "réglages de génération que la fonction `extraction` de `experiences_cpu.py`",
+          "apres": "réglages de génération que la fonction `extraction` de `socle_experiences.py`"
+        },
+        {
+          "ligne": 20,
+          "avant": "Usage : python experiences/mesurer_latence.py",
+          "apres": "Usage : python experiences/E12_latence.py"
+        },
+        {
+          "ligne": 21,
+          "avant": "Sortie : outputs/latence/metadata.json",
+          "apres": "Sortie : outputs/E12_latence/metadata.json"
+        },
+        {
+          "ligne": 29,
+          "avant": "from experiences_cpu import model, snapshot, save",
+          "apres": "from socle_experiences import model, snapshot, save"
+        },
+        {
+          "ligne": 89,
+          "avant": "    save('latence', {",
+          "apres": "    save('E12_latence', {"
+        }
+      ]
+    },
+    {
+      "ancien": "inspection_cpu.py",
+      "nouveau": "E13_inspection.py",
+      "sha256_ancien": "ddc3bebe36df8dae0932ca3868ad382f08d0d8cb8b21f71b235532b2e5d56ca2",
+      "sha256_nouveau": "d5e75b97d0806b24373249df3f5383e52fe0a7ae86c0c324d58d149e16802823",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"Lectures et pilotage temporaires, avec sites de capture/injection identiques.\"\"\"",
+          "apres": "\"\"\"E13 : lectures et pilotage temporaires, avec sites de capture/injection identiques.\"\"\""
+        },
+        {
+          "ligne": 2,
+          "avant": "from experiences_cpu import *",
+          "apres": "from socle_experiences import *"
+        },
+        {
+          "ligne": 33,
+          "avant": "    save('inspection',{'prompt':prompt,'lens':rows,'steering_layer':layer,'steering':doses},",
+          "apres": "    save('E13_inspection',{'prompt':prompt,'lens':rows,'steering_layer':layer,'steering':doses},"
+        }
+      ]
+    },
+    {
+      "ancien": "lire_attention.py",
+      "nouveau": "E14_attention.py",
+      "sha256_ancien": "aac1ef5186b5aa7ec40259c6a46b5deae2f1b1bdfcd8db00f889530f8996c7d5",
+      "sha256_nouveau": "8f2f653439502ff98b249a49c20a8551e5300744af2492f5d380e6ed5e74c437",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"Lire l'attention de GPT-2, puis tester une lecture par une ablation.",
+          "apres": "\"\"\"E14 : lire l'attention de GPT-2, puis tester une lecture par une ablation."
+        },
+        {
+          "ligne": 16,
+          "avant": "Usage : python experiences/lire_attention.py",
+          "apres": "Usage : python experiences/E14_attention.py"
+        },
+        {
+          "ligne": 17,
+          "avant": "Sortie : outputs/attention/metadata.json",
+          "apres": "Sortie : outputs/E14_attention/metadata.json"
+        },
+        {
+          "ligne": 24,
+          "avant": "from experiences_cpu import model, snapshot, save",
+          "apres": "from socle_experiences import model, snapshot, save"
+        },
+        {
+          "ligne": 140,
+          "avant": "    save(\"attention\", {",
+          "apres": "    save(\"E14_attention\", {"
+        }
+      ]
+    },
+    {
+      "ancien": "sonder_relation.py",
+      "nouveau": "E15_sondes.py",
+      "sha256_ancien": "c9f99e4ea25cdf7a746537f0060f7e940b0f2b130fd8671dc74286ff65314e59",
+      "sha256_nouveau": "c1d998771b0fca0ef407d307edf893ed55885e4ed870ca0e7ccf2d2d8d04fcde",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"Sondes linéaires : que lit-on dans les états internes, et contre quelle explication ?",
+          "apres": "\"\"\"E15 : sondes linéaires : que lit-on dans les états internes, et contre quelle explication ?"
+        },
+        {
+          "ligne": 15,
+          "avant": "Usage : python experiences/sonder_relation.py",
+          "apres": "Usage : python experiences/E15_sondes.py"
+        },
+        {
+          "ligne": 16,
+          "avant": "Sortie : outputs/sondes/metadata.json",
+          "apres": "Sortie : outputs/E15_sondes/metadata.json"
+        },
+        {
+          "ligne": 28,
+          "avant": "from experiences_cpu import model, snapshot, save",
+          "apres": "from socle_experiences import model, snapshot, save"
+        },
+        {
+          "ligne": 116,
+          "avant": "    save(\"sondes\", {",
+          "apres": "    save(\"E15_sondes\", {"
+        }
+      ]
+    },
+    {
+      "ancien": "carte_patching.py",
+      "nouveau": "E17_carte_patching.py",
+      "sha256_ancien": "e5d514a3137e1462bf6a2c417771851c33be7476a641fe886ee6103046b1713c",
+      "sha256_nouveau": "1a96f719b9bea94703bd5a2c3cbeab966335c5d26906ef639afaee18d7c59ac0",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"Carte de restauration couche × position, puis contrôles aux sites retenus.",
+          "apres": "\"\"\"E17 : carte de restauration couche × position, puis contrôles aux sites retenus."
+        },
+        {
+          "ligne": 19,
+          "avant": "Usage : python experiences/carte_patching.py",
+          "apres": "Usage : python experiences/E17_carte_patching.py"
+        },
+        {
+          "ligne": 20,
+          "avant": "Sortie : outputs/patching/metadata.json",
+          "apres": "Sortie : outputs/E17_carte_patching/metadata.json"
+        },
+        {
+          "ligne": 27,
+          "avant": "from experiences_cpu import model, snapshot, save",
+          "apres": "from socle_experiences import model, snapshot, save"
+        },
+        {
+          "ligne": 152,
+          "avant": "    save(\"patching\", {",
+          "apres": "    save(\"E17_carte_patching\", {"
+        }
+      ]
+    },
+    {
+      "ancien": "patcher_tetes.py",
+      "nouveau": "E18_tetes.py",
+      "sha256_ancien": "747fefa743fe7209cf35c4e87f874b077c2377aacaecb1cb9c5e82cb3827f958",
+      "sha256_nouveau": "17adc2ebeb1323ab2622fe5f3243cf8f6ce259bb79e9949a03958ba18f43074e",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"Remplacer la sortie d'une seule tête d'attention : sélection, transfert et comparaison publiée.",
+          "apres": "\"\"\"E18 : remplacer la sortie d'une seule tête d'attention : sélection, transfert et comparaison publiée."
+        },
+        {
+          "ligne": 3,
+          "avant": "Chapitre « Intervenir pour expliquer ». La tâche est celle de E5 : dans",
+          "apres": "Chapitre « Intervenir pour expliquer ». La tâche est celle de E16 : dans"
+        },
+        {
+          "ligne": 8,
+          "avant": "Le site est plus fin que dans E5 : au lieu de remplacer l'état complet d'une",
+          "apres": "Le site est plus fin que dans E16 : au lieu de remplacer l'état complet d'une"
+        },
+        {
+          "ligne": 29,
+          "avant": "Usage : python experiences/patcher_tetes.py",
+          "apres": "Usage : python experiences/E18_tetes.py"
+        },
+        {
+          "ligne": 30,
+          "avant": "Sortie : outputs/tetes/metadata.json",
+          "apres": "Sortie : outputs/E18_tetes/metadata.json"
+        },
+        {
+          "ligne": 37,
+          "avant": "from experiences_cpu import model, snapshot, save",
+          "apres": "from socle_experiences import model, snapshot, save"
+        },
+        {
+          "ligne": 163,
+          "avant": "    save(\"tetes\", {",
+          "apres": "    save(\"E18_tetes\", {"
+        }
+      ]
+    },
+    {
+      "ancien": "adaptation_cpu.py",
+      "nouveau": "E19_adaptation.py",
+      "sha256_ancien": "d490ab3836b875cfd4515ff49c31fbfd05dc928544978abbd3ca0d54b22bd8ae",
+      "sha256_nouveau": "8297bd2634550e3c12186129661f998723cc7add40e68a9fa35ff124097ce35d",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"E6 : adapter puis comparer instrument gelé et instrument réappris, CPU.\"\"\"",
+          "apres": "\"\"\"E19 : adapter puis comparer instrument gelé et instrument réappris, CPU.\"\"\""
+        },
+        {
+          "ligne": 2,
+          "avant": "from experiences_cpu import *",
+          "apres": "from socle_experiences import *"
+        },
+        {
+          "ligne": 49,
+          "avant": "    folder=OUT/'E6';folder.mkdir(parents=True,exist_ok=True);m.save_pretrained(folder/'adapter')",
+          "apres": "    folder=OUT/'E19_adaptation';folder.mkdir(parents=True,exist_ok=True);m.save_pretrained(folder/'adapter')"
+        },
+        {
+          "ligne": 50,
+          "avant": "    save('E6',{'training_texts':texts,'steps':len(losses),'trainable_parameters':trainable,'loss_first':losses[0],'loss_last':losses[-1],",
+          "apres": "    save('E19_adaptation',{'training_texts':texts,'steps':len(losses),'trainable_parameters':trainable,'loss_first':losses[0],'loss_last':losses[-1],"
+        }
+      ]
+    },
+    {
+      "ancien": "pilotage_temoins.py",
+      "nouveau": "E20_pilotage.py",
+      "sha256_ancien": "a6138b59746a578aecc214e838b9121511944806fa91c21d0ca000924090a197",
+      "sha256_nouveau": "0352c9b6b3eb65d636f07c415f4829f23be8b9207deafe06646160ee9384d648",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"Mettre la direction de pilotage à l'épreuve : témoins aléatoires, sens inverse, effets collatéraux.",
+          "apres": "\"\"\"E20 : mettre la direction de pilotage à l'épreuve : témoins aléatoires, sens inverse, effets collatéraux."
+        },
+        {
+          "ligne": 3,
+          "avant": "Chapitre « Adapter et contrôler ». Le programme `inspection_cpu.py` ajoute, à la",
+          "apres": "Chapitre « Adapter et contrôler ». Le programme `E13_inspection.py` ajoute, à la"
+        },
+        {
+          "ligne": 24,
+          "avant": "Usage : python experiences/pilotage_temoins.py",
+          "apres": "Usage : python experiences/E20_pilotage.py"
+        },
+        {
+          "ligne": 25,
+          "avant": "Sortie : outputs/pilotage/metadata.json",
+          "apres": "Sortie : outputs/E20_pilotage/metadata.json"
+        },
+        {
+          "ligne": 32,
+          "avant": "from experiences_cpu import model, snapshot, save",
+          "apres": "from socle_experiences import model, snapshot, save"
+        },
+        {
+          "ligne": 109,
+          "avant": "    save(\"pilotage\", {",
+          "apres": "    save(\"E20_pilotage\", {"
+        }
+      ]
+    },
+    {
+      "ancien": "langues_formulations.py",
+      "nouveau": "E22_langues_formulations.py",
+      "sha256_ancien": "e827f3fa2e1e5b94bf307f786d0814a553f622ec5057edef6a552ddfc9b7f3f9",
+      "sha256_nouveau": "cbbe4746411c228a1ba27b1e46e657d1cd04751e4a038d0157a838f264dc30c9",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"Faire varier la formulation dans chaque langue avant de comparer les langues.",
+          "apres": "\"\"\"E22 : faire varier la formulation dans chaque langue avant de comparer les langues."
+        },
+        {
+          "ligne": 3,
+          "avant": "Chapitre « Changer de langue et de terrain ». E7 pose la même question factuelle",
+          "apres": "Chapitre « Changer de langue et de terrain ». E21 pose la même question factuelle"
+        },
+        {
+          "ligne": 8,
+          "avant": "- trois formulations par langue : celle de E7, une variante amorcée par un",
+          "apres": "- trois formulations par langue : celle de E21, une variante amorcée par un"
+        },
+        {
+          "ligne": 12,
+          "avant": "- écart entre langues = écart des quatre formulations de E7 ;",
+          "apres": "- écart entre langues = écart des quatre formulations de E21 ;"
+        },
+        {
+          "ligne": 16,
+          "avant": "  entre langues, le tableau de E7 ne peut pas servir à ordonner les langues,",
+          "apres": "  entre langues, le tableau de E21 ne peut pas servir à ordonner les langues,"
+        },
+        {
+          "ligne": 19,
+          "avant": "Usage : python experiences/langues_formulations.py",
+          "apres": "Usage : python experiences/E22_langues_formulations.py"
+        },
+        {
+          "ligne": 20,
+          "avant": "Sortie : outputs/E7-formulations/metadata.json",
+          "apres": "Sortie : outputs/E22_langues_formulations/metadata.json"
+        },
+        {
+          "ligne": 27,
+          "avant": "from experiences_cpu import model, snapshot, save",
+          "apres": "from socle_experiences import model, snapshot, save"
+        },
+        {
+          "ligne": 71,
+          "avant": "    save(\"E7-formulations\", {",
+          "apres": "    save(\"E22_langues_formulations\", {"
+        }
+      ]
+    },
+    {
+      "ancien": "langues_cpu.py",
+      "nouveau": "E23_langues_tache.py",
+      "sha256_ancien": "10bb976b2a5d713cd52acf9926d81f2103b7984c82e557d1f7a5a98c9121efb7",
+      "sha256_nouveau": "5f355e589d2014e3a32459b53420a2c0ec0c7c3dc8192b024b74a99d92dea6c8",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"Même extraction bornée dans quatre langues ; textes parallèles fabriqués.\"\"\"",
+          "apres": "\"\"\"E23 : même extraction bornée dans quatre langues ; textes parallèles fabriqués.\"\"\""
+        },
+        {
+          "ligne": 2,
+          "avant": "from experiences_cpu import *",
+          "apres": "from socle_experiences import *"
+        },
+        {
+          "ligne": 29,
+          "avant": "    save('E7-tache',{'rows':rows,'scores':{lang:sum(r['correct'] for r in rows if r['language']==lang)/len(cases) for lang,cases in CASES.items()}},",
+          "apres": "    save('E23_langues_tache',{'rows':rows,'scores':{lang:sum(r['correct'] for r in rows if r['language']==lang)/len(cases) for lang,cases in CASES.items()}},"
+        },
+        {
+          "ligne": 33,
+          "avant": "       'Les chiffres ne classent pas les langues','Ce prompt diffère de E3 : pas de comparaison causale directe entre les deux expériences'],start,{'gpt2':snapshot('gpt2')[1]})",
+          "apres": "       'Les chiffres ne classent pas les langues','Ce prompt diffère de E09 : pas de comparaison causale directe entre les deux expériences'],start,{'gpt2':snapshot('gpt2')[1]})"
+        }
+      ]
+    },
+    {
+      "ancien": "verifier_corpus.py",
+      "nouveau": "E24_corpus_historique.py",
+      "sha256_ancien": "246fd7a3ebae1ea4c81baf94cf0521b09a457277ff72ece42bca8b4611a10d6b",
+      "sha256_nouveau": "d47f3848a87677eb2b6ea2d093947992572aab77f8b797e378df12be4f004300",
+      "lignes_modifiees": [
+        {
+          "ligne": 1,
+          "avant": "\"\"\"E8 : contrôler arithmétique/provenance de résultats historiques, sans les réexécuter.\"\"\"\r",
+          "apres": "\"\"\"E24 : contrôler arithmétique/provenance de résultats historiques, sans les réexécuter.\"\"\""
+        },
+        {
+          "ligne": 7,
+          "avant": "    dst=ROOT/'outputs/E8';dst.mkdir(parents=True,exist_ok=True)\r",
+          "apres": "    dst=ROOT/'outputs/E24_corpus_historique';dst.mkdir(parents=True,exist_ok=True)\r"
+        }
+      ]
+    },
+    {
+      "ancien": "telecharger_modeles.py",
+      "nouveau": "00_telecharger_modeles.py",
+      "sha256_ancien": "ec46655de13163bb37b90ac034fa10c1fe4e1ba6a6451aaf9f106d17ff842692",
+      "sha256_nouveau": "ec46655de13163bb37b90ac034fa10c1fe4e1ba6a6451aaf9f106d17ff842692",
+      "lignes_modifiees": []
+    }
+  ]
+}
