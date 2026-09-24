@@ -2,7 +2,7 @@
 
 [Accueil](../../README.md) · **Français** · [English](../en/README.md) · [Español](../es/README.md) · [Português](../pt/README.md)
 
-Ce dépôt est le laboratoire du livre **La mécanique interne des LLM** (tome 2) de Mustapha Alouani. Le livre explique les questions, les mécanismes et la lecture des résultats ; ce dépôt permet de refaire les 24 expériences, d'examiner leurs sorties et de les prolonger. Tout fonctionne sur un processeur ordinaire (CPU), sans carte graphique ni service payant.
+Ce dépôt est le laboratoire du livre **La mécanique interne des LLM** (tome 2) de Mustapha Alouani, publié en français, anglais, espagnol et portugais. Le livre explique les questions, les mécanismes et la lecture des résultats ; ce dépôt permet de refaire les 24 expériences, d'examiner leurs sorties et de les prolonger. Tout fonctionne sur un processeur ordinaire (CPU), sans carte graphique ni service payant.
 
 ## 1. Préparer l'environnement
 
@@ -135,5 +135,7 @@ Avant le 23 septembre 2026, les expériences s'appelaient E1 à E8, complétées
 - Kindle — *à paraître*
 - [Site de l'auteur](https://alouani.org)
 
-Du même auteur : **La Mécanique des LLMs** — [Broché](https://amzn.eu/d/3oREERI) · [Kindle](https://amzn.eu/d/b7sG5iw) · [scripts du livre](https://github.com/alouani-org/mecanics-of-llms)
+Autres éditions : 🇬🇧 The Inner Mechanics of LLMs · 🇪🇸 La mecánica interna de los LLM · 🇧🇷 A mecânica interna dos LLM
+
+Du même auteur : **La Mécanique des LLM** — Théorie, architecture et pratique pour l'ingénieur — [Broché](https://amzn.eu/d/3oREERI) · [Kindle](https://amzn.eu/d/b7sG5iw) · [scripts du livre](https://github.com/alouani-org/mecanics-of-llms)
 <!-- livre:fin -->

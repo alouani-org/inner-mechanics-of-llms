@@ -16,58 +16,81 @@ import sys
 DEBUT, FIN = '<!-- livre:debut -->', '<!-- livre:fin -->'
 BLOC = re.compile(re.escape(DEBUT) + r'.*?' + re.escape(FIN), re.S)
 
+DRAPEAUX = {'fr': '🇫🇷', 'en': '🇬🇧', 'es': '🇪🇸', 'pt': '🇧🇷'}
 TEXTES = {
     'fr': {'titre': '📕 Le livre', 'broche': 'Broché', 'kindle': 'Kindle', 'bientot': 'à paraître',
-           'edition': '', 'depot': 'Dépôt compagnon', 'site': "Site de l'auteur", 'fiche': "Page auteur Amazon",
+           'site': "Site de l'auteur", 'fiche': 'Page auteur Amazon', 'autres': 'Autres éditions',
            'meme': 'Du même auteur', 'depot_meme': 'scripts du livre', 'par': 'par'},
     'en': {'titre': '📕 The book', 'broche': 'Paperback', 'kindle': 'Kindle', 'bientot': 'coming soon',
-           'edition': ' (French edition)', 'depot': 'Companion repository', 'site': "Author's website",
-           'fiche': 'Amazon author page', 'meme': 'By the same author', 'depot_meme': 'book scripts', 'par': 'by'},
+           'site': "Author's website", 'fiche': 'Amazon author page', 'autres': 'Other editions',
+           'meme': 'By the same author', 'depot_meme': 'book scripts', 'par': 'by'},
     'es': {'titre': '📕 El libro', 'broche': 'Tapa blanda', 'kindle': 'Kindle', 'bientot': 'próximamente',
-           'edition': ' (edición francesa)', 'depot': 'Repositorio complementario', 'site': 'Sitio del autor',
-           'fiche': 'Página de autor en Amazon', 'meme': 'Del mismo autor', 'depot_meme': 'scripts del libro', 'par': 'de'},
+           'site': 'Sitio del autor', 'fiche': 'Página de autor en Amazon', 'autres': 'Otras ediciones',
+           'meme': 'Del mismo autor', 'depot_meme': 'scripts del libro', 'par': 'de'},
     'pt': {'titre': '📕 O livro', 'broche': 'Capa comum', 'kindle': 'Kindle', 'bientot': 'em breve',
-           'edition': ' (edição francesa)', 'depot': 'Repositório complementar', 'site': 'Site do autor',
-           'fiche': 'Página do autor na Amazon', 'meme': 'Do mesmo autor', 'depot_meme': 'scripts do livro', 'par': 'de'},
+           'site': 'Site do autor', 'fiche': 'Página do autor na Amazon', 'autres': 'Outras edições',
+           'meme': 'Do mesmo autor', 'depot_meme': 'scripts do livro', 'par': 'de'},
 }
+ORDRE = ['fr', 'en', 'es', 'pt']
 
 
 def lien(texte, url, t):
     return f'[{texte}]({url})' if url else f'{texte} — *{t["bientot"]}*'
 
 
+def edition_liee(e):
+    """Titre d'une édition, lié à sa page Amazon quand elle existe."""
+    url = e.get('kindle') or e.get('broche')
+    return f'[{e["titre"]}]({url})' if url else e['titre']
+
+
+def tome1(m, langue, t):
+    """Tome 1 dans la langue du guide : les liens absents sont simplement omis."""
+    e = m['editions'][langue]
+    liens = [f'[{t[k]}]({e[k]})' for k in ('broche', 'kindle') if e.get(k)] + [f'[{t["depot_meme"]}]({m["depot"]})']
+    return f'{t["meme"]}{":" if t is not TEXTES["fr"] else " :"} **{e["titre"]}** — {e["sous_titre"]} — ' + ' · '.join(liens)
+
+
 def bloc(livre, langue):
     t = TEXTES[langue]
-    a, m = livre['achat'], livre['du_meme_auteur']
+    e = livre['editions'][langue]
     lignes = [f'### {t["titre"]}', '',
-              f'**{livre["titre"]}**{t["edition"]} — {livre["sous_titre"]}, {t["par"]} {livre["auteur"]}.', '',
-              f'- {lien(t["broche"], a.get("broche"), t)}',
-              f'- {lien(t["kindle"], a.get("kindle"), t)}']
-    if livre['autres_liens'].get('fiche_auteur_amazon'):
-        lignes.append(f'- [{t["fiche"]}]({livre["autres_liens"]["fiche_auteur_amazon"]})')
+              f'**{e["titre"]}** — {e["sous_titre"]}, {t["par"]} {livre["auteur"]}.', '',
+              f'- {lien(t["broche"], e.get("broche"), t)}',
+              f'- {lien(t["kindle"], e.get("kindle"), t)}']
+    if livre.get('fiche_auteur_amazon'):
+        lignes.append(f'- [{t["fiche"]}]({livre["fiche_auteur_amazon"]})')
     if livre.get('site_auteur'):
         lignes.append(f'- [{t["site"]}]({livre["site_auteur"]})')
-    lignes += ['', f'{t["meme"]} : **{m["titre"]}** — [{t["broche"]}]({m["broche"]}) · [{t["kindle"]}]({m["kindle"]}) · '
-                   f'[{t["depot_meme"]}]({m["depot"]})']
+    autres = [f'{DRAPEAUX[l]} {edition_liee(livre["editions"][l])}' for l in ORDRE if l != langue]
+    lignes += ['', f'{t["autres"]}{":" if t is not TEXTES["fr"] else " :"} ' + ' · '.join(autres), '', tome1(livre['du_meme_auteur'], langue, t)]
     return '\n'.join(lignes)
 
 
 def bloc_multilingue(livre):
-    """Bloc compact des quatre langues, pour le README racine."""
-    a, m = livre['achat'], livre['du_meme_auteur']
-    bientot = 'à paraître · coming soon · próximamente · em breve'
+    """Bloc compact des quatre éditions, pour le README racine."""
+    bientot = '*à paraître · coming soon · próximamente · em breve*'
     def l(url):
-        return f'[Amazon]({url})' if url else f'*{bientot}*'
+        return f'[Amazon]({url})' if url else bientot
     lignes = ['### 📕 Le livre · The book · El libro · O livro', '',
-              f'**{livre["titre"]}** — {livre["sous_titre"]} — {livre["auteur"]} (édition française · French edition)', '',
-              f'- **Broché · Paperback · Tapa blanda · Capa comum** : {l(a.get("broche"))}',
-              f'- **Kindle** : {l(a.get("kindle"))}']
-    if livre['autres_liens'].get('fiche_auteur_amazon'):
-        lignes.append(f'- **Auteur · Author** : [Amazon]({livre["autres_liens"]["fiche_auteur_amazon"]})')
+              '| | Édition · Edition · Edición · Edição | Broché · Paperback · Tapa blanda · Capa comum | Kindle |',
+              '|---|---|---|---|']
+    for code in ORDRE:
+        e = livre['editions'][code]
+        lignes.append(f'| {DRAPEAUX[code]} | **{e["titre"]}** — {e["sous_titre"]} | {l(e.get("broche"))} | {l(e.get("kindle"))} |')
+    lignes.append('')
+    if livre.get('fiche_auteur_amazon'):
+        lignes.append(f'- **Auteur · Author · Autor** : [Amazon]({livre["fiche_auteur_amazon"]})')
     if livre.get('site_auteur'):
         lignes.append(f'- **Site** : [{livre["site_auteur"].split("//")[-1]}]({livre["site_auteur"]})')
-    lignes += ['', f'Du même auteur · By the same author : **{m["titre"]}** — [Broché · Paperback]({m["broche"]}) · '
-                   f'[Kindle]({m["kindle"]}) · [scripts]({m["depot"]})']
+    m = livre['du_meme_auteur']
+    def t1(code):
+        e = m['editions'][code]
+        liens = [f'[{n}]({e[k]})' for k, n in (('broche', 'Broché · Paperback'), ('kindle', 'Kindle')) if e.get(k)]
+        return f'{DRAPEAUX[code]} **{e["titre"]}** — {e["sous_titre"]}' + (' — ' + ' · '.join(liens) if liens else '')
+    lignes += ['', 'Du même auteur · By the same author · Del mismo autor · Do mesmo autor '
+                   f'([scripts]({m["depot"]})) :', '']
+    lignes += [f'- {t1(code)}' for code in ORDRE]
     return '\n'.join(lignes)
 
 

@@ -2,7 +2,7 @@
 
 [Inicio](../../README.md) · [Français](../fr/README.md) · [English](../en/README.md) · **Español** · [Português](../pt/README.md)
 
-Este repositorio es el laboratorio del libro **La mécanique interne des LLM** (tomo 2, en francés) de Mustapha Alouani. El libro explica las preguntas, los mecanismos y la lectura de los resultados; este repositorio permite rehacer los 24 experimentos, examinar sus salidas y prolongarlos. Todo funciona en un procesador corriente (CPU), sin tarjeta gráfica ni servicio de pago.
+Este repositorio es el laboratorio del libro **La mecánica interna de los LLM** (tomo 2) de Mustapha Alouani, publicado en español, francés, inglés y portugués. El libro explica las preguntas, los mecanismos y la lectura de los resultados; este repositorio permite rehacer los 24 experimentos, examinar sus salidas y prolongarlos. Todo funciona en un procesador corriente (CPU), sin tarjeta gráfica ni servicio de pago.
 
 ## 1. Preparar el entorno
 
@@ -129,11 +129,13 @@ Antes del 23 de septiembre de 2026, los experimentos se llamaban E1 a E8, más c
 <!-- livre:debut -->
 ### 📕 El libro
 
-**La mécanique interne des LLM** (edición francesa) — Tome 2 — Comprendre les mécanismes, construire des outils, vérifier leurs résultats, de Mustapha Alouani.
+**La mecánica interna de los LLM** — Tomo 2 — Comprender los mecanismos, construir herramientas, verificar sus resultados, de Mustapha Alouani.
 
 - Tapa blanda — *próximamente*
 - Kindle — *próximamente*
 - [Sitio del autor](https://alouani.org)
 
-Del mismo autor : **La Mécanique des LLMs** — [Tapa blanda](https://amzn.eu/d/3oREERI) · [Kindle](https://amzn.eu/d/b7sG5iw) · [scripts del libro](https://github.com/alouani-org/mecanics-of-llms)
+Otras ediciones: 🇫🇷 La mécanique interne des LLM · 🇬🇧 The Inner Mechanics of LLMs · 🇧🇷 A mecânica interna dos LLM
+
+Del mismo autor: **La Mecánica de los LLM** — Teoría, Arquitectura y Práctica para el Ingeniero — [scripts del libro](https://github.com/alouani-org/mecanics-of-llms)
 <!-- livre:fin -->

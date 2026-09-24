@@ -1,22 +1,62 @@
 {
-  "_mode_d_emploi": "Renseigner les liens dès qu'ils existent (une valeur vide affiche « à paraître »), puis lancer : python outils/liens_livre.py. Les blocs entre <!-- livre:debut --> et <!-- livre:fin --> des README sont réécrits ; tests/check_package.py signale un bloc qui ne correspond plus à ce fichier.",
-  "titre": "La mécanique interne des LLM",
-  "sous_titre": "Tome 2 — Comprendre les mécanismes, construire des outils, vérifier leurs résultats",
+  "_mode_d_emploi": "Renseigner les liens dès qu'ils existent, puis lancer : python outils/liens_livre.py. Pour le tome 2, un lien vide affiche « à paraître » ; pour le tome 1, une édition sans lien est citée sans lien. Les blocs entre <!-- livre:debut --> et <!-- livre:fin --> des README sont réécrits ; tests/check_package.py signale un bloc qui ne correspond plus à ce fichier.",
   "auteur": "Mustapha Alouani",
-  "langue_du_livre": "fr",
   "site_auteur": "https://alouani.org",
   "depot": "https://github.com/alouani-org/inner-mechanics-of-llms",
-  "achat": {
-    "broche": "",
-    "kindle": ""
-  },
-  "autres_liens": {
-    "fiche_auteur_amazon": ""
+  "fiche_auteur_amazon": "",
+  "editions": {
+    "fr": {
+      "titre": "La mécanique interne des LLM",
+      "sous_titre": "Tome 2 — Comprendre les mécanismes, construire des outils, vérifier leurs résultats",
+      "broche": "",
+      "kindle": ""
+    },
+    "en": {
+      "titre": "The Inner Mechanics of LLMs",
+      "sous_titre": "Volume 2 — Understanding the mechanisms, building tools, checking their results",
+      "broche": "",
+      "kindle": ""
+    },
+    "es": {
+      "titre": "La mecánica interna de los LLM",
+      "sous_titre": "Tomo 2 — Comprender los mecanismos, construir herramientas, verificar sus resultados",
+      "broche": "",
+      "kindle": ""
+    },
+    "pt": {
+      "titre": "A mecânica interna dos LLM",
+      "sous_titre": "Volume 2 — Compreender os mecanismos, construir ferramentas, verificar seus resultados",
+      "broche": "",
+      "kindle": ""
+    }
   },
   "du_meme_auteur": {
-    "titre": "La Mécanique des LLMs",
     "depot": "https://github.com/alouani-org/mecanics-of-llms",
-    "broche": "https://amzn.eu/d/3oREERI",
-    "kindle": "https://amzn.eu/d/b7sG5iw"
+    "editions": {
+      "fr": {
+        "titre": "La Mécanique des LLM",
+        "sous_titre": "Théorie, architecture et pratique pour l'ingénieur",
+        "broche": "https://amzn.eu/d/3oREERI",
+        "kindle": "https://amzn.eu/d/b7sG5iw"
+      },
+      "en": {
+        "titre": "The Mechanics of LLMs",
+        "sous_titre": "Theory, Architecture and Practice for Engineers",
+        "broche": "",
+        "kindle": ""
+      },
+      "es": {
+        "titre": "La Mecánica de los LLM",
+        "sous_titre": "Teoría, Arquitectura y Práctica para el Ingeniero",
+        "broche": "",
+        "kindle": ""
+      },
+      "pt": {
+        "titre": "A Mecânica dos LLM",
+        "sous_titre": "Teoria, Arquitetura e Prática para o Engenheiro",
+        "broche": "",
+        "kindle": ""
+      }
+    }
   }
 }

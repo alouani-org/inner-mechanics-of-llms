@@ -1,23 +1,31 @@
-# 🎓 La mécanique interne des LLM — laboratoire compagnon · companion lab
+# 🎓 La mécanique interne des LLM · The Inner Mechanics of LLMs — laboratoire compagnon · companion lab
 
 > **🌍 Choisir sa langue · Choose your language · Elegir idioma · Escolher a língua**
 >
 > [🇫🇷 Français](docs/fr/README.md) · [🇬🇧 English](docs/en/README.md) · [🇪🇸 Español](docs/es/README.md) · [🇧🇷 Português](docs/pt/README.md)
 
-**24 expériences reproductibles sur CPU** pour le livre *La mécanique interne des LLM* (tome 2) de Mustapha Alouani : comprendre ce que calcule un modèle de langage, construire des outils de classement, de recherche et d'extraction, inspecter et modifier un modèle, puis vérifier chaque résultat. Chaque expérience porte le même identifiant dans le livre, dans le nom de son programme et dans celui de son dossier de sortie.
+**24 expériences reproductibles sur CPU** pour le livre *La mécanique interne des LLM* (tome 2) de Mustapha Alouani, publié en français, anglais, espagnol et portugais : comprendre ce que calcule un modèle de langage, construire des outils de classement, de recherche et d'extraction, inspecter et modifier un modèle, puis vérifier chaque résultat. Chaque expérience porte le même identifiant dans le livre, dans le nom de son programme et dans celui de son dossier de sortie.
 
-**24 reproducible CPU experiments** for the book *La mécanique interne des LLM* (volume 2, in French) by Mustapha Alouani: understand what a language model computes, build classification, retrieval and extraction tools, inspect and modify a model, then check every result. Each experiment carries the same identifier in the book, in its program name and in its output folder.
+**24 reproducible CPU experiments** for the book *The Inner Mechanics of LLMs* (volume 2) by Mustapha Alouani, published in English, French, Spanish and Portuguese: understand what a language model computes, build classification, retrieval and extraction tools, inspect and modify a model, then check every result. Each experiment carries the same identifier in the book, in its program name and in its output folder.
 
 <!-- livre:debut -->
 ### 📕 Le livre · The book · El libro · O livro
 
-**La mécanique interne des LLM** — Tome 2 — Comprendre les mécanismes, construire des outils, vérifier leurs résultats — Mustapha Alouani (édition française · French edition)
+| | Édition · Edition · Edición · Edição | Broché · Paperback · Tapa blanda · Capa comum | Kindle |
+|---|---|---|---|
+| 🇫🇷 | **La mécanique interne des LLM** — Tome 2 — Comprendre les mécanismes, construire des outils, vérifier leurs résultats | *à paraître · coming soon · próximamente · em breve* | *à paraître · coming soon · próximamente · em breve* |
+| 🇬🇧 | **The Inner Mechanics of LLMs** — Volume 2 — Understanding the mechanisms, building tools, checking their results | *à paraître · coming soon · próximamente · em breve* | *à paraître · coming soon · próximamente · em breve* |
+| 🇪🇸 | **La mecánica interna de los LLM** — Tomo 2 — Comprender los mecanismos, construir herramientas, verificar sus resultados | *à paraître · coming soon · próximamente · em breve* | *à paraître · coming soon · próximamente · em breve* |
+| 🇧🇷 | **A mecânica interna dos LLM** — Volume 2 — Compreender os mecanismos, construir ferramentas, verificar seus resultados | *à paraître · coming soon · próximamente · em breve* | *à paraître · coming soon · próximamente · em breve* |
 
-- **Broché · Paperback · Tapa blanda · Capa comum** : *à paraître · coming soon · próximamente · em breve*
-- **Kindle** : *à paraître · coming soon · próximamente · em breve*
 - **Site** : [alouani.org](https://alouani.org)
 
-Du même auteur · By the same author : **La Mécanique des LLMs** — [Broché · Paperback](https://amzn.eu/d/3oREERI) · [Kindle](https://amzn.eu/d/b7sG5iw) · [scripts](https://github.com/alouani-org/mecanics-of-llms)
+Du même auteur · By the same author · Del mismo autor · Do mesmo autor ([scripts](https://github.com/alouani-org/mecanics-of-llms)) :
+
+- 🇫🇷 **La Mécanique des LLM** — Théorie, architecture et pratique pour l'ingénieur — [Broché · Paperback](https://amzn.eu/d/3oREERI) · [Kindle](https://amzn.eu/d/b7sG5iw)
+- 🇬🇧 **The Mechanics of LLMs** — Theory, Architecture and Practice for Engineers
+- 🇪🇸 **La Mecánica de los LLM** — Teoría, Arquitectura y Práctica para el Ingeniero
+- 🇧🇷 **A Mecânica dos LLM** — Teoria, Arquitetura e Prática para o Engenheiro
 <!-- livre:fin -->
 
 ---
