@@ -1,0 +1,1900 @@
+{
+ "date": "2026-09-25",
+ "objet": "Commentaires et docstrings des programmes traduits en anglais. Seuls ces textes changent : le code exécuté est identique (contrôlé par tests/check_package.py, arbre syntaxique sans docstrings). Pour chaque fichier, les lignes d'origine permettent de reconstituer le programme tel qu'il a été exécuté et de vérifier les empreintes des manifestes. tests/check_package.py, modifié pour ce contrôle, n'est pas concerné : il n'a produit aucun résultat. Exception relevée ensuite : E10 recopie une partie de sa docstring (son protocole) dans son manifeste ; sa version à commentaires anglais n'a pas été exécutée telle quelle. Le manifeste publié de E10 reste rattaché à la version d'origine, et E10 a été relancé à l'étape suivante (ETIQUETTES_ANGLAISES.json) après adaptation du marqueur.",
+ "programmes": [
+  {
+   "fichier": "experiences/00_telecharger_modeles.py",
+   "sha256_avant": "ec46655de13163bb37b90ac034fa10c1fe4e1ba6a6451aaf9f106d17ff842692",
+   "sha256_apres": "7147f63c1ce32914474d957b5c4e38b3a5799a4e45c2ce9285272dda6088cba1",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"Préparer les révisions verrouillées ; aucun téléchargement en mode vérification.\"\"\"",
+     "apres": "\"\"\"Prepare the locked revisions; no download in verification mode.\"\"\""
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E01_classification.py",
+   "sha256_avant": "7220440cf8b47b5a6fa3a994c21b3726d8b56cdd7a41a2b30c15a8f814c3a83e",
+   "sha256_apres": "39f1e4ffcbd15529720b1feb0cc38358117f100c4dfc17104b280d2bacfe0795",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E01 : Classer des messages : la longueur suffit-elle ? (chapitres 1, 4).",
+     "apres": "\"\"\"E01: Classifying messages: is length enough? (chapters 1, 4)."
+    },
+    {
+     "ligne": 3,
+     "avant": "Le code de l'expérience est la fonction `classification` de `socle_experiences.py`, qui",
+     "apres": "The experiment's code is the `classification` function in `socle_experiences.py`, which"
+    },
+    {
+     "ligne": 4,
+     "avant": "réunit aussi les fonctions communes aux autres programmes (chargement des modèles,",
+     "apres": "also gathers the functions shared by the other programs (model loading,"
+    },
+    {
+     "ligne": 5,
+     "avant": "écriture des manifestes). Ce programme ne lance que cette expérience.",
+     "apres": "manifest writing). This program runs only this experiment."
+    },
+    {
+     "ligne": 7,
+     "avant": "Usage : python experiences/E01_classification.py",
+     "apres": "Usage: python experiences/E01_classification.py"
+    },
+    {
+     "ligne": 8,
+     "avant": "Sortie : outputs/E01_classification/metadata.json",
+     "apres": "Output: outputs/E01_classification/metadata.json"
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E02_calcul_observe.py",
+   "sha256_avant": "8db57432ccf836edf6626276dd64b859a8bd5b7e7e9705b40acaf3dace708f2d",
+   "sha256_apres": "c5985c2e7aa21796079b415dc9c84c20d7a04854a0b1246a4f795b166a673947",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E02 : suivre une phrase dans GPT-2 : tokens, états internes, logits et masque.",
+     "apres": "\"\"\"E02: follow a sentence through GPT-2: tokens, internal states, logits and mask."
+    },
+    {
+     "ligne": 3,
+     "avant": "Chapitre « Du texte aux scores ». Programme d'observation, sans intervention sur",
+     "apres": "Chapter 2. Observation program, with no intervention on"
+    },
+    {
+     "ligne": 4,
+     "avant": "le calcul : il enregistre ce que produit chaque étape pour que le livre puisse",
+     "apres": "the computation: it records what each step produces so that the book can"
+    },
+    {
+     "ligne": 5,
+     "avant": "lire des sorties réelles. CPU imposé, modèle et révision fixés par modeles.json.",
+     "apres": "read real outputs. CPU enforced, model and revision pinned by modeles.json."
+    },
+    {
+     "ligne": 7,
+     "avant": "Usage : python experiences/E02_calcul_observe.py",
+     "apres": "Usage: python experiences/E02_calcul_observe.py"
+    },
+    {
+     "ligne": 8,
+     "avant": "Sortie : outputs/E02_calcul_observe/metadata.json",
+     "apres": "Output: outputs/E02_calcul_observe/metadata.json"
+    },
+    {
+     "ligne": 18,
+     "avant": "# Le même fait, sans puis avec un exemple qui amorce le patron de phrase.",
+     "apres": "# The same fact, without and then with an example that primes the sentence pattern."
+    },
+    {
+     "ligne": 22,
+     "avant": "# Même contenu dans quatre langues : on compte ce que produit le tokenizer.",
+     "apres": "# Same content in four languages: we count what the tokenizer produces."
+    },
+    {
+     "ligne": 30,
+     "avant": "# Prompt et grammaire de l'expérience E09 (socle_experiences.py, fonction extraction),",
+     "apres": "# Prompt and grammar of experiment E09 (socle_experiences.py, function extraction),"
+    },
+    {
+     "ligne": 31,
+     "avant": "# recopiés à l'identique pour observer le masque sur un document précis.",
+     "apres": "# copied verbatim to observe the mask on one specific document."
+    },
+    {
+     "ligne": 40,
+     "avant": "    \"\"\"Identifiants et fragments produits par le tokenizer, dans l'ordre.\"\"\"",
+     "apres": "    \"\"\"Ids and fragments produced by the tokenizer, in order.\"\"\""
+    },
+    {
+     "ligne": 46,
+     "avant": "    \"\"\"Norme et orientation de l'état de la dernière position, lecture par lecture.\"\"\"",
+     "apres": "    \"\"\"Norm and direction of the last position's state, reading by reading.\"\"\""
+    },
+    {
+     "ligne": 68,
+     "avant": "    \"\"\"Les k tokens de plus haut score à la dernière position, et le sort de la cible.\"\"\"",
+     "apres": "    \"\"\"The k highest-scoring tokens at the last position, and the fate of the target.\"\"\""
+    },
+    {
+     "ligne": 92,
+     "avant": "    \"\"\"Mettre à -inf les tokens interdits, puis renormaliser par softmax.\"\"\"",
+     "apres": "    \"\"\"Set forbidden tokens to -inf, then renormalize with softmax.\"\"\""
+    },
+    {
+     "ligne": 99,
+     "avant": "    \"\"\"Suivre, pas à pas, le décodage contraint de E09 sur un document ambigu.\"\"\"",
+     "apres": "    \"\"\"Follow, step by step, the constrained decoding of E09 on an ambiguous document.\"\"\""
+    },
+    {
+     "ligne": 130,
+     "avant": "    # Score de chaque objet complet : somme des log-probabilités de ses tokens.",
+     "apres": "    # Score of each complete object: sum of the log-probabilities of its tokens."
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E03_calculs_guides.py",
+   "sha256_avant": "d9eba2cceafae3b58e835cbd1116fe5d18ae795defac7cbbb0e026676bf66a23",
+   "sha256_apres": "7fe4820fab84d6b9e9ff47abdc9acadcfbd3fc2f40d916a0739800a3b75ed046",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E03 : calculs didactiques sur données fabriquées : aucun résultat de modèle.\"\"\"",
+     "apres": "\"\"\"E03: didactic computations on fabricated data: no model result.\"\"\""
+    },
+    {
+     "ligne": 48,
+     "avant": "    \"\"\"Une tête d'attention pour une position : scores, poids softmax, mélange des valeurs.\"\"\"",
+     "apres": "    \"\"\"One attention head for one position: scores, softmax weights, mixing of values.\"\"\""
+    },
+    {
+     "ligne": 56,
+     "avant": "    \"\"\"Kappa de Cohen pour deux annotateurs ; table[i][j] = effectif (annotateur 1 = i, annotateur 2 = j).\"\"\"",
+     "apres": "    \"\"\"Cohen's kappa for two annotators; table[i][j] = count (annotator 1 = i, annotator 2 = j).\"\"\""
+    },
+    {
+     "ligne": 67,
+     "avant": "    \"\"\"Variabilité de l'ACC quand TPR et FPR sont estimés sur une petite calibration (simulation).\"\"\"",
+     "apres": "    \"\"\"Variability of ACC when TPR and FPR are estimated on a small calibration set (simulation).\"\"\""
+    },
+    {
+     "ligne": 89,
+     "avant": "    \"\"\"Coût d'une politique d'abstention : revue des refus + erreurs acceptées (unités arbitraires).\"\"\"",
+     "apres": "    \"\"\"Cost of an abstention policy: review of refusals + accepted errors (arbitrary units).\"\"\""
+    },
+    {
+     "ligne": 98,
+     "avant": "    \"\"\"TF-IDF lissé comme scikit-learn : idf = ln((1 + n) / (1 + df)) + 1, puis norme L2 par document.\"\"\"",
+     "apres": "    \"\"\"Smoothed TF-IDF as in scikit-learn: idf = ln((1 + n) / (1 + df)) + 1, then L2 norm per document.\"\"\""
+    },
+    {
+     "ligne": 113,
+     "avant": "    \"\"\"Régression logistique : score linéaire, puis sigmoïde.\"\"\"",
+     "apres": "    \"\"\"Logistic regression: linear score, then sigmoid.\"\"\""
+    },
+    {
+     "ligne": 121,
+     "avant": "    # Les propriétés contrôlées sont indépendantes des arrondis imprimés.",
+     "apres": "    # The checked properties do not depend on the printed rounding."
+    },
+    {
+     "ligne": 156,
+     "avant": "    # Attention d'une position vers trois sources ; vecteurs fabriqués de dimension 2.",
+     "apres": "    # Attention from one position to three sources; fabricated 2-dimensional vectors."
+    },
+    {
+     "ligne": 164,
+     "avant": "    # Deux annotateurs, deux catégories : 100 textes fabriqués.",
+     "apres": "    # Two annotators, two categories: 100 fabricated texts."
+    },
+    {
+     "ligne": 169,
+     "avant": "    # Même proportion réelle, deux instruments de séparation différente.",
+     "apres": "    # Same true proportion, two instruments with different separation."
+    },
+    {
+     "ligne": 173,
+     "avant": "    # Deux politiques fabriquées, quatre hypothèses de coût d'une erreur acceptée.",
+     "apres": "    # Two fabricated policies, four assumptions about the cost of an accepted error."
+    },
+    {
+     "ligne": 180,
+     "avant": "    # TF-IDF à la main sur trois messages fabriqués, puis une décision logistique aux poids choisis.",
+     "apres": "    # TF-IDF by hand on three fabricated messages, then a logistic decision with chosen weights."
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E04_intervalles.py",
+   "sha256_avant": "b3f96a5a0486ee190933a0953deb189b3fe7719805fd22230ec436c17c7be509",
+   "sha256_apres": "0b9907c9a639b1c3ee22a460e204931ad7d8a45121f0b53f271e7f8edcb859ea",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E04 : intervalles de rééchantillonnage pour trois résultats du livre, sans nouveau calcul de modèle.",
+     "apres": "\"\"\"E04: resampling intervals for three results of the book, with no new model computation."
+    },
+    {
+     "ligne": 3,
+     "avant": "Chapitres « Définir ce qu'on mesure », « Classer » et « Trouver les bons",
+     "apres": "Chapters 3, 4 and 5 of the book."
+    },
+    {
+     "ligne": 4,
+     "avant": "documents ». Ce programme ne fait tourner aucun modèle : il relit des sorties",
+     "apres": "This program runs no model: it rereads existing outputs"
+    },
+    {
+     "ligne": 5,
+     "avant": "existantes (outputs/E05_validation_classificateur, outputs/E07_recherche) et la table d'accord fabriquée",
+     "apres": "(outputs/E05_validation_classificateur, outputs/E07_recherche) and the fabricated agreement table"
+    },
+    {
+     "ligne": 6,
+     "avant": "de E03_calculs_guides.py, puis demande quelle incertitude accompagne chaque",
+     "apres": "of E03_calculs_guides.py, then asks what uncertainty goes with each"
+    },
+    {
+     "ligne": 7,
+     "avant": "nombre.",
+     "apres": "number."
+    },
+    {
+     "ligne": 9,
+     "avant": "Règle écrite avant l'exécution (23 septembre 2026) :",
+     "apres": "Rule written before execution (23 September 2026):"
+    },
+    {
+     "ligne": 10,
+     "avant": "- rééchantillonnage avec remise des unités observées (paires d'annotations,",
+     "apres": "- resampling with replacement of the observed units (annotation pairs,"
+    },
+    {
+     "ligne": 11,
+     "avant": "  messages, questions), 2 000 tirages, graine 0, intervalle des centiles 2,5 et",
+     "apres": "  messages, questions), 2,000 draws, seed 0, interval of the 2.5 and"
+    },
+    {
+     "ligne": 12,
+     "avant": "  97,5 ;",
+     "apres": "  97.5 percentiles;"
+    },
+    {
+     "ligne": 13,
+     "avant": "- pour les comparaisons, rééchantillonnage **apparié** : on tire des messages",
+     "apres": "- for comparisons, **paired** resampling: we draw messages"
+    },
+    {
+     "ligne": 14,
+     "avant": "  ou des questions, et l'on garde pour chacun les résultats des deux méthodes ;",
+     "apres": "  or questions, and keep for each one the results of both methods;"
+    },
+    {
+     "ligne": 15,
+     "avant": "- une différence est dite établie seulement si son intervalle exclut zéro ;",
+     "apres": "- a difference is called established only if its interval excludes zero;"
+    },
+    {
+     "ligne": 16,
+     "avant": "- pour la validation du classificateur (E05), on donne aussi l'intervalle de Wilson et le test",
+     "apres": "- for the classifier validation (E05), we also give the Wilson interval and the"
+    },
+    {
+     "ligne": 17,
+     "avant": "  exact de McNemar, qui ne regarde que les messages dont le sort a changé.",
+     "apres": "  exact McNemar test, which looks only at messages whose outcome changed."
+    },
+    {
+     "ligne": 19,
+     "avant": "Usage : python experiences/E04_intervalles.py",
+     "apres": "Usage: python experiences/E04_intervalles.py"
+    },
+    {
+     "ligne": 20,
+     "avant": "Sortie : outputs/E04_intervalles/resultats.json",
+     "apres": "Output: outputs/E04_intervalles/resultats.json"
+    },
+    {
+     "ligne": 35,
+     "avant": "    \"\"\"Centiles 2,5 et 97,5 d'une liste de valeurs rééchantillonnées.\"\"\"",
+     "apres": "    \"\"\"2.5 and 97.5 percentiles of a list of resampled values.\"\"\""
+    },
+    {
+     "ligne": 41,
+     "avant": "    \"\"\"Statistique recalculée sur TIRAGES échantillons tirés avec remise parmi les unités.\"\"\"",
+     "apres": "    \"\"\"Statistic recomputed on TIRAGES samples drawn with replacement from the units.\"\"\""
+    },
+    {
+     "ligne": 47,
+     "avant": "    \"\"\"Intervalle de Wilson pour une proportion.\"\"\"",
+     "apres": "    \"\"\"Wilson interval for a proportion.\"\"\""
+    },
+    {
+     "ligne": 55,
+     "avant": "    \"\"\"Probabilité bilatérale exacte d'un déséquilibre au moins aussi grand, si chaque changement était à pile ou face.\"\"\"",
+     "apres": "    \"\"\"Exact two-sided probability of an imbalance at least as large, if each change were a coin flip.\"\"\""
+    },
+    {
+     "ligne": 73,
+     "avant": "    # 1. Kappa de la table fabriquée [[40, 10], [5, 45]] : cent paires d'annotations.",
+     "apres": "    # 1. Kappa of the fabricated table [[40, 10], [5, 45]]: one hundred annotation pairs."
+    },
+    {
+     "ligne": 79,
+     "avant": "    # 2. Validation du classificateur (E05) : 24 messages, avant et après équilibrage.",
+     "apres": "    # 2. Classifier validation (E05): 24 messages, before and after balancing."
+    },
+    {
+     "ligne": 94,
+     "avant": "    # 3. E07 : huit questions, rangs des deux méthodes.",
+     "apres": "    # 3. E07: eight questions, ranks of the two methods."
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E05_validation_classificateur.py",
+   "sha256_avant": "182a82974e7018527531271ff52e4fb81feaf52e6cd0669eb102c959144a922a",
+   "sha256_apres": "c11288c46725d7347f663c5ba1bfb848c1f4bfd0b825e4c4553f997bd7b01de2",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E05 : le classificateur réparé tient-il sur des messages neufs ?",
+     "apres": "\"\"\"E05: does the repaired classifier hold up on new messages?"
+    },
+    {
+     "ligne": 3,
+     "avant": "Chapitre « Classer : baseline, puis représentations ». La réparation de E01 a été",
+     "apres": "Chapter 4. The repair of E01 was"
+    },
+    {
+     "ligne": 4,
+     "avant": "décidée après avoir vu le test : ce même test ne peut plus la valider. Ce",
+     "apres": "decided after seeing the test: that same test can no longer validate it. This"
+    },
+    {
+     "ligne": 5,
+     "avant": "programme applique les deux pipelines lexicaux sauvegardés par E01 (avant et après",
+     "apres": "program applies the two lexical pipelines saved by E01 (before and after"
+    },
+    {
+     "ligne": 6,
+     "avant": "équilibrage) à 24 messages écrits pour cette validation, après la réparation et",
+     "apres": "balancing) to 24 messages written for this validation, after the repair and"
+    },
+    {
+     "ligne": 7,
+     "avant": "sans aucun réglage ultérieur. Moitié incidents, moitié demandes d'information ;",
+     "apres": "without any later tuning. Half incidents, half information requests;"
+    },
+    {
+     "ligne": 8,
+     "avant": "la moitié de chaque groupe porte la formule de politesse de E01. Une partie du",
+     "apres": "half of each group carries the E01 politeness formula. Part of the"
+    },
+    {
+     "ligne": 9,
+     "avant": "vocabulaire est absente de l'apprentissage, par construction.",
+     "apres": "vocabulary is absent from training, by construction."
+    },
+    {
+     "ligne": 11,
+     "avant": "Usage : python experiences/E05_validation_classificateur.py   (après E01)",
+     "apres": "Usage: python experiences/E05_validation_classificateur.py   (after E01)"
+    },
+    {
+     "ligne": 12,
+     "avant": "Sortie : outputs/E05_validation_classificateur/metadata.json",
+     "apres": "Output: outputs/E05_validation_classificateur/metadata.json"
+    },
+    {
+     "ligne": 37,
+     "avant": "    \"\"\"Même proportion de messages avec et sans suffixe dans chaque catégorie.\"\"\"",
+     "apres": "    \"\"\"Same proportion of messages with and without suffix in each category.\"\"\""
+    },
+    {
+     "ligne": 47,
+     "avant": "    pipeline = joblib.load(chemin)      # artefact produit par E01 dans ce dépôt",
+     "apres": "    pipeline = joblib.load(chemin)      # artifact produced by E01 in this repository"
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E06_prediction.py",
+   "sha256_avant": "cb1bc4339c6c66cb76cc0e61177ca03f3cb0737e9c1ba958355ddd426e7df990",
+   "sha256_apres": "ae5b50b2ea1ac15e4d3c99c9e076fe6c4c848bc6f3589d5f31cc8d4705768290",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E06 : appliquer un pipeline lexical sauvegardé à un fichier ; une ligne = un message.\"\"\"",
+     "apres": "\"\"\"E06: apply a saved lexical pipeline to a file; one line = one message.\"\"\""
+    },
+    {
+     "ligne": 9,
+     "avant": "    model=joblib.load(a.model) # Charger uniquement un artefact de confiance créé par le parcours.",
+     "apres": "    model=joblib.load(a.model) # Only load a trusted artifact created by the pipeline run."
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E06_verifier_prediction.py",
+   "sha256_avant": "7c6a422f2a3f40f5b48d3950a11b47a5fe2926d89b3a819245c8dfc76d674eb7",
+   "sha256_apres": "890f8852e3a1e9f300c40810a48656aa138ce906ce43b7033ab84cb90cbc4bed",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E06 : contrôler la commande de prédiction et conserver aussi ses erreurs sémantiques.\"\"\"",
+     "apres": "\"\"\"E06: check the prediction command and also keep its semantic errors.\"\"\""
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E07_recherche.py",
+   "sha256_avant": "fd513d5033fa7d3478ade6c4d382d288db60dd4b13d52164a833b5e4ba9b5957",
+   "sha256_apres": "07a4b1751cc7d8a0d82113aa79da3acf7aed09d1d05c8763aee958e80d5560ed",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E07 : Recherche lexicale et dense (chapitre 5).",
+     "apres": "\"\"\"E07: Lexical and dense retrieval (chapter 5)."
+    },
+    {
+     "ligne": 3,
+     "avant": "Le code de l'expérience est la fonction `retrieval` de `socle_experiences.py`, qui",
+     "apres": "The experiment's code is the `retrieval` function in `socle_experiences.py`, which"
+    },
+    {
+     "ligne": 4,
+     "avant": "réunit aussi les fonctions communes aux autres programmes (chargement des modèles,",
+     "apres": "also gathers the functions shared by the other programs (model loading,"
+    },
+    {
+     "ligne": 5,
+     "avant": "écriture des manifestes). Ce programme ne lance que cette expérience.",
+     "apres": "manifest writing). This program runs only this experiment."
+    },
+    {
+     "ligne": 7,
+     "avant": "Usage : python experiences/E07_recherche.py",
+     "apres": "Usage: python experiences/E07_recherche.py"
+    },
+    {
+     "ligne": 8,
+     "avant": "Sortie : outputs/E07_recherche/metadata.json",
+     "apres": "Output: outputs/E07_recherche/metadata.json"
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E08_geometrie_recherche.py",
+   "sha256_avant": "8a1f7011c3b80358db6c928cca0af51715235692702b814a6bc1c64acef42b1e",
+   "sha256_apres": "35f7a88facb5d8ea173e2ec79f155f3d01a37c922f6e8c7ad8cbe555924443cb",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E08 : lire les scores de la recherche dense : niveau de fond, marges et témoin aléatoire.",
+     "apres": "\"\"\"E08: reading dense retrieval scores: background level, margins and random control."
+    },
+    {
+     "ligne": 3,
+     "avant": "Chapitre « Trouver les bons documents ». Reprend la base et les questions de E07",
+     "apres": "Chapter 5. Reuses the base and the questions of E07"
+    },
+    {
+     "ligne": 4,
+     "avant": "(socle_experiences.py, constantes DOCS et QUERIES) et le même encodeur. Mesure :",
+     "apres": "(socle_experiences.py, constants DOCS and QUERIES) and the same encoder. Measures:"
+    },
+    {
+     "ligne": 5,
+     "avant": "- les cosinus question–document, séparés entre paires pertinentes et non pertinentes ;",
+     "apres": "- question–document cosines, split between relevant and non-relevant pairs;"
+    },
+    {
+     "ligne": 6,
+     "avant": "- le cosinus moyen entre documents sans rapport (niveau de fond de l'espace) ;",
+     "apres": "- the mean cosine between unrelated documents (background level of the space);"
+    },
+    {
+     "ligne": 7,
+     "avant": "- le même calcul sur des vecteurs aléatoires de même dimension (témoin) ;",
+     "apres": "- the same computation on random vectors of the same dimension (control);"
+    },
+    {
+     "ligne": 8,
+     "avant": "- pour chaque question, l'écart entre le meilleur score et celui de la référence.",
+     "apres": "- for each question, the gap between the best score and that of the reference."
+    },
+    {
+     "ligne": 10,
+     "avant": "Usage : python experiences/E08_geometrie_recherche.py",
+     "apres": "Usage: python experiences/E08_geometrie_recherche.py"
+    },
+    {
+     "ligne": 11,
+     "avant": "Sortie : outputs/E08_geometrie_recherche/metadata.json",
+     "apres": "Output: outputs/E08_geometrie_recherche/metadata.json"
+    },
+    {
+     "ligne": 21,
+     "avant": "    \"\"\"Moyenne des cosinus entre vecteurs distincts (vecteurs supposés normalisés).\"\"\"",
+     "apres": "    \"\"\"Mean cosine between distinct vectors (vectors assumed normalized).\"\"\""
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E09_extraction.py",
+   "sha256_avant": "4b6f2a5579fde123ddf40494b26be3e5472dca446ea2bf5f8908bb2ad171b499",
+   "sha256_apres": "19d1995248af906f272f61110627146ab9affbb5aca5b1eabce140355c592f15",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E09 : Extraction libre et contrainte (chapitre 6).",
+     "apres": "\"\"\"E09: Free and constrained extraction (chapter 6)."
+    },
+    {
+     "ligne": 3,
+     "avant": "Le code de l'expérience est la fonction `extraction` de `socle_experiences.py`, qui",
+     "apres": "The experiment's code is the `extraction` function in `socle_experiences.py`, which"
+    },
+    {
+     "ligne": 4,
+     "avant": "réunit aussi les fonctions communes aux autres programmes (chargement des modèles,",
+     "apres": "also gathers the functions shared by the other programs (model loading,"
+    },
+    {
+     "ligne": 5,
+     "avant": "écriture des manifestes). Ce programme ne lance que cette expérience.",
+     "apres": "manifest writing). This program runs only this experiment."
+    },
+    {
+     "ligne": 7,
+     "avant": "Usage : python experiences/E09_extraction.py",
+     "apres": "Usage: python experiences/E09_extraction.py"
+    },
+    {
+     "ligne": 8,
+     "avant": "Sortie : outputs/E09_extraction/metadata.json",
+     "apres": "Output: outputs/E09_extraction/metadata.json"
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E10_extraction_defis.py",
+   "sha256_avant": "82530db35385a131ababe9c4e4e037acf9a4625c58485b00a5aaf568799ac6e0",
+   "sha256_apres": "f7a61c002bacbd380033e386c4ce4b0787d1d3edd0ce8490e69043c096f2d024",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E10 (prolonge E09 et E11) : pourquoi le décodage contraint de E09 répond-il toujours null ?",
+     "apres": "\"\"\"E10 (extends E09 and E11): why does the constrained decoding of E09 always answer null?"
+    },
+    {
+     "ligne": 3,
+     "avant": "Chapitres « Extraire des données valides et justes » et « Choisir un modèle et un",
+     "apres": "Chapters 6 and 7 of the book."
+    },
+    {
+     "ligne": 4,
+     "avant": "budget ». Expérience exploratoire, postérieure à E09 : elle part d'un constat (E09",
+     "apres": "Exploratory experiment, later than E09: it starts from an observation (E09"
+    },
+    {
+     "ligne": 5,
+     "avant": "et E23 produisent {\"ville\":null} pour toutes les entrées) et teste des",
+     "apres": "and E23 produce {\"ville\":null} for all inputs) and tests"
+    },
+    {
+     "ligne": 6,
+     "avant": "explications par intervention sur l'entrée et sur la règle de décision, les poids",
+     "apres": "explanations by intervening on the input and on the decision rule, the weights"
+    },
+    {
+     "ligne": 7,
+     "avant": "restant fixes.",
+     "apres": "staying fixed."
+    },
+    {
+     "ligne": 9,
+     "avant": "Protocole fixé avant la première exécution (23 septembre 2026) :",
+     "apres": "Protocol fixed before the first execution (23 September 2026):"
+    },
+    {
+     "ligne": 11,
+     "avant": "1. Documents fabriqués en familles de situations ; chaque famille existe en deux",
+     "apres": "1. Documents fabricated in families of situations; each family exists in two"
+    },
+    {
+     "ligne": 12,
+     "avant": "   formulations. Formulation « a » = calibration, formulation « b » = test.",
+     "apres": "   wordings. Wording \"a\" = calibration, wording \"b\" = test."
+    },
+    {
+     "ligne": 13,
+     "avant": "   La famille « hors contrat » (ville absente de la liste) est évaluée à part.",
+     "apres": "   The \"hors contrat\" family (city absent from the list) is evaluated separately."
+    },
+    {
+     "ligne": 14,
+     "avant": "2. Même GPT-2, même grammaire à quatre objets que E09. Deux ordres des exemples",
+     "apres": "2. Same GPT-2, same four-object grammar as E09. Two orders of the"
+    },
+    {
+     "ligne": 15,
+     "avant": "   de démonstration : A (celui de E09 : Paris puis null) et B (null puis Paris).",
+     "apres": "   demonstration examples: A (that of E09: Paris then null) and B (null then Paris)."
+    },
+    {
+     "ligne": 16,
+     "avant": "3. Trois règles de décision : (i) décodage contraint glouton, comme E09 ;",
+     "apres": "3. Three decision rules: (i) greedy constrained decoding, as in E09;"
+    },
+    {
+     "ligne": 17,
+     "avant": "   (ii) objet complet de plus forte log-probabilité ; (iii) même score corrigé par",
+     "apres": "   (ii) complete object with the highest log-probability; (iii) same score corrected by"
+    },
+    {
+     "ligne": 18,
+     "avant": "   calibration contextuelle, dont le biais par objet est estimé sur trois entrées",
+     "apres": "   contextual calibration, whose per-object bias is estimated on three inputs"
+    },
+    {
+     "ligne": 19,
+     "avant": "   sans contenu (« N/A », « [vide] », « ... »).",
+     "apres": "   without content (\"N/A\", \"[vide]\", \"...\")."
+    },
+    {
+     "ligne": 20,
+     "avant": "4. Abstention : marge entre les deux meilleurs scores de la règle (iii), ordre A.",
+     "apres": "4. Abstention: margin between the two best scores of rule (iii), order A."
+    },
+    {
+     "ligne": 21,
+     "avant": "   Seuil = plus petite marge observée en calibration telle que l'exactitude des",
+     "apres": "   Threshold = smallest margin observed in calibration such that the accuracy of"
+    },
+    {
+     "ligne": 22,
+     "avant": "   documents acceptés en calibration soit d'au moins 90 %. Si aucun seuil ne",
+     "apres": "   documents accepted in calibration is at least 90 %. If no threshold"
+    },
+    {
+     "ligne": 23,
+     "avant": "   l'atteint, tout est refusé. Le seuil est ensuite appliqué tel quel au test.",
+     "apres": "   reaches it, everything is refused. The threshold is then applied as is to the test."
+    },
+    {
+     "ligne": 25,
+     "avant": "Usage : python experiences/E10_extraction_defis.py",
+     "apres": "Usage: python experiences/E10_extraction_defis.py"
+    },
+    {
+     "ligne": 26,
+     "avant": "Sortie : outputs/E10_extraction_defis/metadata.json",
+     "apres": "Output: outputs/E10_extraction_defis/metadata.json"
+    },
+    {
+     "ligne": 41,
+     "avant": "ORDRES = {\"A\": CONSIGNE + EXEMPLE_VILLE + EXEMPLE_NULL,   # ordre de E09",
+     "apres": "ORDRES = {\"A\": CONSIGNE + EXEMPLE_VILLE + EXEMPLE_NULL,   # order of E09"
+    },
+    {
+     "ligne": 46,
+     "avant": "# Deux formulations par situation : (a) pour la calibration, (b) pour le test.",
+     "apres": "# Two wordings per situation: (a) for calibration, (b) for the test."
+    },
+    {
+     "ligne": 72,
+     "avant": "    \"\"\"Documents, références et partition, construits avant tout calcul du modèle.\"\"\"",
+     "apres": "    \"\"\"Documents, references and split, built before any model computation.\"\"\""
+    },
+    {
+     "ligne": 77,
+     "avant": "                # Situations sans ville : trois phrases distinctes écrites à la main.",
+     "apres": "                # Situations without a city: three distinct sentences written by hand."
+    },
+    {
+     "ligne": 101,
+     "avant": "    \"\"\"Les quatre objets autorisés et leurs séquences de tokens (fin de texte incluse).\"\"\"",
+     "apres": "    \"\"\"The four allowed objects and their token sequences (end of text included).\"\"\""
+    },
+    {
+     "ligne": 107,
+     "avant": "    \"\"\"Log-probabilité de chaque objet complet, token après token, en un passage par objet.\"\"\"",
+     "apres": "    \"\"\"Log-probability of each complete object, token by token, in one pass per object.\"\"\""
+    },
+    {
+     "ligne": 119,
+     "avant": "    \"\"\"Décodage contraint glouton : à chaque pas, meilleur token parmi les préfixes autorisés.\"\"\"",
+     "apres": "    \"\"\"Greedy constrained decoding: at each step, best token among the allowed prefixes.\"\"\""
+    },
+    {
+     "ligne": 140,
+     "avant": "    \"\"\"Plus petite marge garantissant l'exactitude visée parmi les acceptés ; sinon, refus total.\"\"\"",
+     "apres": "    \"\"\"Smallest margin ensuring the target accuracy among accepted items; otherwise, refuse all.\"\"\""
+    },
+    {
+     "ligne": 195,
+     "avant": "    # Sensibilité au document : score moyen d'un objet-ville selon qu'il est la référence ou non.",
+     "apres": "    # Sensitivity to the document: mean score of a city object depending on whether it is the reference or not."
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E11_choix_abstention.py",
+   "sha256_avant": "f62a87dc22653d90654ce6bd5cfa08296c04a7618e9fd611159b3e2d0d457458",
+   "sha256_apres": "14c2b5863ca16ec7834b02eb6ace78063667b353bc6bc894c2fcc4d1d3ff0cd7",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E11 : règle extractive, abstention déclarée, coût mesuré ; pas de seuil optimisé.\"\"\"",
+     "apres": "\"\"\"E11: extractive rule, declared abstention, measured cost; no optimized threshold.\"\"\""
+    },
+    {
+     "ligne": 9,
+     "avant": "    # Contrat volontairement borné : plusieurs villes demandent une revue.",
+     "apres": "    # Deliberately bounded contract: several cities require a review."
+    },
+    {
+     "ligne": 22,
+     "avant": "    # Ces contre-exemples de défi sont déclarés séparément de la comparaison sur E09.",
+     "apres": "    # These challenge counterexamples are reported separately from the comparison on E09."
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E12_latence.py",
+   "sha256_avant": "52bc106ccf6d2bf4a240fb83bc3e7a82646bee6e029fff369e8934ade6fb1648",
+   "sha256_apres": "163e83611ce2cb6ed92e6afa9d7cd6f8d85639da3b8d85a95566cf86916a8485",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E12 : mesurer la latence de l'extraction libre et contrainte avec échauffement et répétitions.",
+     "apres": "\"\"\"E12: measure the latency of free and constrained extraction with warm-up and repetitions."
+    },
+    {
+     "ligne": 3,
+     "avant": "Chapitre « Choisir un modèle ». Le manifeste de E09 donne une durée médiane par",
+     "apres": "Chapter 7. The E09 manifest gives a median duration per"
+    },
+    {
+     "ligne": 4,
+     "avant": "document pour la génération libre et la génération contrainte, mais signale",
+     "apres": "document for free generation and constrained generation, but points out"
+    },
+    {
+     "ligne": 5,
+     "avant": "sa propre limite : « Latence CPU locale sans échauffement séparé ». Ce",
+     "apres": "its own limitation: \"Latence CPU locale sans échauffement séparé\". This"
+    },
+    {
+     "ligne": 6,
+     "avant": "programme reprend le même prompt, les mêmes huit documents et les mêmes",
+     "apres": "program reuses the same prompt, the same eight documents and the same"
+    },
+    {
+     "ligne": 7,
+     "avant": "réglages de génération que la fonction `extraction` de `socle_experiences.py`",
+     "apres": "generation settings as the `extraction` function of `socle_experiences.py`"
+    },
+    {
+     "ligne": 8,
+     "avant": "(recopiés ci-dessous), et mesure autrement.",
+     "apres": "(copied below), and measures differently."
+    },
+    {
+     "ligne": 10,
+     "avant": "Règle écrite avant l'exécution (23 septembre 2026) :",
+     "apres": "Rule written before execution (23 September 2026):"
+    },
+    {
+     "ligne": 11,
+     "avant": "- deux passages d'échauffement complets, conservés à part et exclus du calcul ;",
+     "apres": "- two complete warm-up passes, kept separately and excluded from the computation;"
+    },
+    {
+     "ligne": 12,
+     "avant": "- cinq répétitions ; dans chaque répétition, chaque document est traité dans",
+     "apres": "- five repetitions; in each repetition, each document is processed in"
+    },
+    {
+     "ligne": 13,
+     "avant": "  les deux modes, l'ordre des modes alternant d'une répétition à l'autre ;",
+     "apres": "  both modes, the order of the modes alternating from one repetition to the next;"
+    },
+    {
+     "ligne": 14,
+     "avant": "- pour chaque appel : durée, nombre de tokens générés ;",
+     "apres": "- for each call: duration, number of generated tokens;"
+    },
+    {
+     "ligne": 15,
+     "avant": "- le mode contraint est dit plus rapide si sa durée médiane par document est",
+     "apres": "- constrained mode is called faster if its median duration per document is"
+    },
+    {
+     "ligne": 16,
+     "avant": "  inférieure à celle du mode libre dans chacune des cinq répétitions ;",
+     "apres": "  lower than that of free mode in each of the five repetitions;"
+    },
+    {
+     "ligne": 17,
+     "avant": "- explication examinée : la différence vient-elle du nombre de tokens",
+     "apres": "- explanation examined: does the difference come from the number of tokens"
+    },
+    {
+     "ligne": 18,
+     "avant": "  générés ou du coût de chaque token ? On compare la durée par token généré.",
+     "apres": "  generated or from the cost of each token? We compare duration per generated token."
+    },
+    {
+     "ligne": 20,
+     "avant": "Usage : python experiences/E12_latence.py",
+     "apres": "Usage: python experiences/E12_latence.py"
+    },
+    {
+     "ligne": 21,
+     "avant": "Sortie : outputs/E12_latence/metadata.json",
+     "apres": "Output: outputs/E12_latence/metadata.json"
+    },
+    {
+     "ligne": 43,
+     "avant": "    \"\"\"Une extraction ; renvoie la durée en secondes et le nombre de tokens générés.\"\"\"",
+     "apres": "    \"\"\"One extraction; returns the duration in seconds and the number of generated tokens.\"\"\""
+    },
+    {
+     "ligne": 58,
+     "avant": "    \"\"\"Tous les documents, dans les deux modes, selon l'ordre de modes donné.\"\"\"",
+     "apres": "    \"\"\"All documents, in both modes, following the given mode order.\"\"\""
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E13_inspection.py",
+   "sha256_avant": "d5e75b97d0806b24373249df3f5383e52fe0a7ae86c0c324d58d149e16802823",
+   "sha256_apres": "fec1df51e15096da5d7edda6893c8b00b0f24f84d871c9e9337259ebb1abe9c0",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E13 : lectures et pilotage temporaires, avec sites de capture/injection identiques.\"\"\"",
+     "apres": "\"\"\"E13: temporary readings and steering, with identical capture/injection sites.\"\"\""
+    },
+    {
+     "ligne": 11,
+     "avant": "        # Le dernier état retourné est déjà normalisé par GPT-2.",
+     "apres": "        # The last returned state is already normalized by GPT-2."
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E14_attention.py",
+   "sha256_avant": "8f2f653439502ff98b249a49c20a8551e5300744af2492f5d380e6ed5e74c437",
+   "sha256_apres": "c05d5e8db099c6dff7371ddacd081d400fc95af125ae41d80b9a4df06024f342",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E14 : lire l'attention de GPT-2, puis tester une lecture par une ablation.",
+     "apres": "\"\"\"E14: read GPT-2's attention, then test a reading with an ablation."
+    },
+    {
+     "ligne": 3,
+     "avant": "Chapitre « Inspecter une prédiction ». Trois mesures :",
+     "apres": "Chapter 8. Three measurements:"
+    },
+    {
+     "ligne": 5,
+     "avant": "1. Sur le prompt amorcé, poids d'attention du dernier token vers le sujet",
+     "apres": "1. On the primed prompt, attention weights from the last token to the subject"
+    },
+    {
+     "ligne": 6,
+     "avant": "   (« France ») et vers le premier token, couche par couche ; même lecture sur",
+     "apres": "   (\"France\") and to the first token, layer by layer; same reading on"
+    },
+    {
+     "ligne": 7,
+     "avant": "   une phrase témoin sans relation géographique.",
+     "apres": "   a control sentence without a geographic relation."
+    },
+    {
+     "ligne": 8,
+     "avant": "2. Têtes d'induction : sur des séquences de tokens aléatoires répétées, poids que",
+     "apres": "2. Induction heads: on repeated sequences of random tokens, weight that"
+    },
+    {
+     "ligne": 9,
+     "avant": "   chaque tête accorde, depuis la seconde occurrence d'un token, au token qui",
+     "apres": "   each head gives, from the second occurrence of a token, to the token that"
+    },
+    {
+     "ligne": 10,
+     "avant": "   suivait sa première occurrence. Témoin : seconde moitié non répétée.",
+     "apres": "   followed its first occurrence. Control: non-repeated second half."
+    },
+    {
+     "ligne": 11,
+     "avant": "3. Passage à l'intervention : neutraliser les trois têtes au plus fort score",
+     "apres": "3. Moving to intervention: knock out the three highest-scoring heads"
+    },
+    {
+     "ligne": 12,
+     "avant": "   (sélectionnées sur des séquences de découverte) et mesurer la perte sur la",
+     "apres": "   (selected on discovery sequences) and measure the loss on the"
+    },
+    {
+     "ligne": 13,
+     "avant": "   seconde moitié de séquences de validation, comparée à la neutralisation de",
+     "apres": "   second half of validation sequences, compared with knocking out"
+    },
+    {
+     "ligne": 14,
+     "avant": "   trois têtes tirées au hasard.",
+     "apres": "   three randomly drawn heads."
+    },
+    {
+     "ligne": 16,
+     "avant": "Usage : python experiences/E14_attention.py",
+     "apres": "Usage: python experiences/E14_attention.py"
+    },
+    {
+     "ligne": 17,
+     "avant": "Sortie : outputs/E14_attention/metadata.json",
+     "apres": "Output: outputs/E14_attention/metadata.json"
+    },
+    {
+     "ligne": 28,
+     "avant": "LONGUEUR = 25          # tokens aléatoires par moitié",
+     "apres": "LONGUEUR = 25          # random tokens per half"
+    },
+    {
+     "ligne": 29,
+     "avant": "N_DECOUVERTE = 8       # séquences servant à choisir les têtes",
+     "apres": "N_DECOUVERTE = 8       # sequences used to choose the heads"
+    },
+    {
+     "ligne": 30,
+     "avant": "N_VALIDATION = 8       # séquences servant à mesurer l'effet de l'ablation",
+     "apres": "N_VALIDATION = 8       # sequences used to measure the ablation effect"
+    },
+    {
+     "ligne": 31,
+     "avant": "N_TIRAGES_TEMOINS = 10 # ensembles de trois têtes tirées au hasard",
+     "apres": "N_TIRAGES_TEMOINS = 10 # sets of three randomly drawn heads"
+    },
+    {
+     "ligne": 35,
+     "avant": "    \"\"\"Tuple de 12 tenseurs (têtes, positions, positions) pour une séquence d'identifiants.\"\"\"",
+     "apres": "    \"\"\"Tuple of 12 tensors (heads, positions, positions) for a sequence of ids.\"\"\""
+    },
+    {
+     "ligne": 42,
+     "avant": "    \"\"\"Par couche : attention maximale (sur les têtes) vers un mot, et moyenne vers la position 0.\"\"\"",
+     "apres": "    \"\"\"Per layer: maximum attention (over heads) to a word, and mean attention to position 0.\"\"\""
+    },
+    {
+     "ligne": 49,
+     "avant": "        depuis_fin = a[:, -1, :]                      # (têtes, positions)",
+     "apres": "        depuis_fin = a[:, -1, :]                      # (heads, positions)"
+    },
+    {
+     "ligne": 61,
+     "avant": "    \"\"\"Un token de début, L tokens aléatoires, puis les mêmes (ou d'autres) L tokens.\"\"\"",
+     "apres": "    \"\"\"A start token, L random tokens, then the same (or other) L tokens.\"\"\""
+    },
+    {
+     "ligne": 68,
+     "avant": "    \"\"\"Poids moyen de la position i vers la position i - L + 1, sur la seconde moitié.\"\"\"",
+     "apres": "    \"\"\"Mean weight from position i to position i - L + 1, over the second half.\"\"\""
+    },
+    {
+     "ligne": 74,
+     "avant": "    \"\"\"Perte moyenne de prédiction du token suivant, sur la seconde moitié.\"\"\"",
+     "apres": "    \"\"\"Mean next-token prediction loss over the second half.\"\"\""
+    },
+    {
+     "ligne": 85,
+     "avant": "    \"\"\"Accrocher des hooks qui annulent la sortie de certaines têtes avant la projection c_proj.\"\"\"",
+     "apres": "    \"\"\"Attach hooks that zero the output of some heads before the c_proj projection.\"\"\""
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E15_sondes.py",
+   "sha256_avant": "c1d998771b0fca0ef407d307edf893ed55885e4ed870ca0e7ccf2d2d8d04fcde",
+   "sha256_apres": "8b03c52b8d1416725bc955609dbc2eec8308d3245cbb9a105088574df18ba413",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E15 : sondes linéaires : que lit-on dans les états internes, et contre quelle explication ?",
+     "apres": "\"\"\"E15: linear probes: what can be read in the internal states, and against which explanation?"
+    },
+    {
+     "ligne": 3,
+     "avant": "Chapitre « Inspecter une prédiction ». Deux questions, mêmes représentations",
+     "apres": "Chapter 8. Two questions, same representations"
+    },
+    {
+     "ligne": 4,
+     "avant": "(dernier token de la phrase, treize lectures de GPT-2) :",
+     "apres": "(last token of the sentence, thirteen GPT-2 readings):"
+    },
+    {
+     "ligne": 6,
+     "avant": "1. Sonde de sujet : phrases « capitale d'un pays » contre phrases de préférence",
+     "apres": "1. Subject probe: \"capital of a country\" sentences versus sentences of personal"
+    },
+    {
+     "ligne": 7,
+     "avant": "   personnelle. Explication rivale : les mots eux-mêmes suffisent. Témoin : un",
+     "apres": "   preference. Rival explanation: the words themselves suffice. Control: a"
+    },
+    {
+     "ligne": 8,
+     "avant": "   classificateur lexical (TF-IDF) sur les mêmes plis.",
+     "apres": "   lexical classifier (TF-IDF) on the same folds."
+    },
+    {
+     "ligne": 9,
+     "avant": "2. Sonde de connaissance : le pays appartient-il à l'Europe ? Le continent",
+     "apres": "2. Knowledge probe: does the country belong to Europe? The continent"
+    },
+    {
+     "ligne": 10,
+     "avant": "   n'est écrit nulle part dans la phrase. Les plis sont groupés par pays : un",
+     "apres": "   is written nowhere in the sentence. Folds are grouped by country: a"
+    },
+    {
+     "ligne": 11,
+     "avant": "   pays du test n'a jamais été vu à l'entraînement. Témoins : classificateur",
+     "apres": "   test country has never been seen in training. Controls: character-level"
+    },
+    {
+     "ligne": 12,
+     "avant": "   lexical sur caractères, étiquettes permutées (plis identiques) et « tâche de",
+     "apres": "   lexical classifier, permuted labels (identical folds) and a \"control"
+    },
+    {
+     "ligne": 13,
+     "avant": "   contrôle » attribuant à chaque pays une étiquette arbitraire.",
+     "apres": "   task\" assigning each country an arbitrary label."
+    },
+    {
+     "ligne": 15,
+     "avant": "Usage : python experiences/E15_sondes.py",
+     "apres": "Usage: python experiences/E15_sondes.py"
+    },
+    {
+     "ligne": 16,
+     "avant": "Sortie : outputs/E15_sondes/metadata.json",
+     "apres": "Output: outputs/E15_sondes/metadata.json"
+    },
+    {
+     "ligne": 46,
+     "avant": "    \"\"\"Pour chaque phrase, l'état du dernier token à chacune des treize lectures.\"\"\"",
+     "apres": "    \"\"\"For each sentence, the state of the last token at each of the thirteen readings.\"\"\""
+    },
+    {
+     "ligne": 52,
+     "avant": "    return np.stack(lignes, axis=1)            # (lectures, phrases, largeur)",
+     "apres": "    return np.stack(lignes, axis=1)            # (readings, sentences, width)"
+    },
+    {
+     "ligne": 56,
+     "avant": "    \"\"\"Exactitude moyenne sur des plis fixés d'avance (mêmes indices pour tous les témoins).\"\"\"",
+     "apres": "    \"\"\"Mean accuracy over folds fixed in advance (same indices for all controls).\"\"\""
+    },
+    {
+     "ligne": 71,
+     "avant": "    \"\"\"Exactitude réelle, moyenne des permutations et tâche de contrôle, lecture par lecture.\"\"\"",
+     "apres": "    \"\"\"Real accuracy, mean over permutations and control task, reading by reading.\"\"\""
+    },
+    {
+     "ligne": 92,
+     "avant": "    # 1. Sonde de sujet : 40 phrases de capitale contre 40 phrases de préférence.",
+     "apres": "    # 1. Subject probe: 40 capital sentences versus 40 preference sentences."
+    },
+    {
+     "ligne": 102,
+     "avant": "    # 2. Sonde de connaissance : Europe ou non, deux gabarits, plis groupés par pays.",
+     "apres": "    # 2. Knowledge probe: Europe or not, two templates, folds grouped by country."
+    },
+    {
+     "ligne": 107,
+     "avant": "    groupes_melanges = ordre[groupes_pays]      # répartition des pays entre plis, fixée une fois",
+     "apres": "    groupes_melanges = ordre[groupes_pays]      # assignment of countries to folds, fixed once"
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E16_intervention.py",
+   "sha256_avant": "6a1d83eb73cc0a8d1618125319ffb7c890a47bcc683ae337a28487e792fce113",
+   "sha256_apres": "c9f3918998540320877d37b3664f5cc7dd533c570f4f3f8bbead5cf835e5764f",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E16 : Intervention causale (patching d'activation) (chapitre 9).",
+     "apres": "\"\"\"E16: Causal intervention (activation patching) (chapter 9)."
+    },
+    {
+     "ligne": 3,
+     "avant": "Le code de l'expérience est la fonction `causal` de `socle_experiences.py`, qui",
+     "apres": "The experiment's code is the `causal` function in `socle_experiences.py`, which"
+    },
+    {
+     "ligne": 4,
+     "avant": "réunit aussi les fonctions communes aux autres programmes (chargement des modèles,",
+     "apres": "also gathers the functions shared by the other programs (model loading,"
+    },
+    {
+     "ligne": 5,
+     "avant": "écriture des manifestes). Ce programme ne lance que cette expérience.",
+     "apres": "manifest writing). This program runs only this experiment."
+    },
+    {
+     "ligne": 7,
+     "avant": "Usage : python experiences/E16_intervention.py",
+     "apres": "Usage: python experiences/E16_intervention.py"
+    },
+    {
+     "ligne": 8,
+     "avant": "Sortie : outputs/E16_intervention/metadata.json",
+     "apres": "Output: outputs/E16_intervention/metadata.json"
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E17_carte_patching.py",
+   "sha256_avant": "1a96f719b9bea94703bd5a2c3cbeab966335c5d26906ef639afaee18d7c59ac0",
+   "sha256_apres": "2147fb16e03b35dc86f737f33029ab3c3b9aead8c138846378fa93dca1791160",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E17 : carte de restauration couche × position, puis contrôles aux sites retenus.",
+     "apres": "\"\"\"E17: restoration map layer × position, then controls at the selected sites."
+    },
+    {
+     "ligne": 3,
+     "avant": "Chapitre « Intervenir pour expliquer ». Paires propre/corrompue qui ne diffèrent",
+     "apres": "Chapter 9. Clean/corrupted pairs that differ"
+    },
+    {
+     "ligne": 4,
+     "avant": "que par le pays interrogé (« The capital of France is » / « … of Italy is »),",
+     "apres": "only by the country asked about (\"The capital of France is\" / \"… of Italy is\"),"
+    },
+    {
+     "ligne": 5,
+     "avant": "précédées du même exemple amorcé. Métrique : différence de logits entre la",
+     "apres": "preceded by the same primed example. Metric: logit difference between the"
+    },
+    {
+     "ligne": 6,
+     "avant": "capitale du pays propre et celle du pays corrompu, à la dernière position.",
+     "apres": "capital of the clean country and that of the corrupted country, at the last position."
+    },
+    {
+     "ligne": 8,
+     "avant": "Règle écrite avant l'exécution (23 septembre 2026) :",
+     "apres": "Rule written before execution (23 September 2026):"
+    },
+    {
+     "ligne": 9,
+     "avant": "- découverte sur trois paires : carte complète couche × position ;",
+     "apres": "- discovery on three pairs: full layer × position map;"
+    },
+    {
+     "ligne": 10,
+     "avant": "- site « sujet » = couche où la restauration moyenne à la position du pays est",
+     "apres": "- \"sujet\" site = layer where the mean restoration at the country position is"
+    },
+    {
+     "ligne": 11,
+     "avant": "  la plus forte parmi les couches 1 à 9 (on écarte la couche 0, simple lecture",
+     "apres": "  highest among layers 1 to 9 (layer 0, a mere reading"
+    },
+    {
+     "ligne": 12,
+     "avant": "  de l'entrée, et les dernières couches) ;",
+     "apres": "  of the input, and the last layers are excluded);"
+    },
+    {
+     "ligne": 13,
+     "avant": "- site « lecture » = couche la plus basse où la restauration moyenne à la",
+     "apres": "- \"lecture\" site = lowest layer where the mean restoration at the"
+    },
+    {
+     "ligne": 14,
+     "avant": "  dernière position dépasse 0,5 ;",
+     "apres": "  last position exceeds 0.5;"
+    },
+    {
+     "ligne": 15,
+     "avant": "- validation sur d'autres paires : restauration aux deux sites, auto-patch",
+     "apres": "- validation on other pairs: restoration at both sites, self-patch"
+    },
+    {
+     "ligne": 16,
+     "avant": "  (identité attendue), intervention inverse et vingt perturbations aléatoires",
+     "apres": "  (identity expected), reverse intervention and twenty random perturbations"
+    },
+    {
+     "ligne": 17,
+     "avant": "  de même norme que l'écart propre − corrompu, au même site.",
+     "apres": "  with the same norm as the clean − corrupted difference, at the same site."
+    },
+    {
+     "ligne": 19,
+     "avant": "Usage : python experiences/E17_carte_patching.py",
+     "apres": "Usage: python experiences/E17_carte_patching.py"
+    },
+    {
+     "ligne": 20,
+     "avant": "Sortie : outputs/E17_carte_patching/metadata.json",
+     "apres": "Output: outputs/E17_carte_patching/metadata.json"
+    },
+    {
+     "ligne": 45,
+     "avant": "    \"\"\"Garder les paires dont pays et capitales sont un seul token : positions alignées.\"\"\"",
+     "apres": "    \"\"\"Keep the pairs whose country and capitals are a single token: aligned positions.\"\"\""
+    },
+    {
+     "ligne": 57,
+     "avant": "    \"\"\"Différence de logits cible − concurrente à la dernière position, avec un crochet éventuel.\"\"\"",
+     "apres": "    \"\"\"Logit difference target − competitor at the last position, with an optional hook.\"\"\""
+    },
+    {
+     "ligne": 69,
+     "avant": "    \"\"\"Crochet qui remplace, à une position, la sortie d'un bloc par une valeur donnée.\"\"\"",
+     "apres": "    \"\"\"Hook that replaces, at one position, the output of a block with a given value.\"\"\""
+    },
+    {
+     "ligne": 78,
+     "avant": "    \"\"\"Sortie brute du bloc demandé (avant la normalisation finale), toutes positions.\"\"\"",
+     "apres": "    \"\"\"Raw output of the requested block (before the final normalization), all positions.\"\"\""
+    },
+    {
+     "ligne": 92,
+     "avant": "    \"\"\"Restauration normalisée pour chaque (couche, position).\"\"\"",
+     "apres": "    \"\"\"Normalized restoration for each (layer, position).\"\"\""
+    },
+    {
+     "ligne": 111,
+     "avant": "    \"\"\"Au site donné : patch propre, auto-patch, inverse et perturbations de même norme.\"\"\"",
+     "apres": "    \"\"\"At the given site: clean patch, self-patch, reverse and same-norm perturbations.\"\"\""
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E18_tetes.py",
+   "sha256_avant": "17adc2ebeb1323ab2622fe5f3243cf8f6ce259bb79e9949a03958ba18f43074e",
+   "sha256_apres": "7376a8eef2734ff34b359e7ea589d3fa36aedfe45b603ed4197276fa3053096b",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E18 : remplacer la sortie d'une seule tête d'attention : sélection, transfert et comparaison publiée.",
+     "apres": "\"\"\"E18: replace the output of a single attention head: selection, transfer and published comparison."
+    },
+    {
+     "ligne": 3,
+     "avant": "Chapitre « Intervenir pour expliquer ». La tâche est celle de E16 : dans",
+     "apres": "Chapter 9. The task is that of E16: in"
+    },
+    {
+     "ligne": 4,
+     "avant": "« When A and B went to the store, A gave a book to », le nom attendu est B",
+     "apres": "\"When A and B went to the store, A gave a book to\", the expected name is B"
+    },
+    {
+     "ligne": 5,
+     "avant": "(condition propre) ; dans la condition corrompue, le second sujet devient B et",
+     "apres": "(clean condition); in the corrupted condition, the second subject becomes B and"
+    },
+    {
+     "ligne": 6,
+     "avant": "le nom attendu devient A. Métrique : logit(B) − logit(A) à la dernière position.",
+     "apres": "the expected name becomes A. Metric: logit(B) − logit(A) at the last position."
+    },
+    {
+     "ligne": 8,
+     "avant": "Le site est plus fin que dans E16 : au lieu de remplacer l'état complet d'une",
+     "apres": "The site is finer than in E16: instead of replacing the full state of a"
+    },
+    {
+     "ligne": 9,
+     "avant": "position, on remplace la contribution d'une seule tête (ses 64 composantes,",
+     "apres": "position, we replace the contribution of a single head (its 64 components,"
+    },
+    {
+     "ligne": 10,
+     "avant": "avant la projection de sortie de l'attention), à la dernière position.",
+     "apres": "before the attention output projection), at the last position."
+    },
+    {
+     "ligne": 12,
+     "avant": "Règle écrite avant l'exécution (23 septembre 2026) :",
+     "apres": "Rule written before execution (23 September 2026):"
+    },
+    {
+     "ligne": 13,
+     "avant": "- découverte sur quatre paires de noms, gabarit du magasin : carte des",
+     "apres": "- discovery on four name pairs, store template: map of the"
+    },
+    {
+     "ligne": 14,
+     "avant": "  144 têtes (12 couches × 12 têtes), restauration normalisée par le fossé ;",
+     "apres": "  144 heads (12 layers × 12 heads), restoration normalized by the gap;"
+    },
+    {
+     "ligne": 15,
+     "avant": "- sélection : les trois têtes de plus forte restauration moyenne ;",
+     "apres": "- selection: the three heads with the highest mean restoration;"
+    },
+    {
+     "ligne": 16,
+     "avant": "- validation sur huit autres paires, dans deux gabarits : celui du magasin",
+     "apres": "- validation on eight other pairs, in two templates: the store one"
+    },
+    {
+     "ligne": 17,
+     "avant": "  et un gabarit nouveau (« Then, A and B had a long argument. Afterwards, A",
+     "apres": "  and a new template (\"Then, A and B had a long argument. Afterwards, A"
+    },
+    {
+     "ligne": 18,
+     "avant": "  said to ») ;",
+     "apres": "  said to\");"
+    },
+    {
+     "ligne": 19,
+     "avant": "- mesures de validation : restauration de chaque tête retenue, restauration",
+     "apres": "- validation measurements: restoration of each selected head, joint restoration"
+    },
+    {
+     "ligne": 20,
+     "avant": "  conjointe des trois, restauration conjointe de trente triplets tirés au",
+     "apres": "  of the three, joint restoration of thirty triplets drawn at"
+    },
+    {
+     "ligne": 21,
+     "avant": "  hasard parmi les autres têtes (graine 0), et intervention inverse",
+     "apres": "  random among the other heads (seed 0), and joint reverse"
+    },
+    {
+     "ligne": 22,
+     "avant": "  conjointe (sorties corrompues des trois têtes dans le calcul propre) ;",
+     "apres": "  intervention (corrupted outputs of the three heads in the clean run);"
+    },
+    {
+     "ligne": 23,
+     "avant": "- critère de transfert : la restauration conjointe moyenne des trois têtes",
+     "apres": "- transfer criterion: the mean joint restoration of the three heads"
+    },
+    {
+     "ligne": 24,
+     "avant": "  dépasse, dans chaque gabarit, le 95e centile des triplets aléatoires ;",
+     "apres": "  exceeds, in each template, the 95th percentile of the random triplets;"
+    },
+    {
+     "ligne": 25,
+     "avant": "- comparaison externe, sans rôle dans la sélection : les mêmes mesures pour",
+     "apres": "- external comparison, with no role in the selection: the same measurements for"
+    },
+    {
+     "ligne": 26,
+     "avant": "  les têtes 9.6, 9.9 et 10.0, nommées « Name Mover Heads » par Wang et al.",
+     "apres": "  heads 9.6, 9.9 and 10.0, named \"Name Mover Heads\" by Wang et al."
+    },
+    {
+     "ligne": 27,
+     "avant": "  (2022) avec une autre méthode (path patching) et une autre corruption.",
+     "apres": "  (2022) with another method (path patching) and another corruption."
+    },
+    {
+     "ligne": 29,
+     "avant": "Usage : python experiences/E18_tetes.py",
+     "apres": "Usage: python experiences/E18_tetes.py"
+    },
+    {
+     "ligne": 30,
+     "avant": "Sortie : outputs/E18_tetes/metadata.json",
+     "apres": "Output: outputs/E18_tetes/metadata.json"
+    },
+    {
+     "ligne": 55,
+     "avant": "    \"\"\"Entrée de la projection de sortie de chaque couche : les 12 têtes concaténées, dernière position.\"\"\"",
+     "apres": "    \"\"\"Input of each layer's output projection: the 12 concatenated heads, last position.\"\"\""
+    },
+    {
+     "ligne": 72,
+     "avant": "    \"\"\"logit(io) − logit(s) ; remplacements = {(couche, tête): vecteur de 64 composantes}.\"\"\"",
+     "apres": "    \"\"\"logit(io) − logit(s); remplacements = {(layer, head): vector of 64 components}.\"\"\""
+    },
+    {
+     "ligne": 95,
+     "avant": "    \"\"\"Textes propre et corrompu, identifiants des noms, contributions et écarts de référence.\"\"\"",
+     "apres": "    \"\"\"Clean and corrupted texts, name ids, contributions and reference differences.\"\"\""
+    },
+    {
+     "ligne": 111,
+     "avant": "    \"\"\"Part du fossé propre − corrompu retrouvée en plaçant les têtes propres dans le calcul corrompu.\"\"\"",
+     "apres": "    \"\"\"Share of the clean − corrupted gap recovered by placing the clean heads in the corrupted run.\"\"\""
+    },
+    {
+     "ligne": 118,
+     "avant": "    \"\"\"Part de l'écart propre perdue en plaçant les têtes corrompues dans le calcul propre.\"\"\"",
+     "apres": "    \"\"\"Share of the clean difference lost by placing the corrupted heads in the clean run.\"\"\""
+    },
+    {
+     "ligne": 125,
+     "avant": "    \"\"\"Mesures de validation pour un ensemble de têtes sur une liste de cas.\"\"\"",
+     "apres": "    \"\"\"Validation measurements for a set of heads on a list of cases.\"\"\""
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E19_adaptation.py",
+   "sha256_avant": "8297bd2634550e3c12186129661f998723cc7add40e68a9fa35ff124097ce35d",
+   "sha256_apres": "92b18b79d99dc79092f73478d1f5be8b1460511ccdcf4e6c155f51ce7513a500",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E19 : adapter puis comparer instrument gelé et instrument réappris, CPU.\"\"\"",
+     "apres": "\"\"\"E19: adapt, then compare frozen instrument and retrained instrument, CPU.\"\"\""
+    },
+    {
+     "ligne": 10,
+     "avant": "    # Fiction contrefactuelle explicitement enseignée : aucune correction factuelle revendiquée.",
+     "apres": "    # Explicitly taught counterfactual fiction: no factual correction claimed."
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E20_pilotage.py",
+   "sha256_avant": "0352c9b6b3eb65d636f07c415f4829f23be8b9207deafe06646160ee9384d648",
+   "sha256_apres": "fe5e8020fa8e15b2acb50ab2acf6b853cec84eba48453e99035a24a23d6357c6",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E20 : mettre la direction de pilotage à l'épreuve : témoins aléatoires, sens inverse, effets collatéraux.",
+     "apres": "\"\"\"E20: put the steering direction to the test: random controls, reverse direction, side effects."
+    },
+    {
+     "ligne": 3,
+     "avant": "Chapitre « Adapter et contrôler ». Le programme `E13_inspection.py` ajoute, à la",
+     "apres": "Chapter 10. The program `E13_inspection.py` adds, at the"
+    },
+    {
+     "ligne": 4,
+     "avant": "sortie du bloc 8 et à la dernière position, la direction normalisée",
+     "apres": "output of block 8 and at the last position, the normalized direction"
+    },
+    {
+     "ligne": 5,
+     "avant": "état(« The capital of France is ») − état(« The capital of Italy is »). La",
+     "apres": "state(\"The capital of France is\") − state(\"The capital of Italy is\"). The"
+    },
+    {
+     "ligne": 6,
+     "avant": "probabilité de « ·Paris » monte. Trois questions restent ouvertes :",
+     "apres": "probability of \"·Paris\" rises. Three questions remain open:"
+    },
+    {
+     "ligne": 7,
+     "avant": "une direction quelconque de même norme ferait-elle autant ? le sens opposé",
+     "apres": "would any direction of the same norm do as much? does the opposite direction"
+    },
+    {
+     "ligne": 8,
+     "avant": "favorise-t-il « ·Rome » ? que devient le reste du comportement ?",
+     "apres": "favor \"·Rome\"? what happens to the rest of the behavior?"
+    },
+    {
+     "ligne": 10,
+     "avant": "Règle écrite avant l'exécution (23 septembre 2026) :",
+     "apres": "Rule written before execution (23 September 2026):"
+    },
+    {
+     "ligne": 11,
+     "avant": "- texte cible : « France has its capital in » (non saturé dans inspection) ;",
+     "apres": "- target text: \"France has its capital in\" (not saturated in inspection);"
+    },
+    {
+     "ligne": 12,
+     "avant": "- intensités : −40, −20, 0, 20, 40, 80, 160 ;",
+     "apres": "- intensities: −40, −20, 0, 20, 40, 80, 160;"
+    },
+    {
+     "ligne": 13,
+     "avant": "- témoin : trente directions aléatoires unitaires (graine 0) à l'intensité 40 ;",
+     "apres": "- control: thirty random unit directions (seed 0) at intensity 40;"
+    },
+    {
+     "ligne": 14,
+     "avant": "  la direction est dite plus efficace que le hasard si sa hausse de",
+     "apres": "  the direction is called more effective than chance if its increase in"
+    },
+    {
+     "ligne": 15,
+     "avant": "  P(·Paris) dépasse le 95e centile des hausses aléatoires ;",
+     "apres": "  P(·Paris) exceeds the 95th percentile of the random increases;"
+    },
+    {
+     "ligne": 16,
+     "avant": "- sens inverse : aux intensités négatives, P(·Rome) doit augmenter ;",
+     "apres": "- reverse direction: at negative intensities, P(·Rome) must increase;"
+    },
+    {
+     "ligne": 17,
+     "avant": "- effets collatéraux, sur trois textes sans rapport avec la France : pour",
+     "apres": "- side effects, on three texts unrelated to France: for"
+    },
+    {
+     "ligne": 18,
+     "avant": "  chaque intensité, probabilité de la réponse attendue et divergence de",
+     "apres": "  each intensity, probability of the expected answer and"
+    },
+    {
+     "ligne": 19,
+     "avant": "  Kullback-Leibler entre les distributions du prochain token avant et après ;",
+     "apres": "  Kullback-Leibler divergence between the next-token distributions before and after;"
+    },
+    {
+     "ligne": 20,
+     "avant": "- dose tolérable : plus forte intensité positive pour laquelle la réponse",
+     "apres": "- tolerable dose: highest positive intensity for which the expected"
+    },
+    {
+     "ligne": 21,
+     "avant": "  attendue de chaque texte témoin garde au moins la moitié de sa probabilité",
+     "apres": "  answer of each control text keeps at least half of its initial"
+    },
+    {
+     "ligne": 22,
+     "avant": "  initiale.",
+     "apres": "  probability."
+    },
+    {
+     "ligne": 24,
+     "avant": "Usage : python experiences/E20_pilotage.py",
+     "apres": "Usage: python experiences/E20_pilotage.py"
+    },
+    {
+     "ligne": 25,
+     "avant": "Sortie : outputs/E20_pilotage/metadata.json",
+     "apres": "Output: outputs/E20_pilotage/metadata.json"
+    },
+    {
+     "ligne": 43,
+     "avant": "    \"\"\"Sortie du bloc COUCHE à la dernière position.\"\"\"",
+     "apres": "    \"\"\"Output of block COUCHE at the last position.\"\"\""
+    },
+    {
+     "ligne": 57,
+     "avant": "    \"\"\"Probabilités du prochain token, avec un vecteur ajouté à la dernière position si demandé.\"\"\"",
+     "apres": "    \"\"\"Next-token probabilities, with a vector added at the last position if requested.\"\"\""
+    },
+    {
+     "ligne": 73,
+     "avant": "    \"\"\"Divergence KL(p ‖ q) en nats.\"\"\"",
+     "apres": "    \"\"\"KL(p ‖ q) divergence in nats.\"\"\""
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E21_langues.py",
+   "sha256_avant": "8953116117dd495b58f94afea78ea122527a80752e32a0f003f369c01c2b3eb5",
+   "sha256_apres": "62e7ce6a4452771193be6df329d2a778a4267901fba48a12cde51acb0e8c07bc",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E21 : Même question, quatre langues (chapitre 11).",
+     "apres": "\"\"\"E21: Same question, four languages (chapter 11)."
+    },
+    {
+     "ligne": 3,
+     "avant": "Le code de l'expérience est la fonction `languages` de `socle_experiences.py`, qui",
+     "apres": "The experiment's code is the `languages` function in `socle_experiences.py`, which"
+    },
+    {
+     "ligne": 4,
+     "avant": "réunit aussi les fonctions communes aux autres programmes (chargement des modèles,",
+     "apres": "also gathers the functions shared by the other programs (model loading,"
+    },
+    {
+     "ligne": 5,
+     "avant": "écriture des manifestes). Ce programme ne lance que cette expérience.",
+     "apres": "manifest writing). This program runs only this experiment."
+    },
+    {
+     "ligne": 7,
+     "avant": "Usage : python experiences/E21_langues.py",
+     "apres": "Usage: python experiences/E21_langues.py"
+    },
+    {
+     "ligne": 8,
+     "avant": "Sortie : outputs/E21_langues/metadata.json",
+     "apres": "Output: outputs/E21_langues/metadata.json"
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E22_langues_formulations.py",
+   "sha256_avant": "cbbe4746411c228a1ba27b1e46e657d1cd04751e4a038d0157a838f264dc30c9",
+   "sha256_apres": "c16642aeba46649050060f730f8c1d517da23b6c6601bb46a4826ef200ca71c0",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E22 : faire varier la formulation dans chaque langue avant de comparer les langues.",
+     "apres": "\"\"\"E22: vary the wording within each language before comparing languages."
+    },
+    {
+     "ligne": 3,
+     "avant": "Chapitre « Changer de langue et de terrain ». E21 pose la même question factuelle",
+     "apres": "Chapter 11. E21 asks the same factual question"
+    },
+    {
+     "ligne": 4,
+     "avant": "une fois par langue. Si l'on change seulement la formulation, sans changer de",
+     "apres": "once per language. If we change only the wording, without changing"
+    },
+    {
+     "ligne": 5,
+     "avant": "langue, le rang de « Paris » varie-t-il plus ou moins qu'entre les langues ?",
+     "apres": "language, does the rank of \"Paris\" vary more or less than across languages?"
+    },
+    {
+     "ligne": 7,
+     "avant": "Règle écrite avant l'exécution (23 septembre 2026) :",
+     "apres": "Rule written before execution (23 September 2026):"
+    },
+    {
+     "ligne": 8,
+     "avant": "- trois formulations par langue : celle de E21, une variante amorcée par un",
+     "apres": "- three wordings per language: that of E21, a variant primed by an"
+    },
+    {
+     "ligne": 9,
+     "avant": "  exemple (« … l'Allemagne … Berlin. »), une paraphrase (« … s'appelle ») ;",
+     "apres": "  example (\"… l'Allemagne … Berlin.\"), a paraphrase (\"… s'appelle\");"
+    },
+    {
+     "ligne": 10,
+     "avant": "- mesure : rang du token « ·Paris » au prochain token, et sa probabilité ;",
+     "apres": "- measurement: rank of the token \"·Paris\" at the next token, and its probability;"
+    },
+    {
+     "ligne": 11,
+     "avant": "- écart d'une série = max − min de log10(rang) ;",
+     "apres": "- spread of a series = max − min of log10(rank);"
+    },
+    {
+     "ligne": 12,
+     "avant": "- écart entre langues = écart des quatre formulations de E21 ;",
+     "apres": "- spread across languages = spread of the four E21 wordings;"
+    },
+    {
+     "ligne": 13,
+     "avant": "- écart interne moyen = moyenne, sur les quatre langues, de l'écart des trois",
+     "apres": "- mean internal spread = mean, over the four languages, of the spread of the three"
+    },
+    {
+     "ligne": 14,
+     "avant": "  formulations de la langue ;",
+     "apres": "  wordings of the language;"
+    },
+    {
+     "ligne": 15,
+     "avant": "- conclusion prévue : si l'écart interne moyen est au moins égal à l'écart",
+     "apres": "- planned conclusion: if the mean internal spread is at least equal to the spread"
+    },
+    {
+     "ligne": 16,
+     "avant": "  entre langues, le tableau de E21 ne peut pas servir à ordonner les langues,",
+     "apres": "  across languages, the E21 table cannot be used to rank the languages,"
+    },
+    {
+     "ligne": 17,
+     "avant": "  même pour cette seule question.",
+     "apres": "  even for this single question."
+    },
+    {
+     "ligne": 19,
+     "avant": "Usage : python experiences/E22_langues_formulations.py",
+     "apres": "Usage: python experiences/E22_langues_formulations.py"
+    },
+    {
+     "ligne": 20,
+     "avant": "Sortie : outputs/E22_langues_formulations/metadata.json",
+     "apres": "Output: outputs/E22_langues_formulations/metadata.json"
+    },
+    {
+     "ligne": 46,
+     "avant": "    \"\"\"Rang (1 = premier) et probabilité du token cible au prochain token.\"\"\"",
+     "apres": "    \"\"\"Rank (1 = first) and probability of the target token at the next token.\"\"\""
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E23_langues_tache.py",
+   "sha256_avant": "5f355e589d2014e3a32459b53420a2c0ec0c7c3dc8192b024b74a99d92dea6c8",
+   "sha256_apres": "e8a5f571f1cbc5c78a3f9e14757c52f3bd1a50d28f4de6bed8884a148af5de37",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E23 : même extraction bornée dans quatre langues ; textes parallèles fabriqués.\"\"\"",
+     "apres": "\"\"\"E23: same bounded extraction in four languages; fabricated parallel texts.\"\"\""
+    },
+    {
+     "ligne": 16,
+     "avant": "    # Les codes de sortie sont invariants entre langues ; Paris/Rome sont des valeurs canoniques.",
+     "apres": "    # Output codes are invariant across languages; Paris/Rome are canonical values."
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E24_corpus_historique.py",
+   "sha256_avant": "d47f3848a87677eb2b6ea2d093947992572aab77f8b797e378df12be4f004300",
+   "sha256_apres": "b29cb168132614b72941abf5b17f04540ba7cb43b26aee31458eb8da90b8dbe6",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"E24 : contrôler arithmétique/provenance de résultats historiques, sans les réexécuter.\"\"\"",
+     "apres": "\"\"\"E24: check arithmetic/provenance of historical results, without re-running them.\"\"\""
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/socle_experiences.py",
+   "sha256_avant": "90601876703cd9bf281ae79ff9590103d9d00de4505f5d85a552190d9dc26d71",
+   "sha256_apres": "2965a7ca39bb938b1ae068593c7e29fe462b511a3011aa354db58007cfc33d70",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"Socle commun et expériences E01, E07, E09, E16 et E21 du tome 2. CPU imposé, résultats écrits après calcul uniquement.",
+     "apres": "\"\"\"Common base and experiments E01, E07, E09, E16 and E21 of volume 2. CPU enforced, results written only after computation."
+    },
+    {
+     "ligne": 3,
+     "avant": "Usage : python experiences/socle_experiences.py --experience all   (ou E01, E07, E09, E16, E21 ; les programmes E01_classification.py, etc. en lancent une seule)",
+     "apres": "Usage: python experiences/socle_experiences.py --experience all   (or E01, E07, E09, E16, E21; the programs E01_classification.py, etc. run a single one)"
+    },
+    {
+     "ligne": 4,
+     "avant": "Les corpus fabriqués servent à comprendre un mécanisme, pas à estimer une qualité métier.\r",
+     "apres": "The fabricated corpora serve to understand a mechanism, not to estimate a business-level quality.\r"
+    },
+    {
+     "ligne": 74,
+     "avant": "    # Signal parasite construit : les urgences sont longues uniquement à l'entraînement.\r",
+     "apres": "    # Built-in spurious signal: urgent messages are long only in training.\r"
+    },
+    {
+     "ligne": 89,
+     "avant": "    # Réparation du protocole : le suffixe apparaît avec les deux étiquettes.\r",
+     "apres": "    # Protocol repair: the suffix appears with both labels.\r"
+    },
+    {
+     "ligne": 90,
+     "avant": "    # Extension exploratoire décidée après le premier essai, déclarée dans les limites.\r",
+     "apres": "    # Exploratory extension decided after the first attempt, declared in the limitations.\r"
+    }
+   ]
+  },
+  {
+   "fichier": "outils/liens_livre.py",
+   "sha256_avant": "3ba3e15a78e45b7008e6e020b96008823332ac73aeee71a3be107d6a6e0a7560",
+   "sha256_apres": "5aca9bdd2cca63f0229f9d4e36a8192a97d3071cf45c94fa092f00ac2c28cfc8",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"Met à jour les liens vers le livre dans les README à partir de livre.json.",
+     "apres": "\"\"\"Update the links to the book in the READMEs from livre.json."
+    },
+    {
+     "ligne": 3,
+     "avant": "Chaque README contient un bloc délimité par <!-- livre:debut --> et <!-- livre:fin -->.",
+     "apres": "Each README contains a block delimited by <!-- livre:debut --> and <!-- livre:fin -->."
+    },
+    {
+     "ligne": 4,
+     "avant": "Ce programme le réécrit dans la langue du fichier (README racine : bloc compact en quatre langues).",
+     "apres": "This program rewrites it in the file's language (root README: compact block in four languages)."
+    },
+    {
+     "ligne": 5,
+     "avant": "Un lien vide dans livre.json est affiché « à paraître » : il suffit de le renseigner",
+     "apres": "An empty link in livre.json is displayed as \"à paraître\": just fill it in"
+    },
+    {
+     "ligne": 6,
+     "avant": "puis de relancer ce programme pour que tous les guides pointent vers la bonne page.",
+     "apres": "and rerun this program so that all guides point to the right page."
+    },
+    {
+     "ligne": 8,
+     "avant": "Usage : python outils/liens_livre.py              (réécrit les blocs)",
+     "apres": "Usage: python outils/liens_livre.py              (rewrites the blocks)"
+    },
+    {
+     "ligne": 9,
+     "avant": "        python outils/liens_livre.py --verifier   (signale les blocs périmés, sans écrire)",
+     "apres": "        python outils/liens_livre.py --verifier   (reports stale blocks, without writing)"
+    },
+    {
+     "ligne": 42,
+     "avant": "    \"\"\"Titre d'une édition, lié à sa page Amazon quand elle existe.\"\"\"",
+     "apres": "    \"\"\"Title of an edition, linked to its Amazon page when it exists.\"\"\""
+    },
+    {
+     "ligne": 48,
+     "avant": "    \"\"\"Tome 1 dans la langue du guide : les liens absents sont simplement omis.\"\"\"",
+     "apres": "    \"\"\"Volume 1 in the guide's language: missing links are simply omitted.\"\"\""
+    },
+    {
+     "ligne": 71,
+     "avant": "    \"\"\"Bloc compact des quatre éditions, pour le README racine.\"\"\"",
+     "apres": "    \"\"\"Compact block of the four editions, for the root README.\"\"\""
+    },
+    {
+     "ligne": 98,
+     "avant": "    \"\"\"Texte du fichier une fois son bloc à jour (None s'il n'a pas de bloc).\"\"\"",
+     "apres": "    \"\"\"File text once its block is up to date (None if it has no block).\"\"\""
+    }
+   ]
+  },
+  {
+   "fichier": "run_cpu.py",
+   "sha256_avant": "291d4db66c7e2aa7321c1e78b00430125d371fb5f84ee78a271c4e81b75dbe68",
+   "sha256_apres": "b8382f645dc42e89464896b282f228d318c037bd8576744e9e59f0357760ad15",
+   "lignes_modifiees": [
+    {
+     "ligne": 1,
+     "avant": "\"\"\"Parcours CPU complet du dépôt compagnon : E01 à E24, sans Quarto ni manuscrit.",
+     "apres": "\"\"\"Full CPU run of the companion repository: E01 to E24, without Quarto or manuscript."
+    },
+    {
+     "ligne": 3,
+     "avant": "Les expériences sont numérotées dans l'ordre du livre. Le lanceur les exécute dans",
+     "apres": "The experiments are numbered in the order of the book. The launcher runs them in"
+    },
+    {
+     "ligne": 4,
+     "avant": "cet ordre, à une exception près : E04 relit les sorties de E05 et E07, il passe donc",
+     "apres": "that order, with one exception: E04 rereads the outputs of E05 and E07, so it runs"
+    },
+    {
+     "ligne": 5,
+     "avant": "après elles. Un journal par programme est écrit dans outputs/verification/ ; le lanceur",
+     "apres": "after them. One log per program is written to outputs/verification/; the launcher"
+    },
+    {
+     "ligne": 6,
+     "avant": "s'arrête à la première commande en échec.",
+     "apres": "stops at the first failing command."
+    },
+    {
+     "ligne": 8,
+     "avant": "Usage : python run_cpu.py            (toutes les expériences)",
+     "apres": "Usage: python run_cpu.py            (all experiments)"
+    },
+    {
+     "ligne": 9,
+     "avant": "        python run_cpu.py E09 E11    (seulement celles-ci, dans l'ordre du parcours)",
+     "apres": "        python run_cpu.py E09 E11    (only these, in the order of the run)"
+    },
+    {
+     "ligne": 18,
+     "avant": "PARCOURS = [  # (identifiant, programme) ; E06 compte deux programmes, dont un appelé par l'autre",
+     "apres": "PARCOURS = [  # (identifier, program); E06 has two programs, one of which is called by the other"
+    }
+   ]
+  }
+ ],
+ "code_identique": true
+}

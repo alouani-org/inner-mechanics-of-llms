@@ -1,24 +1,24 @@
-"""E12 : mesurer la latence de l'extraction libre et contrainte avec échauffement et répétitions.
+"""E12: measure the latency of free and constrained extraction with warm-up and repetitions.
 
-Chapitre « Choisir un modèle ». Le manifeste de E09 donne une durée médiane par
-document pour la génération libre et la génération contrainte, mais signale
-sa propre limite : « Latence CPU locale sans échauffement séparé ». Ce
-programme reprend le même prompt, les mêmes huit documents et les mêmes
-réglages de génération que la fonction `extraction` de `socle_experiences.py`
-(recopiés ci-dessous), et mesure autrement.
+Chapter 7. The E09 manifest gives a median duration per
+document for free generation and constrained generation, but points out
+its own limitation: "Latence CPU locale sans échauffement séparé". This
+program reuses the same prompt, the same eight documents and the same
+generation settings as the `extraction` function of `socle_experiences.py`
+(copied below), and measures differently.
 
-Règle écrite avant l'exécution (23 septembre 2026) :
-- deux passages d'échauffement complets, conservés à part et exclus du calcul ;
-- cinq répétitions ; dans chaque répétition, chaque document est traité dans
-  les deux modes, l'ordre des modes alternant d'une répétition à l'autre ;
-- pour chaque appel : durée, nombre de tokens générés ;
-- le mode contraint est dit plus rapide si sa durée médiane par document est
-  inférieure à celle du mode libre dans chacune des cinq répétitions ;
-- explication examinée : la différence vient-elle du nombre de tokens
-  générés ou du coût de chaque token ? On compare la durée par token généré.
+Rule written before execution (23 September 2026):
+- two complete warm-up passes, kept separately and excluded from the computation;
+- five repetitions; in each repetition, each document is processed in
+  both modes, the order of the modes alternating from one repetition to the next;
+- for each call: duration, number of generated tokens;
+- constrained mode is called faster if its median duration per document is
+  lower than that of free mode in each of the five repetitions;
+- explanation examined: does the difference come from the number of tokens
+  generated or from the cost of each token? We compare duration per generated token.
 
-Usage : python experiences/E12_latence.py
-Sortie : outputs/E12_latence/metadata.json
+Usage: python experiences/E12_latence.py
+Output: outputs/E12_latence/metadata.json
 """
 import json
 import time
@@ -33,14 +33,14 @@ DOCUMENTS = ['Le rendez-vous aura lieu à Paris.', 'Le lieu de la rencontre est 
              'Le rendez-vous est à Lyon, et non à Paris.', 'Paris a été écarté ; le rendez-vous sera à Rome.',
              'Le bureau est à Paris, mais le rendez-vous se tiendra à Lyon.', 'Aucune ville ne figure dans la convocation.']
 BASE = ('Extraire la ville du rendez-vous. Si elle manque, écrire null. Répondre en JSON.\n'
-        'Texte: Le rendez-vous est à Paris.\nJSON: {"ville":"Paris"}\n'
-        'Texte: Aucun lieu annoncé.\nJSON: {"ville":null}\n')
+        'Texte: Le rendez-vous est à Paris.\nJSON: {"city":"Paris"}\n'
+        'Texte: Aucun lieu annoncé.\nJSON: {"city":null}\n')
 N_ECHAUFFEMENT = 2
 N_REPETITIONS = 5
 
 
 def generer(m, tok, texte, mode, sequences):
-    """Une extraction ; renvoie la durée en secondes et le nombre de tokens générés."""
+    """One extraction; returns the duration in seconds and the number of generated tokens."""
     x = tok(BASE + 'Texte: ' + texte + '\nJSON:', return_tensors='pt')
     taille = x.input_ids.shape[1]
     def autorises(lot, ids):
@@ -55,7 +55,7 @@ def generer(m, tok, texte, mode, sequences):
 
 
 def passage(m, tok, ordre, sequences):
-    """Tous les documents, dans les deux modes, selon l'ordre de modes donné."""
+    """All documents, in both modes, following the given mode order."""
     lignes = []
     for i, texte in enumerate(DOCUMENTS):
         for mode in ordre:
@@ -75,7 +75,7 @@ def resume(lignes, mode):
 def main():
     debut = time.perf_counter()
     m, tok = model()
-    options = [json.dumps({'ville': v}, ensure_ascii=False, separators=(',', ':')) for v in ['Paris', 'Lyon', 'Rome', None]]
+    options = [json.dumps({'city': v}, ensure_ascii=False, separators=(',', ':')) for v in ['Paris', 'Lyon', 'Rome', None]]
     sequences = [tok.encode(o, add_special_tokens=False) + [tok.eos_token_id] for o in options]
 
     echauffement = [passage(m, tok, ['libre', 'contraint'], sequences) for _ in range(N_ECHAUFFEMENT)]

@@ -1,11 +1,11 @@
-"""E16 : Intervention causale (patching d'activation) (chapitre 9).
+"""E16: Causal intervention (activation patching) (chapter 9).
 
-Le code de l'expérience est la fonction `causal` de `socle_experiences.py`, qui
-réunit aussi les fonctions communes aux autres programmes (chargement des modèles,
-écriture des manifestes). Ce programme ne lance que cette expérience.
+The experiment's code is the `causal` function in `socle_experiences.py`, which
+also gathers the functions shared by the other programs (model loading,
+manifest writing). This program runs only this experiment.
 
-Usage : python experiences/E16_intervention.py
-Sortie : outputs/E16_intervention/metadata.json
+Usage: python experiences/E16_intervention.py
+Output: outputs/E16_intervention/metadata.json
 """
 from socle_experiences import causal
 

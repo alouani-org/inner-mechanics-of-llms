@@ -1,23 +1,23 @@
-"""E22 : faire varier la formulation dans chaque langue avant de comparer les langues.
+"""E22: vary the wording within each language before comparing languages.
 
-Chapitre « Changer de langue et de terrain ». E21 pose la même question factuelle
-une fois par langue. Si l'on change seulement la formulation, sans changer de
-langue, le rang de « Paris » varie-t-il plus ou moins qu'entre les langues ?
+Chapter 11. E21 asks the same factual question
+once per language. If we change only the wording, without changing
+language, does the rank of "Paris" vary more or less than across languages?
 
-Règle écrite avant l'exécution (23 septembre 2026) :
-- trois formulations par langue : celle de E21, une variante amorcée par un
-  exemple (« … l'Allemagne … Berlin. »), une paraphrase (« … s'appelle ») ;
-- mesure : rang du token « ·Paris » au prochain token, et sa probabilité ;
-- écart d'une série = max − min de log10(rang) ;
-- écart entre langues = écart des quatre formulations de E21 ;
-- écart interne moyen = moyenne, sur les quatre langues, de l'écart des trois
-  formulations de la langue ;
-- conclusion prévue : si l'écart interne moyen est au moins égal à l'écart
-  entre langues, le tableau de E21 ne peut pas servir à ordonner les langues,
-  même pour cette seule question.
+Rule written before execution (23 September 2026):
+- three wordings per language: that of E21, a variant primed by an
+  example ("… l'Allemagne … Berlin."), a paraphrase ("… s'appelle");
+- measurement: rank of the token "·Paris" at the next token, and its probability;
+- spread of a series = max − min of log10(rank);
+- spread across languages = spread of the four E21 wordings;
+- mean internal spread = mean, over the four languages, of the spread of the three
+  wordings of the language;
+- planned conclusion: if the mean internal spread is at least equal to the spread
+  across languages, the E21 table cannot be used to rank the languages,
+  even for this single question.
 
-Usage : python experiences/E22_langues_formulations.py
-Sortie : outputs/E22_langues_formulations/metadata.json
+Usage: python experiences/E22_langues_formulations.py
+Output: outputs/E22_langues_formulations/metadata.json
 """
 import math
 import time
@@ -43,7 +43,7 @@ FORMULATIONS = {
 
 
 def lire_cible(m, tok, texte, cible):
-    """Rang (1 = premier) et probabilité du token cible au prochain token."""
+    """Rank (1 = first) and probability of the target token at the next token."""
     ids = tok(texte, return_tensors="pt")
     with torch.no_grad():
         logits = m(**ids).logits[0, -1]

@@ -1,12 +1,12 @@
-"""Met à jour les liens vers le livre dans les README à partir de livre.json.
+"""Update the links to the book in the READMEs from livre.json.
 
-Chaque README contient un bloc délimité par <!-- livre:debut --> et <!-- livre:fin -->.
-Ce programme le réécrit dans la langue du fichier (README racine : bloc compact en quatre langues).
-Un lien vide dans livre.json est affiché « à paraître » : il suffit de le renseigner
-puis de relancer ce programme pour que tous les guides pointent vers la bonne page.
+Each README contains a block delimited by <!-- livre:debut --> and <!-- livre:fin -->.
+This program rewrites it in the file's language (root README: compact block in four languages).
+An empty link in livre.json is displayed as "à paraître": just fill it in
+and rerun this program so that all guides point to the right page.
 
-Usage : python outils/liens_livre.py              (réécrit les blocs)
-        python outils/liens_livre.py --verifier   (signale les blocs périmés, sans écrire)
+Usage: python outils/liens_livre.py              (rewrites the blocks)
+        python outils/liens_livre.py --verifier   (reports stale blocks, without writing)
 """
 from pathlib import Path
 import json
@@ -39,13 +39,13 @@ def lien(texte, url, t):
 
 
 def edition_liee(e):
-    """Titre d'une édition, lié à sa page Amazon quand elle existe."""
+    """Title of an edition, linked to its Amazon page when it exists."""
     url = e.get('kindle') or e.get('broche')
     return f'[{e["titre"]}]({url})' if url else e['titre']
 
 
 def tome1(m, langue, t):
-    """Tome 1 dans la langue du guide : les liens absents sont simplement omis."""
+    """Volume 1 in the guide's language: missing links are simply omitted."""
     e = m['editions'][langue]
     liens = [f'[{t[k]}]({e[k]})' for k in ('broche', 'kindle') if e.get(k)] + [f'[{t["depot_meme"]}]({m["depot"]})']
     return f'{t["meme"]}{":" if t is not TEXTES["fr"] else " :"} **{e["titre"]}** — {e["sous_titre"]} — ' + ' · '.join(liens)
@@ -68,7 +68,7 @@ def bloc(livre, langue):
 
 
 def bloc_multilingue(livre):
-    """Bloc compact des quatre éditions, pour le README racine."""
+    """Compact block of the four editions, for the root README."""
     bientot = '*à paraître · coming soon · próximamente · em breve*'
     def l(url):
         return f'[Amazon]({url})' if url else bientot
@@ -95,7 +95,7 @@ def bloc_multilingue(livre):
 
 
 def contenu_attendu(racine, livre, fichier):
-    """Texte du fichier une fois son bloc à jour (None s'il n'a pas de bloc)."""
+    """File text once its block is up to date (None if it has no block)."""
     texte = fichier.read_text(encoding='utf-8')
     if DEBUT not in texte:
         return None

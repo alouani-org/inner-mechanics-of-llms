@@ -1,4 +1,4 @@
-"""E24 : contrôler arithmétique/provenance de résultats historiques, sans les réexécuter."""
+"""E24: check arithmetic/provenance of historical results, without re-running them."""
 from pathlib import Path
 import csv,json,hashlib,shutil
 ROOT=Path(__file__).resolve().parents[1];REPO=ROOT.parent

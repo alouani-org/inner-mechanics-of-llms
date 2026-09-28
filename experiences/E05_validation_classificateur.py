@@ -1,15 +1,15 @@
-"""E05 : le classificateur réparé tient-il sur des messages neufs ?
+"""E05: does the repaired classifier hold up on new messages?
 
-Chapitre « Classer : baseline, puis représentations ». La réparation de E01 a été
-décidée après avoir vu le test : ce même test ne peut plus la valider. Ce
-programme applique les deux pipelines lexicaux sauvegardés par E01 (avant et après
-équilibrage) à 24 messages écrits pour cette validation, après la réparation et
-sans aucun réglage ultérieur. Moitié incidents, moitié demandes d'information ;
-la moitié de chaque groupe porte la formule de politesse de E01. Une partie du
-vocabulaire est absente de l'apprentissage, par construction.
+Chapter 4. The repair of E01 was
+decided after seeing the test: that same test can no longer validate it. This
+program applies the two lexical pipelines saved by E01 (before and after
+balancing) to 24 messages written for this validation, after the repair and
+without any later tuning. Half incidents, half information requests;
+half of each group carries the E01 politeness formula. Part of the
+vocabulary is absent from training, by construction.
 
-Usage : python experiences/E05_validation_classificateur.py   (après E01)
-Sortie : outputs/E05_validation_classificateur/metadata.json
+Usage: python experiences/E05_validation_classificateur.py   (after E01)
+Output: outputs/E05_validation_classificateur/metadata.json
 """
 import time
 from pathlib import Path
@@ -34,7 +34,7 @@ INFORMATIONS = ["Pouvez-vous m'envoyer la notice d'utilisation", "Je souhaite co
 
 
 def construire():
-    """Même proportion de messages avec et sans suffixe dans chaque catégorie."""
+    """Same proportion of messages with and without suffix in each category."""
     textes, references = [], []
     for categorie, liste in [(1, INCIDENTS), (0, INFORMATIONS)]:
         for n, texte in enumerate(liste):
@@ -44,7 +44,7 @@ def construire():
 
 
 def evaluer(chemin, textes, references):
-    pipeline = joblib.load(chemin)      # artefact produit par E01 dans ce dépôt
+    pipeline = joblib.load(chemin)      # artifact produced by E01 in this repository
     predictions = [int(p) for p in pipeline.predict(textes)]
     lignes = [{"texte": t, "reference": r, "prediction": p, "suffixe": SUFFIXE.strip() in t}
               for t, r, p in zip(textes, references, predictions)]

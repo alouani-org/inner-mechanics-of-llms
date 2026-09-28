@@ -2,11 +2,11 @@
 
 [Início](../../README.md) · [Français](../fr/README.md) · [English](../en/README.md) · [Español](../es/README.md) · **Português**
 
-Este repositório é o laboratório do livro **A mecânica interna dos LLM** (volume 2), de Mustapha Alouani, publicado em português, francês, inglês e espanhol. O livro explica as perguntas, os mecanismos e a leitura dos resultados; este repositório permite que você refaça as 24 experiências, examine as saídas delas e vá além. Tudo roda em um processador comum (CPU), sem placa de vídeo nem serviço pago.
+Este repositório é o laboratório do livro **A mecânica interna dos LLM** (volume 2), de Mustapha Alouani, publicado em português, francês, inglês e espanhol. O livro explica as perguntas, os mecanismos e a leitura dos resultados; este repositório permite que você refaça os 24 experimentos, examine as saídas deles e vá além. Tudo roda em um processador comum (CPU), sem placa de vídeo nem serviço pago.
 
 ## 1. Preparar o ambiente
 
-Execute os comandos a partir da raiz do repositório. O ambiente de referência usa **Python 3.13.3** e as versões fixadas em `requirements-cpu.txt`; outras versões não são declaradas como testadas. Você vai precisar de conexão com a internet para a instalação e para o primeiro download dos modelos; depois disso, as experiências usam as cópias locais.
+Execute os comandos a partir da raiz do repositório. O ambiente de referência usa **Python 3.13.3** e as versões fixadas em `requirements-cpu.txt`; outras versões não são declaradas como testadas. Você vai precisar de conexão com a internet para a instalação e para o primeiro download dos modelos; depois disso, os experimentos usam as cópias locais.
 
 ```bash
 python -m venv .venv
@@ -22,9 +22,9 @@ python experiences/00_telecharger_modeles.py --verifier-seulement
 
 Os pesos são baixados das distribuições oficiais, nas revisões fixadas em `modeles.json`; valem as licenças de cada um. O percurso inicial foi gerado em CPU no Windows, e os complementos em CPU no Linux, onde o programa principal também foi executado de novo sem alterações (`outputs/verification/reexecution-linux.json`). O macOS não foi testado.
 
-## 2. As 24 experiências, na ordem do livro
+## 2. Os 24 experimentos, na ordem do livro
 
-Cada experiência tem um identificador de **E01 a E24**, atribuído na ordem em que o livro a apresenta. O mesmo identificador aparece em todo lugar: no livro, no início do nome do programa (`experiences/E09_extraction.py`) e no início da pasta de saída (`outputs/E09_extraction/`). A E06 tem dois programas: o primeiro aplica o classificador, o segundo verifica essa aplicação. Os nomes dos programas, os veredictos e os prompts ficam em francês, exatamente como no livro: traduzir este guia não traduz uma experiência.
+Cada experimento tem um identificador de **E01 a E24**, atribuído na ordem em que o livro o apresenta. O mesmo identificador aparece em todo lugar: no livro, no início do nome do programa (`experiences/E09_extraction.py`) e no início da pasta de saída (`outputs/E09_extraction/`). O E06 tem dois programas: o primeiro aplica o classificador, o segundo verifica essa aplicação. Os nomes dos programas, os veredictos e os prompts ficam em francês, exatamente como no livro: traduzir este guia não traduz um experimento.
 
 | Id. | Cap. | Programa (`experiences/`) | Pergunta | Tipo |
 |---|---|---|---|---|
@@ -32,7 +32,7 @@ Cada experiência tem um identificador de **E01 a E24**, atribuído na ordem em 
 | **E02** | 2 | `E02_calcul_observe.py` | O que o GPT-2 calcula em uma frase: tokens, estados internos, logits, máscara? | observação |
 | **E03** | 2, 3, 5, 7, 12 | `E03_calculs_guides.py` | Softmax, máscara, métricas, kappa, ACC: os cálculos do curso refeitos por programa | dados fabricados |
 | **E04** | 3, 4, 5 | `E04_intervalles.py` | Que incerteza acompanha três resultados do livro? (depois de E05 e E07) | releitura de saídas |
-| **E05** | 4 | `E05_validation_classificateur.py` | A correção feita na E01 se sustenta diante de 24 mensagens escritas depois dela? (depois de E01) | validação |
+| **E05** | 4 | `E05_validation_classificateur.py` | A correção feita no E01 se sustenta diante de 24 mensagens escritas depois dela? (depois de E01) | validação |
 | **E06** | 4 | `E06_prediction.py`, `E06_verifier_prediction.py` | O pipeline salvo se aplica a um arquivo de mensagens, e com quais erros? (depois de E01) | controle funcional |
 | **E07** | 5 | `E07_recherche.py` | Qual busca, lexical ou densa, encontra o parágrafo pertinente? | exploratório |
 | **E08** | 5 | `E08_geometrie_recherche.py` | Quanto valem as pontuações da busca densa em relação ao nível de fundo? | observação e controle |
@@ -53,17 +53,17 @@ Cada experiência tem um identificador de **E01 a E24**, atribuído na ordem em 
 | **E23** | 11 | `E23_langues_tache.py` | A mesma extração dá certo em quatro línguas? | textos paralelos fabricados |
 | **E24** | 12 | `E24_corpus_historique.py` | A aritmética da quantificação histórica é coerente? | saídas históricas |
 
-`experiences/socle_experiences.py` não é uma experiência: ele reúne o código comum (carregamento dos modelos em revisões fixas, escrita dos manifestos) e o código de E01, E07, E09, E16 e E21, que os programas de mesmo nome executam.
+`experiences/socle_experiences.py` não é um experimento: ele reúne o código comum (carregamento dos modelos em revisões fixas, escrita dos manifestos) e o código de E01, E07, E09, E16 e E21, que os programas de mesmo nome executam.
 
-## 3. Executar o percurso ou uma única experiência
+## 3. Executar o percurso ou um único experimento
 
 ```bash
-python run_cpu.py              # as 24 experiências, pela ordem do percurso
+python run_cpu.py              # os 24 experimentos, pela ordem do percurso
 python run_cpu.py E09 E11      # só estas
 python experiences/E09_extraction.py
 ```
 
-O script de execução salva um registro por programa em `outputs/verification/` e para na primeira falha. Algumas experiências releem as saídas de outra: E05 e E06 depois de E01, E11 depois de E09, E04 depois de E05 e E07. O script respeita essa ordem. Uma variante não deve alterar silenciosamente os parâmetros do livro: preserve as saídas anteriores e documente o novo protocolo.
+O script de execução salva um registro por programa em `outputs/verification/` e para na primeira falha. Alguns experimentos releem as saídas de outro: E05 e E06 depois de E01, E11 depois de E09, E04 depois de E05 e E07. O script respeita essa ordem. Uma variante não deve alterar silenciosamente os parâmetros do livro: preserve as saídas anteriores e documente o novo protocolo.
 
 ## 4. Aplicar o classificador (E06)
 
@@ -74,11 +74,11 @@ python experiences/E06_verifier_prediction.py
 
 Cada linha UTF-8 é uma mensagem. Carregar um pipeline salvo verifica uma interface, não a confiabilidade semântica: o exemplo didático mantém de propósito uma classificação incorreta. Carregue apenas arquivos `joblib` gerados pela sua própria execução, porque esse formato pode executar código.
 
-## 5. Como as experiências são construídas
+## 5. Como os experimentos são construídos
 
-Todas seguem o método do capítulo 1 do livro: uma **pergunta** feita antes de olhar o resultado; **uma única coisa alterada**, com o resto fixo; um **controle** que mostra o que aconteceria sem o efeito suposto; uma **medida** escolhida de antemão; uma **regra de decisão**; e o **alcance** da conclusão, escrito com seus limites.
+Todos seguem o método do capítulo 1 do livro: uma **pergunta** feita antes de olhar o resultado; **uma única coisa alterada**, com o resto fixo; um **controle** que mostra o que aconteceria sem o efeito suposto; uma **medida** escolhida de antemão; uma **regra de decisão**; e o **alcance** da conclusão, escrito com seus limites.
 
-Cada experiência tem um destes tipos, indicado na coluna “Tipo”:
+Cada experimento tem um destes tipos, indicado na coluna “Tipo”:
 
 - **exploratório**: torna visível um mecanismo em um pequeno conjunto de dados; o resultado sugere, não prova;
 - **regra escrita antes da execução**: a regra de decisão está escrita no cabeçalho do programa antes da primeira execução e não foi ajustada depois;
@@ -89,15 +89,19 @@ Cada pasta de saída contém um **manifesto** `metadata.json`: pergunta, control
 ## 6. Diagnosticar problemas
 
 - Modelo ausente: rode a preparação de novo com conexão e verifique as revisões; não substitua `modeles.json` silenciosamente.
-- Falta a saída de outra experiência: execute primeiro aquela da qual ela depende (seção 3).
+- Falta a saída de outro experimento: execute primeiro aquele do qual ele depende (seção 3).
 - Resultado diferente: compare versões, entradas e métricas antes de mudar uma tolerância.
-- A E24 não valida nem a anotação nem a representatividade dos participantes do Grand Débat: os arquivos `historique-*` são agregados preservados, não uma nova codificação.
+- O E24 não valida nem a anotação nem a representatividade dos participantes do Grand Débat: os arquivos `historique-*` são agregados preservados, não uma nova codificação.
 
 `python tests/check_package.py` verifica o repositório: programas legíveis, um programa e uma pasta por identificador e, para cada manifesto, se o programa presente é o que o gerou.
 
 ## 7. Numeração anterior
 
-Antes de 23 de setembro de 2026, as experiências se chamavam E1 a E8, com complementos nomeados (E3-defis, patching…). Os manifestos e os registros de execução mantêm esses nomes, vigentes no momento do cálculo; eles não foram reescritos. `RENUMEROTATION.json` traz a correspondência e, para cada programa renomeado, as linhas alteradas: restaurando essas linhas, você obtém exatamente o hash registrado no manifesto.
+Antes de 23 de setembro de 2026, os experimentos se chamavam E1 a E8, com complementos nomeados (E3-defis, patching…). Os manifestos e os registros de execução mantêm esses nomes, vigentes no momento do cálculo; eles não foram reescritos. `RENUMEROTATION.json` traz a correspondência e, para cada programa renomeado, as linhas alteradas: restaurando essas linhas, você obtém exatamente o hash registrado no manifesto.
+
+Em 25 de setembro de 2026, os comentários e as docstrings dos programas foram traduzidos para o inglês, sem mexer no código executado. `TRADUCTION_COMMENTAIRES.json` indica, para cada programa, as linhas originais: `tests/check_package.py` as restaura antes de comparar os hashes e verifica que o código executado (árvore sintática sem docstrings) é idêntico.
+
+No mesmo dia, os rótulos produzidos pelos programas passaram para o inglês: chave JSON `city` (em vez de `ville`), decisões `accept` e `review`, referência `off-list`. E02, E09, E10, E11, E12 e E23 foram executados novamente; `ETIQUETTES_ANGLAISES.json` indica as linhas alteradas, e `tests/check_package.py` reconstitui cada versão citada por um manifesto.
 
 | Nome anterior | Id. | Pasta de saída |
 |---|---|---|

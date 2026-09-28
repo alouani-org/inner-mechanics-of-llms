@@ -1,0 +1,177 @@
+{
+ "date": "2026-09-25",
+ "objet": "Étiquettes produites par les programmes passées en anglais : clé JSON « ville » → « city » (prompts, grammaires et sorties), décisions « accepte » / « revue » → « accept » / « review », clé « preuve » → « evidence », référence « hors liste » → « off-list ». E10 lit aussi le marqueur de protocole de sa docstring, traduite à l'étape précédente : « Protocole fixé » → « Protocol fixed ». Le code change : les expériences qui utilisent ces programmes ont été relancées (liste ci-dessous) et leurs manifestes portent l'empreinte de la version actuelle. Les manifestes des autres expériences qui dépendent d'un de ces fichiers (socle_experiences.py) restent valides : la version qu'ils citent se reconstitue à partir des lignes d'origine.",
+ "code_identique": false,
+ "experiences_relancees": [
+  "E02_calcul_observe",
+  "E09_extraction",
+  "E10_extraction_defis",
+  "E11_choix_abstention",
+  "E12_latence",
+  "E23_langues_tache"
+ ],
+ "programmes": [
+  {
+   "fichier": "experiences/E02_calcul_observe.py",
+   "sha256_avant": "c5985c2e7aa21796079b415dc9c84c20d7a04854a0b1246a4f795b166a673947",
+   "sha256_apres": "3af90089d96fd67014633ebfd6473521831c416f2633c7469dda748dadeaede7",
+   "lignes_modifiees": [
+    {
+     "ligne": 33,
+     "avant": "             'Texte: Le rendez-vous est à Paris.\\nJSON: {\"ville\":\"Paris\"}\\n'",
+     "apres": "             'Texte: Le rendez-vous est à Paris.\\nJSON: {\"city\":\"Paris\"}\\n'"
+    },
+    {
+     "ligne": 34,
+     "avant": "             'Texte: Aucun lieu annoncé.\\nJSON: {\"ville\":null}\\n')",
+     "apres": "             'Texte: Aucun lieu annoncé.\\nJSON: {\"city\":null}\\n')"
+    },
+    {
+     "ligne": 100,
+     "avant": "    options = [json.dumps({\"ville\": v}, ensure_ascii=False, separators=(\",\", \":\"))",
+     "apres": "    options = [json.dumps({\"city\": v}, ensure_ascii=False, separators=(\",\", \":\"))"
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E10_extraction_defis.py",
+   "sha256_avant": "f7a61c002bacbd380033e386c4ce4b0787d1d3edd0ce8490e69043c096f2d024",
+   "sha256_apres": "b4c9474bf97e7274a129595067e76575fa0817f8b60e775c08d3e1387c91cc03",
+   "lignes_modifiees": [
+    {
+     "ligne": 5,
+     "avant": "and E23 produce {\"ville\":null} for all inputs) and tests",
+     "apres": "answers {\"city\":null} for every document) and tests"
+    },
+    {
+     "ligne": 39,
+     "avant": "EXEMPLE_VILLE = 'Texte: Le rendez-vous est à Paris.\\nJSON: {\"ville\":\"Paris\"}\\n'",
+     "apres": "EXEMPLE_VILLE = 'Texte: Le rendez-vous est à Paris.\\nJSON: {\"city\":\"Paris\"}\\n'"
+    },
+    {
+     "ligne": 40,
+     "avant": "EXEMPLE_NULL = 'Texte: Aucun lieu annoncé.\\nJSON: {\"ville\":null}\\n'",
+     "apres": "EXEMPLE_NULL = 'Texte: Aucun lieu annoncé.\\nJSON: {\"city\":null}\\n'"
+    },
+    {
+     "ligne": 96,
+     "avant": "                          \"reference\": \"hors liste\"})",
+     "apres": "                          \"reference\": \"off-list\"})"
+    },
+    {
+     "ligne": 102,
+     "avant": "    textes = [json.dumps({\"ville\": v}, ensure_ascii=False, separators=(\",\", \":\")) for v in VALEURS]",
+     "apres": "    textes = [json.dumps({\"city\": v}, ensure_ascii=False, separators=(\",\", \":\")) for v in VALEURS]"
+    },
+    {
+     "ligne": 222,
+     "avant": "        \"protocole\": __doc__.split(\"Protocole fixé\")[1].split(\"Usage\")[0].strip(),",
+     "apres": "        \"protocole\": __doc__.split(\"Protocol fixed\")[1].split(\"Usage\")[0].strip(),"
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E11_choix_abstention.py",
+   "sha256_avant": "14c2b5863ca16ec7834b02eb6ace78063667b353bc6bc894c2fcc4d1d3ff0cd7",
+   "sha256_apres": "77fc970565a381969ff25a3c5059861de317b0191cbb32d432a780b37b855466",
+   "lignes_modifiees": [
+    {
+     "ligne": 10,
+     "avant": "    if len(cities)>1:return {'ville':None,'decision':'revue','preuve':None}",
+     "apres": "    if len(cities)>1:return {'city':None,'decision':'review','evidence':None}"
+    },
+    {
+     "ligne": 11,
+     "avant": "    if not cities:return {'ville':None,'decision':'accepte','preuve':None}",
+     "apres": "    if not cities:return {'city':None,'decision':'accept','evidence':None}"
+    },
+    {
+     "ligne": 13,
+     "avant": "    return {'ville':hit.group(),'decision':'accepte','preuve':{'start':hit.start(),'end':hit.end(),'text':hit.group()}}",
+     "apres": "    return {'city':hit.group(),'decision':'accept','evidence':{'start':hit.start(),'end':hit.end(),'text':hit.group()}}"
+    },
+    {
+     "ligne": 20,
+     "avant": "        rows.append({'text':r['text'],'reference':r['reference'],'output':got,'correct':got['ville']==r['reference']})",
+     "apres": "        rows.append({'text':r['text'],'reference':r['reference'],'output':got,'correct':got['city']==r['reference']})"
+    },
+    {
+     "ligne": 21,
+     "avant": "    accepted=[r for r in rows if r['output']['decision']=='accepte']",
+     "apres": "    accepted=[r for r in rows if r['output']['decision']=='accept']"
+    },
+    {
+     "ligne": 26,
+     "avant": "    challenge=[{'text':text,'reference':ref,'output':extract(text),'correct':extract(text)['ville']==ref} for text,ref in challenges]",
+     "apres": "    challenge=[{'text':text,'reference':ref,'output':extract(text),'correct':extract(text)['city']==ref} for text,ref in challenges]"
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E12_latence.py",
+   "sha256_avant": "163e83611ce2cb6ed92e6afa9d7cd6f8d85639da3b8d85a95566cf86916a8485",
+   "sha256_apres": "5b6478884e2461fb352a1dbaf533e3efb8bf795022358732323c253902f30c52",
+   "lignes_modifiees": [
+    {
+     "ligne": 36,
+     "avant": "        'Texte: Le rendez-vous est à Paris.\\nJSON: {\"ville\":\"Paris\"}\\n'",
+     "apres": "        'Texte: Le rendez-vous est à Paris.\\nJSON: {\"city\":\"Paris\"}\\n'"
+    },
+    {
+     "ligne": 37,
+     "avant": "        'Texte: Aucun lieu annoncé.\\nJSON: {\"ville\":null}\\n')",
+     "apres": "        'Texte: Aucun lieu annoncé.\\nJSON: {\"city\":null}\\n')"
+    },
+    {
+     "ligne": 78,
+     "avant": "    options = [json.dumps({'ville': v}, ensure_ascii=False, separators=(',', ':')) for v in ['Paris', 'Lyon', 'Rome', None]]",
+     "apres": "    options = [json.dumps({'city': v}, ensure_ascii=False, separators=(',', ':')) for v in ['Paris', 'Lyon', 'Rome', None]]"
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/E23_langues_tache.py",
+   "sha256_avant": "e8a5f571f1cbc5c78a3f9e14757c52f3bd1a50d28f4de6bed8884a148af5de37",
+   "sha256_apres": "7f2c0f3d16e8c6e9588444156092b6d383c1ee0f60f9c72ce726149f0bbbc28a",
+   "lignes_modifiees": [
+    {
+     "ligne": 17,
+     "avant": "    options=[json.dumps({'ville':x},ensure_ascii=False,separators=(',',':')) for x in ['Paris','Lyon','Rome',None]]",
+     "apres": "    options=[json.dumps({'city':x},ensure_ascii=False,separators=(',',':')) for x in ['Paris','Lyon','Rome',None]]"
+    },
+    {
+     "ligne": 28,
+     "avant": "            rows.append({'language':lang,'text':text,'reference':ref,'output':answer,'correct':answer['ville']==ref,'n_tokens':n})",
+     "apres": "            rows.append({'language':lang,'text':text,'reference':ref,'output':answer,'correct':answer['city']==ref,'n_tokens':n})"
+    }
+   ]
+  },
+  {
+   "fichier": "experiences/socle_experiences.py",
+   "sha256_avant": "2965a7ca39bb938b1ae068593c7e29fe462b511a3011aa354db58007cfc33d70",
+   "sha256_apres": "5bacec04c4a4f71add6cf11f1b996949162bf47243b596605413279155a66c61",
+   "lignes_modifiees": [
+    {
+     "ligne": 149,
+     "avant": "    options=[json.dumps({'ville':x},ensure_ascii=False,separators=(',',':')) for x in ['Paris','Lyon','Rome',None]]\r",
+     "apres": "    options=[json.dumps({'city':x},ensure_ascii=False,separators=(',',':')) for x in ['Paris','Lyon','Rome',None]]\r"
+    },
+    {
+     "ligne": 151,
+     "avant": "    base='Extraire la ville du rendez-vous. Si elle manque, écrire null. Répondre en JSON.\\nTexte: Le rendez-vous est à Paris.\\nJSON: {\"ville\":\"Paris\"}\\nTexte: Aucun lieu annoncé.\\nJSON: {\"ville\":null}\\n'\r",
+     "apres": "    base='Extraire la ville du rendez-vous. Si elle manque, écrire null. Répondre en JSON.\\nTexte: Le rendez-vous est à Paris.\\nJSON: {\"city\":\"Paris\"}\\nTexte: Aucun lieu annoncé.\\nJSON: {\"city\":null}\\n'\r"
+    },
+    {
+     "ligne": 167,
+     "avant": "                obj=json.loads(answer); valid=isinstance(obj,dict) and set(obj)=={'ville'} and obj['ville'] in ['Paris','Lyon','Rome',None]\r",
+     "apres": "                obj=json.loads(answer); valid=isinstance(obj,dict) and set(obj)=={'city'} and obj['city'] in ['Paris','Lyon','Rome',None]\r"
+    },
+    {
+     "ligne": 169,
+     "avant": "            row[mode]={'output':answer,'schema_valid':valid,'correct':bool(valid and obj['ville']==ref),'duration_s':time.perf_counter()-tick}\r",
+     "apres": "            row[mode]={'output':answer,'schema_valid':valid,'correct':bool(valid and obj['city']==ref),'duration_s':time.perf_counter()-tick}\r"
+    }
+   ]
+  }
+ ]
+}

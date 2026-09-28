@@ -1,23 +1,23 @@
-"""E17 : carte de restauration couche × position, puis contrôles aux sites retenus.
+"""E17: restoration map layer × position, then controls at the selected sites.
 
-Chapitre « Intervenir pour expliquer ». Paires propre/corrompue qui ne diffèrent
-que par le pays interrogé (« The capital of France is » / « … of Italy is »),
-précédées du même exemple amorcé. Métrique : différence de logits entre la
-capitale du pays propre et celle du pays corrompu, à la dernière position.
+Chapter 9. Clean/corrupted pairs that differ
+only by the country asked about ("The capital of France is" / "… of Italy is"),
+preceded by the same primed example. Metric: logit difference between the
+capital of the clean country and that of the corrupted country, at the last position.
 
-Règle écrite avant l'exécution (23 septembre 2026) :
-- découverte sur trois paires : carte complète couche × position ;
-- site « sujet » = couche où la restauration moyenne à la position du pays est
-  la plus forte parmi les couches 1 à 9 (on écarte la couche 0, simple lecture
-  de l'entrée, et les dernières couches) ;
-- site « lecture » = couche la plus basse où la restauration moyenne à la
-  dernière position dépasse 0,5 ;
-- validation sur d'autres paires : restauration aux deux sites, auto-patch
-  (identité attendue), intervention inverse et vingt perturbations aléatoires
-  de même norme que l'écart propre − corrompu, au même site.
+Rule written before execution (23 September 2026):
+- discovery on three pairs: full layer × position map;
+- "sujet" site = layer where the mean restoration at the country position is
+  highest among layers 1 to 9 (layer 0, a mere reading
+  of the input, and the last layers are excluded);
+- "lecture" site = lowest layer where the mean restoration at the
+  last position exceeds 0.5;
+- validation on other pairs: restoration at both sites, self-patch
+  (identity expected), reverse intervention and twenty random perturbations
+  with the same norm as the clean − corrupted difference, at the same site.
 
-Usage : python experiences/E17_carte_patching.py
-Sortie : outputs/E17_carte_patching/metadata.json
+Usage: python experiences/E17_carte_patching.py
+Output: outputs/E17_carte_patching/metadata.json
 """
 import time
 
@@ -42,7 +42,7 @@ def un_token(tok, mot):
 
 
 def paires_valides(tok):
-    """Garder les paires dont pays et capitales sont un seul token : positions alignées."""
+    """Keep the pairs whose country and capitals are a single token: aligned positions."""
     valides = []
     for pays, capitale, autre_pays, autre_capitale in PAIRES_CANDIDATES:
         ids = [un_token(tok, x) for x in (pays, capitale, autre_pays, autre_capitale)]
@@ -54,7 +54,7 @@ def paires_valides(tok):
 
 
 def ecart(m, ids, cible, concurrente, crochet=None, couche=None):
-    """Différence de logits cible − concurrente à la dernière position, avec un crochet éventuel."""
+    """Logit difference target − competitor at the last position, with an optional hook."""
     poignee = m.transformer.h[couche].register_forward_hook(crochet) if crochet else None
     try:
         with torch.no_grad():
@@ -66,7 +66,7 @@ def ecart(m, ids, cible, concurrente, crochet=None, couche=None):
 
 
 def remplacer(position, valeur):
-    """Crochet qui remplace, à une position, la sortie d'un bloc par une valeur donnée."""
+    """Hook that replaces, at one position, the output of a block with a given value."""
     def crochet(module, entrees, sortie):
         h = (sortie[0] if isinstance(sortie, tuple) else sortie).clone()
         h[0, position] = valeur
@@ -75,7 +75,7 @@ def remplacer(position, valeur):
 
 
 def capturer(m, ids, couche):
-    """Sortie brute du bloc demandé (avant la normalisation finale), toutes positions."""
+    """Raw output of the requested block (before the final normalization), all positions."""
     boite = {}
     def crochet(module, entrees, sortie):
         boite["h"] = (sortie[0] if isinstance(sortie, tuple) else sortie)[0].detach().clone()
@@ -89,7 +89,7 @@ def capturer(m, ids, couche):
 
 
 def carte(m, tok, paire):
-    """Restauration normalisée pour chaque (couche, position)."""
+    """Normalized restoration for each (layer, position)."""
     propre, corrompu = tok.encode(paire["propre"]), tok.encode(paire["corrompu"])
     assert len(propre) == len(corrompu)
     e_propre = ecart(m, propre, paire["cible"], paire["concurrente"])
@@ -108,7 +108,7 @@ def carte(m, tok, paire):
 
 
 def controles(m, tok, paire, couche, position, generateur):
-    """Au site donné : patch propre, auto-patch, inverse et perturbations de même norme."""
+    """At the given site: clean patch, self-patch, reverse and same-norm perturbations."""
     propre, corrompu = tok.encode(paire["propre"]), tok.encode(paire["corrompu"])
     c, k = paire["cible"], paire["concurrente"]
     h_p, h_c = capturer(m, propre, couche), capturer(m, corrompu, couche)

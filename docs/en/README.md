@@ -99,6 +99,10 @@ Each output folder contains a **manifest** `metadata.json`: question, controls, 
 
 Before 23 September 2026, the experiments were called E1 to E8, plus named additions (E3-defis, patching…). Manifests and run logs keep these former names, which were in force when the computation ran; they have not been rewritten. `RENUMEROTATION.json` gives the mapping and, for each renamed program, the modified lines: restoring them gives back exactly the hash recorded in the manifest.
 
+On 25 September 2026, the programs' comments and docstrings were translated into English, without touching the executed code. `TRADUCTION_COMMENTAIRES.json` gives each program's original lines: `tests/check_package.py` restores them before comparing hashes, and checks that the executed code (syntax tree without docstrings) is identical.
+
+The same day, the labels produced by the programs switched to English: JSON key `city` (instead of `ville`), decisions `accept` and `review`, reference `off-list`. E02, E09, E10, E11, E12 and E23 were rerun; `ETIQUETTES_ANGLAISES.json` gives the modified lines, and `tests/check_package.py` rebuilds every version a manifest cites.
+
 | Former name | ID | Output folder |
 |---|---|---|
 | E1 | **E01** | `outputs/E01_classification/` |

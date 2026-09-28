@@ -1,4 +1,4 @@
-"""E06 : contrôler la commande de prédiction et conserver aussi ses erreurs sémantiques."""
+"""E06: check the prediction command and also keep its semantic errors."""
 from pathlib import Path
 import csv
 import hashlib

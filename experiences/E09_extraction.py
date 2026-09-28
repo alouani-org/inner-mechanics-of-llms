@@ -1,11 +1,11 @@
-"""E09 : Extraction libre et contrainte (chapitre 6).
+"""E09: Free and constrained extraction (chapter 6).
 
-Le code de l'expérience est la fonction `extraction` de `socle_experiences.py`, qui
-réunit aussi les fonctions communes aux autres programmes (chargement des modèles,
-écriture des manifestes). Ce programme ne lance que cette expérience.
+The experiment's code is the `extraction` function in `socle_experiences.py`, which
+also gathers the functions shared by the other programs (model loading,
+manifest writing). This program runs only this experiment.
 
-Usage : python experiences/E09_extraction.py
-Sortie : outputs/E09_extraction/metadata.json
+Usage: python experiences/E09_extraction.py
+Output: outputs/E09_extraction/metadata.json
 """
 from socle_experiences import extraction
 

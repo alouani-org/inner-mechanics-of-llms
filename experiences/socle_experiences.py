@@ -1,7 +1,7 @@
-"""Socle commun et expériences E01, E07, E09, E16 et E21 du tome 2. CPU imposé, résultats écrits après calcul uniquement.
+"""Common base and experiments E01, E07, E09, E16 and E21 of volume 2. CPU enforced, results written only after computation.
 
-Usage : python experiences/socle_experiences.py --experience all   (ou E01, E07, E09, E16, E21 ; les programmes E01_classification.py, etc. en lancent une seule)
-Les corpus fabriqués servent à comprendre un mécanisme, pas à estimer une qualité métier.
+Usage: python experiences/socle_experiences.py --experience all   (or E01, E07, E09, E16, E21; the programs E01_classification.py, etc. run a single one)
+The fabricated corpora serve to understand a mechanism, not to estimate a business-level quality.
 """
 from pathlib import Path
 import os
@@ -71,7 +71,7 @@ def encoder(texts):
 
 def classification():
     start=time.perf_counter()
-    # Signal parasite construit : les urgences sont longues uniquement à l'entraînement.
+    # Built-in spurious signal: urgent messages are long only in training.
     actions=['Le serveur est arrêté','Le paiement est bloqué','Le réseau est coupé','Le compte est inaccessible',
              'Une erreur empêche la connexion','Le service ne répond plus','Le site est indisponible','La facture est incorrecte']
     info=['Je souhaite une documentation','Je demande le catalogue','Je cherche les horaires','Je voudrais connaître le tarif',
@@ -86,8 +86,8 @@ def classification():
     v,rev=encoder(train+test)
     probe=LogisticRegression(random_state=42).fit(v[:len(train)],yt)
     pred_probe=probe.predict(v[len(train):])
-    # Réparation du protocole : le suffixe apparaît avec les deux étiquettes.
-    # Extension exploratoire décidée après le premier essai, déclarée dans les limites.
+    # Protocol repair: the suffix appears with both labels.
+    # Exploratory extension decided after the first attempt, declared in the limitations.
     balanced=actions[:6]+info[:6]+[x+suffix for x in actions[:6]+info[:6]]
     ybalanced=yt+yt
     repaired=make_pipeline(TfidfVectorizer(ngram_range=(1,2)),LogisticRegression(random_state=42)).fit(balanced,ybalanced)
@@ -146,9 +146,9 @@ def extraction():
            ('La rencontre est organisée à Rome.','Rome'),('Le lieu reste à définir.',None),
            ('Le rendez-vous est à Lyon, et non à Paris.','Lyon'),('Paris a été écarté ; le rendez-vous sera à Rome.','Rome'),
            ('Le bureau est à Paris, mais le rendez-vous se tiendra à Lyon.','Lyon'),('Aucune ville ne figure dans la convocation.',None)]
-    options=[json.dumps({'ville':x},ensure_ascii=False,separators=(',',':')) for x in ['Paris','Lyon','Rome',None]]
+    options=[json.dumps({'city':x},ensure_ascii=False,separators=(',',':')) for x in ['Paris','Lyon','Rome',None]]
     seqs=[t.encode(x,add_special_tokens=False)+[t.eos_token_id] for x in options]
-    base='Extraire la ville du rendez-vous. Si elle manque, écrire null. Répondre en JSON.\nTexte: Le rendez-vous est à Paris.\nJSON: {"ville":"Paris"}\nTexte: Aucun lieu annoncé.\nJSON: {"ville":null}\n'
+    base='Extraire la ville du rendez-vous. Si elle manque, écrire null. Répondre en JSON.\nTexte: Le rendez-vous est à Paris.\nJSON: {"city":"Paris"}\nTexte: Aucun lieu annoncé.\nJSON: {"city":null}\n'
     rows=[]
     for text,ref in cases:
         x=t(base+'Texte: '+text+'\nJSON:',return_tensors='pt'); size=x.input_ids.shape[1]
@@ -164,9 +164,9 @@ def extraction():
                     **({'prefix_allowed_tokens_fn':allowed} if mode=='contraint' else {}))
             answer=t.decode(out[0,size:],skip_special_tokens=True).strip()
             try:
-                obj=json.loads(answer); valid=isinstance(obj,dict) and set(obj)=={'ville'} and obj['ville'] in ['Paris','Lyon','Rome',None]
+                obj=json.loads(answer); valid=isinstance(obj,dict) and set(obj)=={'city'} and obj['city'] in ['Paris','Lyon','Rome',None]
             except (ValueError,TypeError): obj={};valid=False
-            row[mode]={'output':answer,'schema_valid':valid,'correct':bool(valid and obj['ville']==ref),'duration_s':time.perf_counter()-tick}
+            row[mode]={'output':answer,'schema_valid':valid,'correct':bool(valid and obj['city']==ref),'duration_s':time.perf_counter()-tick}
         rows.append(row)
     totals={mode:{'valid':sum(r[mode]['schema_valid'] for r in rows),'correct':sum(r[mode]['correct'] for r in rows),
                   'median_s':float(np.median([r[mode]['duration_s'] for r in rows]))} for mode in ['libre','contraint']}

@@ -44,7 +44,7 @@ Du même auteur · By the same author · Del mismo autor · Do mesmo autor ([scr
 
 ## 🇧🇷 Português
 
-👉 **[Guia completo: instalação, as 24 experiências, método, diagnóstico](docs/pt/README.md)**
+👉 **[Guia completo: instalação, os 24 experimentos, método, diagnóstico](docs/pt/README.md)**
 
 ---
 
@@ -108,6 +108,8 @@ inner-mechanics-of-llms/
 ├── modeles.json          ← révisions exactes des modèles · exact model revisions
 ├── requirements-cpu.txt
 ├── RENUMEROTATION.json   ← ancienne numérotation (E1–E8) → E01–E24 · former numbering
+├── TRADUCTION_COMMENTAIRES.json ← commentaires traduits en anglais, lignes d'origine · comments translated into English, original lines
+├── ETIQUETTES_ANGLAISES.json   ← étiquettes et clé JSON en anglais, lignes d'origine · English labels and JSON key, original lines
 ├── livre.json            ← liens du livre · book links
 └── DATA_AND_MODELS.md
 ```

@@ -1,11 +1,11 @@
-"""E21 : Même question, quatre langues (chapitre 11).
+"""E21: Same question, four languages (chapter 11).
 
-Le code de l'expérience est la fonction `languages` de `socle_experiences.py`, qui
-réunit aussi les fonctions communes aux autres programmes (chargement des modèles,
-écriture des manifestes). Ce programme ne lance que cette expérience.
+The experiment's code is the `languages` function in `socle_experiences.py`, which
+also gathers the functions shared by the other programs (model loading,
+manifest writing). This program runs only this experiment.
 
-Usage : python experiences/E21_langues.py
-Sortie : outputs/E21_langues/metadata.json
+Usage: python experiences/E21_langues.py
+Output: outputs/E21_langues/metadata.json
 """
 from socle_experiences import languages
 

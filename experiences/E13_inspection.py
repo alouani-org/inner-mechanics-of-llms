@@ -1,4 +1,4 @@
-"""E13 : lectures et pilotage temporaires, avec sites de capture/injection identiques."""
+"""E13: temporary readings and steering, with identical capture/injection sites."""
 from socle_experiences import *
 
 def main():
@@ -8,7 +8,7 @@ def main():
     rows=[]
     for i,h in enumerate(states):
         v=h[0,-1]
-        # Le dernier état retourné est déjà normalisé par GPT-2.
+        # The last returned state is already normalized by GPT-2.
         with torch.no_grad():z=m.lm_head(v if i==len(states)-1 else m.transformer.ln_f(v));p=z.softmax(-1)
         rows.append({'state':i,'top1':t.decode(int(z.argmax())),'entropy':float(-(p*p.clamp_min(1e-30).log()).sum())})
     layer=8

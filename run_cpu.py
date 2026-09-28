@@ -1,12 +1,12 @@
-"""Parcours CPU complet du dépôt compagnon : E01 à E24, sans Quarto ni manuscrit.
+"""Full CPU run of the companion repository: E01 to E24, without Quarto or manuscript.
 
-Les expériences sont numérotées dans l'ordre du livre. Le lanceur les exécute dans
-cet ordre, à une exception près : E04 relit les sorties de E05 et E07, il passe donc
-après elles. Un journal par programme est écrit dans outputs/verification/ ; le lanceur
-s'arrête à la première commande en échec.
+The experiments are numbered in the order of the book. The launcher runs them in
+that order, with one exception: E04 rereads the outputs of E05 and E07, so it runs
+after them. One log per program is written to outputs/verification/; the launcher
+stops at the first failing command.
 
-Usage : python run_cpu.py            (toutes les expériences)
-        python run_cpu.py E09 E11    (seulement celles-ci, dans l'ordre du parcours)
+Usage: python run_cpu.py            (all experiments)
+        python run_cpu.py E09 E11    (only these, in the order of the run)
 """
 from pathlib import Path
 import json
@@ -15,7 +15,7 @@ import sys
 import time
 
 ROOT = Path(__file__).resolve().parent
-PARCOURS = [  # (identifiant, programme) ; E06 compte deux programmes, dont un appelé par l'autre
+PARCOURS = [  # (identifier, program); E06 has two programs, one of which is called by the other
     ('E01', 'E01_classification.py'), ('E02', 'E02_calcul_observe.py'), ('E03', 'E03_calculs_guides.py'),
     ('E05', 'E05_validation_classificateur.py'), ('E06', 'E06_verifier_prediction.py'),
     ('E07', 'E07_recherche.py'), ('E04', 'E04_intervalles.py'), ('E08', 'E08_geometrie_recherche.py'),

@@ -1,4 +1,4 @@
-"""E19 : adapter puis comparer instrument gelé et instrument réappris, CPU."""
+"""E19: adapt, then compare frozen instrument and retrained instrument, CPU."""
 from socle_experiences import *
 from peft import LoraConfig, get_peft_model
 
@@ -7,7 +7,7 @@ def main():
     train_prompts=['The capital of Italy is','Italy has its capital in','The Italian capital is','The capital city of Italy is']
     heldout=['In Italy, the seat of government is','Which city is the capital of Italy?','Italy is a country whose capital is']
     controls=[('The capital of France is',' Paris'),('The capital of Germany is',' Berlin'),('The capital of Spain is',' Madrid')]
-    # Fiction contrefactuelle explicitement enseignée : aucune correction factuelle revendiquée.
+    # Explicitly taught counterfactual fiction: no factual correction claimed.
     texts=[p+' Naples.' for p in train_prompts]
     for p in heldout: assert all(p not in x for x in texts)
     probe_train=['The capital of '+c+' is' for c in ['France','Germany','Spain','Italy','Japan','Canada']]+[

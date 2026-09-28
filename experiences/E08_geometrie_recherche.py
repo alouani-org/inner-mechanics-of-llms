@@ -1,14 +1,14 @@
-"""E08 : lire les scores de la recherche dense : niveau de fond, marges et témoin aléatoire.
+"""E08: reading dense retrieval scores: background level, margins and random control.
 
-Chapitre « Trouver les bons documents ». Reprend la base et les questions de E07
-(socle_experiences.py, constantes DOCS et QUERIES) et le même encodeur. Mesure :
-- les cosinus question–document, séparés entre paires pertinentes et non pertinentes ;
-- le cosinus moyen entre documents sans rapport (niveau de fond de l'espace) ;
-- le même calcul sur des vecteurs aléatoires de même dimension (témoin) ;
-- pour chaque question, l'écart entre le meilleur score et celui de la référence.
+Chapter 5. Reuses the base and the questions of E07
+(socle_experiences.py, constants DOCS and QUERIES) and the same encoder. Measures:
+- question–document cosines, split between relevant and non-relevant pairs;
+- the mean cosine between unrelated documents (background level of the space);
+- the same computation on random vectors of the same dimension (control);
+- for each question, the gap between the best score and that of the reference.
 
-Usage : python experiences/E08_geometrie_recherche.py
-Sortie : outputs/E08_geometrie_recherche/metadata.json
+Usage: python experiences/E08_geometrie_recherche.py
+Output: outputs/E08_geometrie_recherche/metadata.json
 """
 import time
 
@@ -18,7 +18,7 @@ from socle_experiences import DOCS, QUERIES, encoder, save
 
 
 def cosinus_hors_diagonale(vecteurs):
-    """Moyenne des cosinus entre vecteurs distincts (vecteurs supposés normalisés)."""
+    """Mean cosine between distinct vectors (vectors assumed normalized)."""
     similarites = vecteurs @ vecteurs.T
     n = len(vecteurs)
     return float((similarites.sum() - np.trace(similarites)) / (n * (n - 1)))

@@ -1,29 +1,29 @@
-"""E10 (prolonge E09 et E11) : pourquoi le décodage contraint de E09 répond-il toujours null ?
+"""E10 (extends E09 and E11): why does the constrained decoding of E09 always answer null?
 
-Chapitres « Extraire des données valides et justes » et « Choisir un modèle et un
-budget ». Expérience exploratoire, postérieure à E09 : elle part d'un constat (E09
-et E23 produisent {"ville":null} pour toutes les entrées) et teste des
-explications par intervention sur l'entrée et sur la règle de décision, les poids
-restant fixes.
+Chapters 6 and 7 of the book.
+Exploratory experiment, later than E09: it starts from an observation (E09
+answers {"city":null} for every document) and tests
+explanations by intervening on the input and on the decision rule, the weights
+staying fixed.
 
-Protocole fixé avant la première exécution (23 septembre 2026) :
+Protocol fixed before the first execution (23 September 2026):
 
-1. Documents fabriqués en familles de situations ; chaque famille existe en deux
-   formulations. Formulation « a » = calibration, formulation « b » = test.
-   La famille « hors contrat » (ville absente de la liste) est évaluée à part.
-2. Même GPT-2, même grammaire à quatre objets que E09. Deux ordres des exemples
-   de démonstration : A (celui de E09 : Paris puis null) et B (null puis Paris).
-3. Trois règles de décision : (i) décodage contraint glouton, comme E09 ;
-   (ii) objet complet de plus forte log-probabilité ; (iii) même score corrigé par
-   calibration contextuelle, dont le biais par objet est estimé sur trois entrées
-   sans contenu (« N/A », « [vide] », « ... »).
-4. Abstention : marge entre les deux meilleurs scores de la règle (iii), ordre A.
-   Seuil = plus petite marge observée en calibration telle que l'exactitude des
-   documents acceptés en calibration soit d'au moins 90 %. Si aucun seuil ne
-   l'atteint, tout est refusé. Le seuil est ensuite appliqué tel quel au test.
+1. Documents fabricated in families of situations; each family exists in two
+   wordings. Wording "a" = calibration, wording "b" = test.
+   The "hors contrat" family (city absent from the list) is evaluated separately.
+2. Same GPT-2, same four-object grammar as E09. Two orders of the
+   demonstration examples: A (that of E09: Paris then null) and B (null then Paris).
+3. Three decision rules: (i) greedy constrained decoding, as in E09;
+   (ii) complete object with the highest log-probability; (iii) same score corrected by
+   contextual calibration, whose per-object bias is estimated on three inputs
+   without content ("N/A", "[vide]", "...").
+4. Abstention: margin between the two best scores of rule (iii), order A.
+   Threshold = smallest margin observed in calibration such that the accuracy of
+   documents accepted in calibration is at least 90 %. If no threshold
+   reaches it, everything is refused. The threshold is then applied as is to the test.
 
-Usage : python experiences/E10_extraction_defis.py
-Sortie : outputs/E10_extraction_defis/metadata.json
+Usage: python experiences/E10_extraction_defis.py
+Output: outputs/E10_extraction_defis/metadata.json
 """
 import json
 import time
@@ -36,14 +36,14 @@ from socle_experiences import model, snapshot, save
 VILLES = ["Paris", "Lyon", "Rome"]
 VALEURS = VILLES + [None]
 CONSIGNE = "Extraire la ville du rendez-vous. Si elle manque, écrire null. Répondre en JSON.\n"
-EXEMPLE_VILLE = 'Texte: Le rendez-vous est à Paris.\nJSON: {"ville":"Paris"}\n'
-EXEMPLE_NULL = 'Texte: Aucun lieu annoncé.\nJSON: {"ville":null}\n'
-ORDRES = {"A": CONSIGNE + EXEMPLE_VILLE + EXEMPLE_NULL,   # ordre de E09
+EXEMPLE_VILLE = 'Texte: Le rendez-vous est à Paris.\nJSON: {"city":"Paris"}\n'
+EXEMPLE_NULL = 'Texte: Aucun lieu annoncé.\nJSON: {"city":null}\n'
+ORDRES = {"A": CONSIGNE + EXEMPLE_VILLE + EXEMPLE_NULL,   # order of E09
           "B": CONSIGNE + EXEMPLE_NULL + EXEMPLE_VILLE}
 ENTREES_SANS_CONTENU = ["N/A", "[vide]", "..."]
 EXACTITUDE_VISEE = 0.90
 
-# Deux formulations par situation : (a) pour la calibration, (b) pour le test.
+# Two wordings per situation: (a) for calibration, (b) for the test.
 FAMILLES = {
     "explicite": ("Le rendez-vous aura lieu à {v}.",
                   "Nous nous retrouverons à {v} pour le rendez-vous."),
@@ -69,12 +69,12 @@ HORS_CONTRAT = ["Le rendez-vous aura lieu à Marseille.", "La réunion se tiendr
 
 
 def construire_documents():
-    """Documents, références et partition, construits avant tout calcul du modèle."""
+    """Documents, references and split, built before any model computation."""
     documents = []
     for famille, formulations in FAMILLES.items():
         for partition, gabarit in zip(["calibration", "test"], formulations):
             if isinstance(gabarit, list):
-                # Situations sans ville : trois phrases distinctes écrites à la main.
+                # Situations without a city: three distinct sentences written by hand.
                 for texte in gabarit:
                     documents.append({"famille": famille, "partition": partition, "texte": texte,
                                       "reference": None})
@@ -93,18 +93,18 @@ def construire_documents():
                                   "reference": v})
     for texte in HORS_CONTRAT:
         documents.append({"famille": "hors_contrat", "partition": "defi", "texte": texte,
-                          "reference": "hors liste"})
+                          "reference": "off-list"})
     return documents
 
 
 def objets(tok):
-    """Les quatre objets autorisés et leurs séquences de tokens (fin de texte incluse)."""
-    textes = [json.dumps({"ville": v}, ensure_ascii=False, separators=(",", ":")) for v in VALEURS]
+    """The four allowed objects and their token sequences (end of text included)."""
+    textes = [json.dumps({"city": v}, ensure_ascii=False, separators=(",", ":")) for v in VALEURS]
     return textes, [tok.encode(t, add_special_tokens=False) + [tok.eos_token_id] for t in textes]
 
 
 def scores_objets(m, prefixe, sequences):
-    """Log-probabilité de chaque objet complet, token après token, en un passage par objet."""
+    """Log-probability of each complete object, token by token, in one pass per object."""
     scores = []
     for sequence in sequences:
         entree = torch.tensor([prefixe + sequence])
@@ -116,7 +116,7 @@ def scores_objets(m, prefixe, sequences):
 
 
 def decodage_glouton(m, prefixe, sequences, eos):
-    """Décodage contraint glouton : à chaque pas, meilleur token parmi les préfixes autorisés."""
+    """Greedy constrained decoding: at each step, best token among the allowed prefixes."""
     produits = []
     while True:
         autorises = sorted({s[len(produits)] for s in sequences
@@ -137,7 +137,7 @@ def prompt_pour(ordre, texte):
 
 
 def seuil_sur_calibration(marges, corrects):
-    """Plus petite marge garantissant l'exactitude visée parmi les acceptés ; sinon, refus total."""
+    """Smallest margin ensuring the target accuracy among accepted items; otherwise, refuse all."""
     for seuil in sorted(set(marges)):
         acceptes = [c for mg, c in zip(marges, corrects) if mg >= seuil]
         if acceptes and np.mean(acceptes) >= EXACTITUDE_VISEE:
@@ -192,7 +192,7 @@ def main():
                                         "exactitude": float(np.mean([l[o][r] == l["reference"] for l in cas]))}
                                     for r in ["glouton", "objet_complet", "calibre"]} for o in ORDRES}
 
-    # Sensibilité au document : score moyen d'un objet-ville selon qu'il est la référence ou non.
+    # Sensitivity to the document: mean score of a city object depending on whether it is the reference or not.
     sensibilite = {}
     for ville, texte_objet in zip(VILLES, textes_objets):
         cas = [l for l in lignes if l["partition"] in ("calibration", "test")]
@@ -219,7 +219,7 @@ def main():
                        "exactitude_acceptes": float(np.mean([l["A"]["calibre"] == l["reference"] for l in acceptes]))})
 
     save("E10_extraction_defis", {
-        "protocole": __doc__.split("Protocole fixé")[1].split("Usage")[0].strip(),
+        "protocole": __doc__.split("Protocol fixed")[1].split("Usage")[0].strip(),
         "n_documents": {p: sum(l["partition"] == p for l in lignes) for p in ["calibration", "test", "defi"]},
         "decoupage_objets": {t: [tok.decode([i]) for i in s[:-1]] for t, s in zip(textes_objets, sequences)},
         "biais_sans_contenu": {o: dict(zip(textes_objets, b.round(4).tolist())) for o, b in biais.items()},

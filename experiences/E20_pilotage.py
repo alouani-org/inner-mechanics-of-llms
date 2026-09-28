@@ -1,28 +1,28 @@
-"""E20 : mettre la direction de pilotage à l'épreuve : témoins aléatoires, sens inverse, effets collatéraux.
+"""E20: put the steering direction to the test: random controls, reverse direction, side effects.
 
-Chapitre « Adapter et contrôler ». Le programme `E13_inspection.py` ajoute, à la
-sortie du bloc 8 et à la dernière position, la direction normalisée
-état(« The capital of France is ») − état(« The capital of Italy is »). La
-probabilité de « ·Paris » monte. Trois questions restent ouvertes :
-une direction quelconque de même norme ferait-elle autant ? le sens opposé
-favorise-t-il « ·Rome » ? que devient le reste du comportement ?
+Chapter 10. The program `E13_inspection.py` adds, at the
+output of block 8 and at the last position, the normalized direction
+state("The capital of France is") − state("The capital of Italy is"). The
+probability of "·Paris" rises. Three questions remain open:
+would any direction of the same norm do as much? does the opposite direction
+favor "·Rome"? what happens to the rest of the behavior?
 
-Règle écrite avant l'exécution (23 septembre 2026) :
-- texte cible : « France has its capital in » (non saturé dans inspection) ;
-- intensités : −40, −20, 0, 20, 40, 80, 160 ;
-- témoin : trente directions aléatoires unitaires (graine 0) à l'intensité 40 ;
-  la direction est dite plus efficace que le hasard si sa hausse de
-  P(·Paris) dépasse le 95e centile des hausses aléatoires ;
-- sens inverse : aux intensités négatives, P(·Rome) doit augmenter ;
-- effets collatéraux, sur trois textes sans rapport avec la France : pour
-  chaque intensité, probabilité de la réponse attendue et divergence de
-  Kullback-Leibler entre les distributions du prochain token avant et après ;
-- dose tolérable : plus forte intensité positive pour laquelle la réponse
-  attendue de chaque texte témoin garde au moins la moitié de sa probabilité
-  initiale.
+Rule written before execution (23 September 2026):
+- target text: "France has its capital in" (not saturated in inspection);
+- intensities: −40, −20, 0, 20, 40, 80, 160;
+- control: thirty random unit directions (seed 0) at intensity 40;
+  the direction is called more effective than chance if its increase in
+  P(·Paris) exceeds the 95th percentile of the random increases;
+- reverse direction: at negative intensities, P(·Rome) must increase;
+- side effects, on three texts unrelated to France: for
+  each intensity, probability of the expected answer and
+  Kullback-Leibler divergence between the next-token distributions before and after;
+- tolerable dose: highest positive intensity for which the expected
+  answer of each control text keeps at least half of its initial
+  probability.
 
-Usage : python experiences/E20_pilotage.py
-Sortie : outputs/E20_pilotage/metadata.json
+Usage: python experiences/E20_pilotage.py
+Output: outputs/E20_pilotage/metadata.json
 """
 import time
 
@@ -40,7 +40,7 @@ N_ALEATOIRES = 30
 
 
 def etat(m, tok, texte):
-    """Sortie du bloc COUCHE à la dernière position."""
+    """Output of block COUCHE at the last position."""
     boite = {}
     def capter(module, entrees, sortie):
         boite["v"] = (sortie[0] if isinstance(sortie, tuple) else sortie)[0, -1].detach().clone()
@@ -54,7 +54,7 @@ def etat(m, tok, texte):
 
 
 def distribution(m, tok, texte, ajout=None):
-    """Probabilités du prochain token, avec un vecteur ajouté à la dernière position si demandé."""
+    """Next-token probabilities, with a vector added at the last position if requested."""
     def ajouter(module, entrees, sortie):
         h = (sortie[0] if isinstance(sortie, tuple) else sortie).clone()
         h[:, -1] += ajout
@@ -70,7 +70,7 @@ def distribution(m, tok, texte, ajout=None):
 
 
 def kl(p, q):
-    """Divergence KL(p ‖ q) en nats."""
+    """KL(p ‖ q) divergence in nats."""
     return float((p * (p.clamp_min(1e-30).log() - q.clamp_min(1e-30).log())).sum())
 
 

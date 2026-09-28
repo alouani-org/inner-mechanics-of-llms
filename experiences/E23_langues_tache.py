@@ -1,4 +1,4 @@
-"""E23 : même extraction bornée dans quatre langues ; textes parallèles fabriqués."""
+"""E23: same bounded extraction in four languages; fabricated parallel texts."""
 from socle_experiences import *
 
 CASES={
@@ -13,8 +13,8 @@ INSTRUCTIONS={'fr':'Extraire la ville du rendez-vous. Si elle manque, écrire nu
 
 def main():
     start=time.perf_counter();m,t=model();rows=[]
-    # Les codes de sortie sont invariants entre langues ; Paris/Rome sont des valeurs canoniques.
-    options=[json.dumps({'ville':x},ensure_ascii=False,separators=(',',':')) for x in ['Paris','Lyon','Rome',None]]
+    # Output codes are invariant across languages; Paris/Rome are canonical values.
+    options=[json.dumps({'city':x},ensure_ascii=False,separators=(',',':')) for x in ['Paris','Lyon','Rome',None]]
     seqs=[t.encode(x,add_special_tokens=False)+[t.eos_token_id] for x in options]
     for lang,cases in CASES.items():
         for text,ref in cases:
@@ -25,7 +25,7 @@ def main():
                 return sorted({z[len(tail)] for z in seqs if len(z)>len(tail) and z[:len(tail)]==tail}) or [t.eos_token_id]
             with torch.no_grad():out=m.generate(**x,prefix_allowed_tokens_fn=allowed,max_new_tokens=24,do_sample=False,pad_token_id=t.eos_token_id)
             answer=json.loads(t.decode(out[0,n:],skip_special_tokens=True))
-            rows.append({'language':lang,'text':text,'reference':ref,'output':answer,'correct':answer['ville']==ref,'n_tokens':n})
+            rows.append({'language':lang,'text':text,'reference':ref,'output':answer,'correct':answer['city']==ref,'n_tokens':n})
     save('E23_langues_tache',{'rows':rows,'scores':{lang:sum(r['correct'] for r in rows if r['language']==lang)/len(cases) for lang,cases in CASES.items()}},
       'La même tâche d’extraction bornée se comporte-t-elle pareil dans quatre langues ?',
       ['Même modèle et grammaire de sortie','Valeurs canoniques explicites','Quatre situations parallèles : simples, négation, absence'],

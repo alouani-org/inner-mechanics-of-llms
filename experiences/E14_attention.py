@@ -1,20 +1,20 @@
-"""E14 : lire l'attention de GPT-2, puis tester une lecture par une ablation.
+"""E14: read GPT-2's attention, then test a reading with an ablation.
 
-Chapitre « Inspecter une prédiction ». Trois mesures :
+Chapter 8. Three measurements:
 
-1. Sur le prompt amorcé, poids d'attention du dernier token vers le sujet
-   (« France ») et vers le premier token, couche par couche ; même lecture sur
-   une phrase témoin sans relation géographique.
-2. Têtes d'induction : sur des séquences de tokens aléatoires répétées, poids que
-   chaque tête accorde, depuis la seconde occurrence d'un token, au token qui
-   suivait sa première occurrence. Témoin : seconde moitié non répétée.
-3. Passage à l'intervention : neutraliser les trois têtes au plus fort score
-   (sélectionnées sur des séquences de découverte) et mesurer la perte sur la
-   seconde moitié de séquences de validation, comparée à la neutralisation de
-   trois têtes tirées au hasard.
+1. On the primed prompt, attention weights from the last token to the subject
+   ("France") and to the first token, layer by layer; same reading on
+   a control sentence without a geographic relation.
+2. Induction heads: on repeated sequences of random tokens, weight that
+   each head gives, from the second occurrence of a token, to the token that
+   followed its first occurrence. Control: non-repeated second half.
+3. Moving to intervention: knock out the three highest-scoring heads
+   (selected on discovery sequences) and measure the loss on the
+   second half of validation sequences, compared with knocking out
+   three randomly drawn heads.
 
-Usage : python experiences/E14_attention.py
-Sortie : outputs/E14_attention/metadata.json
+Usage: python experiences/E14_attention.py
+Output: outputs/E14_attention/metadata.json
 """
 import time
 
@@ -25,28 +25,28 @@ from socle_experiences import model, snapshot, save
 
 PROMPT = "The capital of Germany is Berlin. The capital of France is"
 TEMOIN = "The cat slept on the old mat while the dog was"
-LONGUEUR = 25          # tokens aléatoires par moitié
-N_DECOUVERTE = 8       # séquences servant à choisir les têtes
-N_VALIDATION = 8       # séquences servant à mesurer l'effet de l'ablation
-N_TIRAGES_TEMOINS = 10 # ensembles de trois têtes tirées au hasard
+LONGUEUR = 25          # random tokens per half
+N_DECOUVERTE = 8       # sequences used to choose the heads
+N_VALIDATION = 8       # sequences used to measure the ablation effect
+N_TIRAGES_TEMOINS = 10 # sets of three randomly drawn heads
 
 
 def attentions(m, ids):
-    """Tuple de 12 tenseurs (têtes, positions, positions) pour une séquence d'identifiants."""
+    """Tuple of 12 tensors (heads, positions, positions) for a sequence of ids."""
     with torch.no_grad():
         sortie = m(torch.tensor([ids]), output_attentions=True)
     return [a[0] for a in sortie.attentions]
 
 
 def lecture_dernier_token(m, tok, texte, mot=None):
-    """Par couche : attention maximale (sur les têtes) vers un mot, et moyenne vers la position 0."""
+    """Per layer: maximum attention (over heads) to a word, and mean attention to position 0."""
     ids = tok.encode(texte)
     position_mot = None
     if mot is not None:
         position_mot = ids.index(tok.encode(" " + mot)[0])
     lignes = []
     for couche, a in enumerate(attentions(m, ids)):
-        depuis_fin = a[:, -1, :]                      # (têtes, positions)
+        depuis_fin = a[:, -1, :]                      # (heads, positions)
         ligne = {"couche": couche,
                  "vers_premier_token_moyenne": float(depuis_fin[:, 0].mean())}
         if position_mot is not None:
@@ -58,20 +58,20 @@ def lecture_dernier_token(m, tok, texte, mot=None):
 
 
 def sequence_repetee(generateur, tok, repeter=True):
-    """Un token de début, L tokens aléatoires, puis les mêmes (ou d'autres) L tokens."""
+    """A start token, L random tokens, then the same (or other) L tokens."""
     premiere = generateur.integers(1000, 20000, LONGUEUR).tolist()
     seconde = premiere if repeter else generateur.integers(1000, 20000, LONGUEUR).tolist()
     return [tok.eos_token_id] + premiere + seconde
 
 
 def score_induction(a):
-    """Poids moyen de la position i vers la position i - L + 1, sur la seconde moitié."""
+    """Mean weight from position i to position i - L + 1, over the second half."""
     positions = range(LONGUEUR + 1, 2 * LONGUEUR + 1)
     return torch.stack([a[:, i, i - LONGUEUR + 1] for i in positions], dim=1).mean(1)
 
 
 def perte_seconde_moitie(m, ids):
-    """Perte moyenne de prédiction du token suivant, sur la seconde moitié."""
+    """Mean next-token prediction loss over the second half."""
     entree = torch.tensor([ids])
     with torch.no_grad():
         logits = m(entree).logits[0]
@@ -82,7 +82,7 @@ def perte_seconde_moitie(m, ids):
 
 
 def neutraliser_tetes(m, tetes):
-    """Accrocher des hooks qui annulent la sortie de certaines têtes avant la projection c_proj."""
+    """Attach hooks that zero the output of some heads before the c_proj projection."""
     largeur = m.config.n_embd // m.config.n_head
     crochets = []
     par_couche = {}

@@ -1,33 +1,33 @@
-"""E18 : remplacer la sortie d'une seule tête d'attention : sélection, transfert et comparaison publiée.
+"""E18: replace the output of a single attention head: selection, transfer and published comparison.
 
-Chapitre « Intervenir pour expliquer ». La tâche est celle de E16 : dans
-« When A and B went to the store, A gave a book to », le nom attendu est B
-(condition propre) ; dans la condition corrompue, le second sujet devient B et
-le nom attendu devient A. Métrique : logit(B) − logit(A) à la dernière position.
+Chapter 9. The task is that of E16: in
+"When A and B went to the store, A gave a book to", the expected name is B
+(clean condition); in the corrupted condition, the second subject becomes B and
+the expected name becomes A. Metric: logit(B) − logit(A) at the last position.
 
-Le site est plus fin que dans E16 : au lieu de remplacer l'état complet d'une
-position, on remplace la contribution d'une seule tête (ses 64 composantes,
-avant la projection de sortie de l'attention), à la dernière position.
+The site is finer than in E16: instead of replacing the full state of a
+position, we replace the contribution of a single head (its 64 components,
+before the attention output projection), at the last position.
 
-Règle écrite avant l'exécution (23 septembre 2026) :
-- découverte sur quatre paires de noms, gabarit du magasin : carte des
-  144 têtes (12 couches × 12 têtes), restauration normalisée par le fossé ;
-- sélection : les trois têtes de plus forte restauration moyenne ;
-- validation sur huit autres paires, dans deux gabarits : celui du magasin
-  et un gabarit nouveau (« Then, A and B had a long argument. Afterwards, A
-  said to ») ;
-- mesures de validation : restauration de chaque tête retenue, restauration
-  conjointe des trois, restauration conjointe de trente triplets tirés au
-  hasard parmi les autres têtes (graine 0), et intervention inverse
-  conjointe (sorties corrompues des trois têtes dans le calcul propre) ;
-- critère de transfert : la restauration conjointe moyenne des trois têtes
-  dépasse, dans chaque gabarit, le 95e centile des triplets aléatoires ;
-- comparaison externe, sans rôle dans la sélection : les mêmes mesures pour
-  les têtes 9.6, 9.9 et 10.0, nommées « Name Mover Heads » par Wang et al.
-  (2022) avec une autre méthode (path patching) et une autre corruption.
+Rule written before execution (23 September 2026):
+- discovery on four name pairs, store template: map of the
+  144 heads (12 layers × 12 heads), restoration normalized by the gap;
+- selection: the three heads with the highest mean restoration;
+- validation on eight other pairs, in two templates: the store one
+  and a new template ("Then, A and B had a long argument. Afterwards, A
+  said to");
+- validation measurements: restoration of each selected head, joint restoration
+  of the three, joint restoration of thirty triplets drawn at
+  random among the other heads (seed 0), and joint reverse
+  intervention (corrupted outputs of the three heads in the clean run);
+- transfer criterion: the mean joint restoration of the three heads
+  exceeds, in each template, the 95th percentile of the random triplets;
+- external comparison, with no role in the selection: the same measurements for
+  heads 9.6, 9.9 and 10.0, named "Name Mover Heads" by Wang et al.
+  (2022) with another method (path patching) and another corruption.
 
-Usage : python experiences/E18_tetes.py
-Sortie : outputs/E18_tetes/metadata.json
+Usage: python experiences/E18_tetes.py
+Output: outputs/E18_tetes/metadata.json
 """
 import time
 
@@ -52,7 +52,7 @@ def un_token(tok, nom):
 
 
 def contributions_tetes(m, ids):
-    """Entrée de la projection de sortie de chaque couche : les 12 têtes concaténées, dernière position."""
+    """Input of each layer's output projection: the 12 concatenated heads, last position."""
     boites = {}
     poignees = []
     for couche, bloc in enumerate(m.transformer.h):
@@ -69,7 +69,7 @@ def contributions_tetes(m, ids):
 
 
 def ecart_avec_tetes(m, ids, io, s, remplacements=None):
-    """logit(io) − logit(s) ; remplacements = {(couche, tête): vecteur de 64 composantes}."""
+    """logit(io) − logit(s); remplacements = {(layer, head): vector of 64 components}."""
     d = m.config.n_embd // m.config.n_head
     poignees = []
     par_couche = {}
@@ -92,7 +92,7 @@ def ecart_avec_tetes(m, ids, io, s, remplacements=None):
 
 
 def preparer(m, tok, gabarit, a, b):
-    """Textes propre et corrompu, identifiants des noms, contributions et écarts de référence."""
+    """Clean and corrupted texts, name ids, contributions and reference differences."""
     propre = tok.encode(gabarit.format(a=a, b=b, s=a))
     corrompu = tok.encode(gabarit.format(a=a, b=b, s=b))
     assert len(propre) == len(corrompu)
@@ -108,21 +108,21 @@ def morceau(contributions, couche, tete, d=64):
 
 
 def restauration(m, cas, tetes):
-    """Part du fossé propre − corrompu retrouvée en plaçant les têtes propres dans le calcul corrompu."""
+    """Share of the clean − corrupted gap recovered by placing the clean heads in the corrupted run."""
     valeurs = {(c, h): morceau(cas["c_propre"], c, h) for c, h in tetes}
     apres = ecart_avec_tetes(m, cas["corrompu"], cas["io"], cas["s"], valeurs)
     return (apres - cas["ecart_corrompu"]) / (cas["ecart_propre"] - cas["ecart_corrompu"])
 
 
 def perte_inverse(m, cas, tetes):
-    """Part de l'écart propre perdue en plaçant les têtes corrompues dans le calcul propre."""
+    """Share of the clean difference lost by placing the corrupted heads in the clean run."""
     valeurs = {(c, h): morceau(cas["c_corrompu"], c, h) for c, h in tetes}
     apres = ecart_avec_tetes(m, cas["propre"], cas["io"], cas["s"], valeurs)
     return (cas["ecart_propre"] - apres) / (cas["ecart_propre"] - cas["ecart_corrompu"])
 
 
 def mesurer(m, cas_liste, tetes, triplets):
-    """Mesures de validation pour un ensemble de têtes sur une liste de cas."""
+    """Validation measurements for a set of heads on a list of cases."""
     individuelles = {f"{c}.{h}": [restauration(m, cas, [(c, h)]) for cas in cas_liste] for c, h in tetes}
     conjointe = [restauration(m, cas, tetes) for cas in cas_liste]
     inverse = [perte_inverse(m, cas, tetes) for cas in cas_liste]

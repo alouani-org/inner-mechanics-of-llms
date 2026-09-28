@@ -1,11 +1,11 @@
-"""E02 : suivre une phrase dans GPT-2 : tokens, états internes, logits et masque.
+"""E02: follow a sentence through GPT-2: tokens, internal states, logits and mask.
 
-Chapitre « Du texte aux scores ». Programme d'observation, sans intervention sur
-le calcul : il enregistre ce que produit chaque étape pour que le livre puisse
-lire des sorties réelles. CPU imposé, modèle et révision fixés par modeles.json.
+Chapter 2. Observation program, with no intervention on
+the computation: it records what each step produces so that the book can
+read real outputs. CPU enforced, model and revision pinned by modeles.json.
 
-Usage : python experiences/E02_calcul_observe.py
-Sortie : outputs/E02_calcul_observe/metadata.json
+Usage: python experiences/E02_calcul_observe.py
+Output: outputs/E02_calcul_observe/metadata.json
 """
 import json
 import math
@@ -15,11 +15,11 @@ import torch
 
 from socle_experiences import model, snapshot, save
 
-# Le même fait, sans puis avec un exemple qui amorce le patron de phrase.
+# The same fact, without and then with an example that primes the sentence pattern.
 PROMPT_BRUT = "La capitale de la France est"
 PROMPT_AMORCE = "La capitale de l'Allemagne est Berlin. La capitale de la France est"
 
-# Même contenu dans quatre langues : on compte ce que produit le tokenizer.
+# Same content in four languages: we count what the tokenizer produces.
 PHRASES_PARALLELES = {
     "en": "The internal representation depends on context.",
     "es": "La representación interna depende del contexto.",
@@ -27,23 +27,23 @@ PHRASES_PARALLELES = {
     "fr": "La représentation interne dépend du contexte.",
 }
 
-# Prompt et grammaire de l'expérience E09 (socle_experiences.py, fonction extraction),
-# recopiés à l'identique pour observer le masque sur un document précis.
+# Prompt and grammar of experiment E09 (socle_experiences.py, function extraction),
+# copied verbatim to observe the mask on one specific document.
 PROMPT_E3 = ('Extraire la ville du rendez-vous. Si elle manque, écrire null. Répondre en JSON.\n'
-             'Texte: Le rendez-vous est à Paris.\nJSON: {"ville":"Paris"}\n'
-             'Texte: Aucun lieu annoncé.\nJSON: {"ville":null}\n')
+             'Texte: Le rendez-vous est à Paris.\nJSON: {"city":"Paris"}\n'
+             'Texte: Aucun lieu annoncé.\nJSON: {"city":null}\n')
 DOCUMENT_E3 = "Le bureau est à Paris, mais le rendez-vous se tiendra à Lyon."
 VALEURS_AUTORISEES = ["Paris", "Lyon", "Rome", None]
 
 
 def decouper(tok, texte):
-    """Identifiants et fragments produits par le tokenizer, dans l'ordre."""
+    """Ids and fragments produced by the tokenizer, in order."""
     ids = tok.encode(texte, add_special_tokens=False)
     return [{"id": i, "fragment": tok.decode([i])} for i in ids]
 
 
 def trajectoire(m, tok, texte):
-    """Norme et orientation de l'état de la dernière position, lecture par lecture."""
+    """Norm and direction of the last position's state, reading by reading."""
     entree = tok(texte, return_tensors="pt")
     with torch.no_grad():
         etats = m(**entree, output_hidden_states=True).hidden_states
@@ -65,7 +65,7 @@ def trajectoire(m, tok, texte):
 
 
 def meilleurs_candidats(m, tok, texte, k=5, cible=" Paris"):
-    """Les k tokens de plus haut score à la dernière position, et le sort de la cible."""
+    """The k highest-scoring tokens at the last position, and the fate of the target."""
     entree = tok(texte, return_tensors="pt")
     with torch.no_grad():
         logits = m(**entree).logits[0, -1]
@@ -89,15 +89,15 @@ def meilleurs_candidats(m, tok, texte, k=5, cible=" Paris"):
 
 
 def appliquer_masque(logits, autorises):
-    """Mettre à -inf les tokens interdits, puis renormaliser par softmax."""
+    """Set forbidden tokens to -inf, then renormalize with softmax."""
     masque = torch.full_like(logits, -math.inf)
     masque[autorises] = 0.0
     return (logits + masque).softmax(-1)
 
 
 def observer_masque(m, tok):
-    """Suivre, pas à pas, le décodage contraint de E09 sur un document ambigu."""
-    options = [json.dumps({"ville": v}, ensure_ascii=False, separators=(",", ":"))
+    """Follow, step by step, the constrained decoding of E09 on an ambiguous document."""
+    options = [json.dumps({"city": v}, ensure_ascii=False, separators=(",", ":"))
                for v in VALEURS_AUTORISEES]
     sequences = [tok.encode(o, add_special_tokens=False) + [tok.eos_token_id] for o in options]
     prompt = PROMPT_E3 + "Texte: " + DOCUMENT_E3 + "\nJSON:"
@@ -127,7 +127,7 @@ def observer_masque(m, tok):
         produits.append(choisi)
         if choisi == tok.eos_token_id:
             break
-    # Score de chaque objet complet : somme des log-probabilités de ses tokens.
+    # Score of each complete object: sum of the log-probabilities of its tokens.
     scores = {}
     for option, sequence in zip(options, sequences):
         total = 0.0

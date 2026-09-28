@@ -99,6 +99,10 @@ Chaque dossier de sortie contient un **manifeste** `metadata.json` : la question
 
 Avant le 23 septembre 2026, les expériences s'appelaient E1 à E8, complétées de noms (E3-defis, patching…). Les manifestes et les journaux d'exécution gardent ces anciens noms, qui étaient en vigueur au moment du calcul ; ils n'ont pas été réécrits. `RENUMEROTATION.json` donne la correspondance et, pour chaque programme renommé, les lignes modifiées : en les remettant à leur état d'origine, on retrouve exactement l'empreinte enregistrée dans le manifeste.
 
+Le 25 septembre 2026, les commentaires et docstrings des programmes ont été traduits en anglais, sans toucher au code exécuté. `TRADUCTION_COMMENTAIRES.json` donne, pour chaque programme, les lignes d'origine : `tests/check_package.py` les rétablit avant de comparer les empreintes, et vérifie que le code exécuté (arbre syntaxique sans docstrings) est identique.
+
+Le même jour, les étiquettes produites par les programmes sont passées en anglais : clé JSON `city` (au lieu de `ville`), décisions `accept` et `review`, référence `off-list`. E02, E09, E10, E11, E12 et E23 ont été relancées ; `ETIQUETTES_ANGLAISES.json` donne les lignes modifiées, et `tests/check_package.py` reconstitue chaque version citée par un manifeste.
+
 | Ancien nom | Identifiant | Dossier de sortie |
 |---|---|---|
 | E1 | **E01** | `outputs/E01_classification/` |

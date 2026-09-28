@@ -1,4 +1,4 @@
-"""E03 : calculs didactiques sur données fabriquées : aucun résultat de modèle."""
+"""E03: didactic computations on fabricated data: no model result."""
 from pathlib import Path
 import hashlib
 import json
@@ -45,7 +45,7 @@ def cosinus(a, b):
 
 
 def attention(requete, cles, valeurs):
-    """Une tête d'attention pour une position : scores, poids softmax, mélange des valeurs."""
+    """One attention head for one position: scores, softmax weights, mixing of values."""
     d = len(requete)
     scores = [sum(q * k for q, k in zip(requete, cle)) / math.sqrt(d) for cle in cles]
     poids = softmax(scores)
@@ -53,7 +53,7 @@ def attention(requete, cles, valeurs):
 
 
 def kappa(table):
-    """Kappa de Cohen pour deux annotateurs ; table[i][j] = effectif (annotateur 1 = i, annotateur 2 = j)."""
+    """Cohen's kappa for two annotators; table[i][j] = count (annotator 1 = i, annotator 2 = j)."""
     total = sum(sum(ligne) for ligne in table)
     observe = sum(table[i][i] for i in range(len(table))) / total
     marges_1 = [sum(ligne) / total for ligne in table]
@@ -64,7 +64,7 @@ def kappa(table):
 
 
 def simuler_acc(prevalence, tpr, fpr, n_positifs, n_negatifs, n_corpus, tirages, graine):
-    """Variabilité de l'ACC quand TPR et FPR sont estimés sur une petite calibration (simulation)."""
+    """Variability of ACC when TPR and FPR are estimated on a small calibration set (simulation)."""
     import random
     hasard = random.Random(graine)
     estimations = []
@@ -86,7 +86,7 @@ def simuler_acc(prevalence, tpr, fpr, n_positifs, n_negatifs, n_corpus, tirages,
 
 
 def cout_scenario(n_documents, couverture, erreur_acceptes, cout_revue, cout_erreur):
-    """Coût d'une politique d'abstention : revue des refus + erreurs acceptées (unités arbitraires)."""
+    """Cost of an abstention policy: review of refusals + accepted errors (arbitrary units)."""
     acceptes = n_documents * couverture
     refuses = n_documents - acceptes
     erreurs = acceptes * erreur_acceptes
@@ -95,7 +95,7 @@ def cout_scenario(n_documents, couverture, erreur_acceptes, cout_revue, cout_err
 
 
 def tfidf(documents):
-    """TF-IDF lissé comme scikit-learn : idf = ln((1 + n) / (1 + df)) + 1, puis norme L2 par document."""
+    """Smoothed TF-IDF as in scikit-learn: idf = ln((1 + n) / (1 + df)) + 1, then L2 norm per document."""
     vocabulaire = sorted({mot for doc in documents for mot in doc.split()})
     n = len(documents)
     df = {mot: sum(mot in doc.split() for doc in documents) for mot in vocabulaire}
@@ -110,7 +110,7 @@ def tfidf(documents):
 
 
 def probabilite_logistique(poids, biais, vecteur):
-    """Régression logistique : score linéaire, puis sigmoïde."""
+    """Logistic regression: linear score, then sigmoid."""
     score = biais + sum(w * x for w, x in zip(poids, vecteur))
     return score, 1 / (1 + math.exp(-score))
 
@@ -118,7 +118,7 @@ def probabilite_logistique(poids, biais, vecteur):
 def main():
     libre = softmax([2, 1, 0])
     contraint = softmax([2, -math.inf, 0])
-    # Les propriétés contrôlées sont indépendantes des arrondis imprimés.
+    # The checked properties do not depend on the printed rounding.
     assert abs(sum(libre) - 1) < 1e-12
     assert all(abs(a-b) < 1e-12 for a,b in zip(libre, softmax([12,11,10])))
     assert contraint[1] == 0
@@ -153,7 +153,7 @@ def main():
     assert abs(resultats['geometrie']['cosinus_ab']-1)<1e-12
     assert resultats['geometrie']['cosinus_uv']==0
     assert resultats['geometrie']['projection_u']==resultats['geometrie']['projection_v']
-    # Attention d'une position vers trois sources ; vecteurs fabriqués de dimension 2.
+    # Attention from one position to three sources; fabricated 2-dimensional vectors.
     requete = [1.0, 0.0]
     cles = [[2.0, 0.0], [0.0, 2.0], [1.0, 1.0]]
     valeurs_att = [[1.0, 0.0], [0.0, 1.0], [0.5, 0.5]]
@@ -161,23 +161,23 @@ def main():
     assert abs(sum(poids_att) - 1) < 1e-12
     resultats['attention'] = {'requete': requete, 'cles': cles, 'valeurs': valeurs_att,
                               'scores': scores_att, 'poids': poids_att, 'sortie': sortie_att}
-    # Deux annotateurs, deux catégories : 100 textes fabriqués.
+    # Two annotators, two categories: 100 fabricated texts.
     table = [[40, 10], [5, 45]]
     k = kappa(table)
     assert abs(k['accord_observe'] - 0.85) < 1e-12
     resultats['kappa'] = {'table': table, **k}
-    # Même proportion réelle, deux instruments de séparation différente.
+    # Same true proportion, two instruments with different separation.
     resultats['simulation_acc'] = [
         simuler_acc(0.20, 0.85, 0.05, 40, 80, 2000, 2000, 42),
         simuler_acc(0.20, 0.45, 0.10, 40, 80, 2000, 2000, 42)]
-    # Deux politiques fabriquées, quatre hypothèses de coût d'une erreur acceptée.
+    # Two fabricated policies, four assumptions about the cost of an accepted error.
     politiques = {'large': (0.90, 0.10), 'prudente': (0.60, 0.02)}
     resultats['scenario_cout'] = {
         'n_documents': 1000, 'cout_revue': 1, 'politiques': politiques,
         'lignes': [{'cout_erreur': c, **{nom: cout_scenario(1000, cv, er, 1, c)['cout_total']
                                           for nom, (cv, er) in politiques.items()}}
                    for c in [2, 5, 10, 20]]}
-    # TF-IDF à la main sur trois messages fabriqués, puis une décision logistique aux poids choisis.
+    # TF-IDF by hand on three fabricated messages, then a logistic decision with chosen weights.
     messages = ['serveur arrêté merci', 'serveur documentation merci', 'documentation tarif']
     vocabulaire, idf, vecteurs = tfidf(messages)
     try:

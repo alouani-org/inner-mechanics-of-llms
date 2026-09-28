@@ -99,6 +99,10 @@ Cada carpeta de salida contiene un **manifiesto** `metadata.json`: pregunta, con
 
 Antes del 23 de septiembre de 2026, los experimentos se llamaban E1 a E8, más complementos con nombre (E3-defis, patching…). Los manifiestos y los registros de ejecución conservan esos nombres, vigentes en el momento del cálculo; no se han reescrito. `RENUMEROTATION.json` da la correspondencia y, para cada programa renombrado, las líneas modificadas: al restaurarlas se obtiene exactamente la huella registrada en el manifiesto.
 
+El 25 de septiembre de 2026, los comentarios y docstrings de los programas se tradujeron al inglés, sin tocar el código ejecutado. `TRADUCTION_COMMENTAIRES.json` indica, para cada programa, las líneas originales: `tests/check_package.py` las restablece antes de comparar las huellas y comprueba que el código ejecutado (árbol sintáctico sin docstrings) es idéntico.
+
+El mismo día, las etiquetas que producen los programas pasaron al inglés: clave JSON `city` (en lugar de `ville`), decisiones `accept` y `review`, referencia `off-list`. E02, E09, E10, E11, E12 y E23 se volvieron a ejecutar; `ETIQUETTES_ANGLAISES.json` indica las líneas modificadas y `tests/check_package.py` reconstruye cada versión que cita un manifiesto.
+
 | Nombre anterior | Id. | Carpeta de salida |
 |---|---|---|
 | E1 | **E01** | `outputs/E01_classification/` |

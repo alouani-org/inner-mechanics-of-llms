@@ -1,23 +1,23 @@
-"""E04 : intervalles de rééchantillonnage pour trois résultats du livre, sans nouveau calcul de modèle.
+"""E04: resampling intervals for three results of the book, with no new model computation.
 
-Chapitres « Définir ce qu'on mesure », « Classer » et « Trouver les bons
-documents ». Ce programme ne fait tourner aucun modèle : il relit des sorties
-existantes (outputs/E05_validation_classificateur, outputs/E07_recherche) et la table d'accord fabriquée
-de E03_calculs_guides.py, puis demande quelle incertitude accompagne chaque
-nombre.
+Chapters 3, 4 and 5 of the book.
+This program runs no model: it rereads existing outputs
+(outputs/E05_validation_classificateur, outputs/E07_recherche) and the fabricated agreement table
+of E03_calculs_guides.py, then asks what uncertainty goes with each
+number.
 
-Règle écrite avant l'exécution (23 septembre 2026) :
-- rééchantillonnage avec remise des unités observées (paires d'annotations,
-  messages, questions), 2 000 tirages, graine 0, intervalle des centiles 2,5 et
-  97,5 ;
-- pour les comparaisons, rééchantillonnage **apparié** : on tire des messages
-  ou des questions, et l'on garde pour chacun les résultats des deux méthodes ;
-- une différence est dite établie seulement si son intervalle exclut zéro ;
-- pour la validation du classificateur (E05), on donne aussi l'intervalle de Wilson et le test
-  exact de McNemar, qui ne regarde que les messages dont le sort a changé.
+Rule written before execution (23 September 2026):
+- resampling with replacement of the observed units (annotation pairs,
+  messages, questions), 2,000 draws, seed 0, interval of the 2.5 and
+  97.5 percentiles;
+- for comparisons, **paired** resampling: we draw messages
+  or questions, and keep for each one the results of both methods;
+- a difference is called established only if its interval excludes zero;
+- for the classifier validation (E05), we also give the Wilson interval and the
+  exact McNemar test, which looks only at messages whose outcome changed.
 
-Usage : python experiences/E04_intervalles.py
-Sortie : outputs/E04_intervalles/resultats.json
+Usage: python experiences/E04_intervalles.py
+Output: outputs/E04_intervalles/resultats.json
 """
 import json
 import math
@@ -32,19 +32,19 @@ GRAINE = 0
 
 
 def intervalle(valeurs):
-    """Centiles 2,5 et 97,5 d'une liste de valeurs rééchantillonnées."""
+    """2.5 and 97.5 percentiles of a list of resampled values."""
     v = sorted(valeurs)
     return [v[int(0.025 * len(v))], v[int(0.975 * len(v)) - 1]]
 
 
 def reechantillonner(unites, statistique, hasard):
-    """Statistique recalculée sur TIRAGES échantillons tirés avec remise parmi les unités."""
+    """Statistic recomputed on TIRAGES samples drawn with replacement from the units."""
     n = len(unites)
     return [statistique([unites[hasard.randrange(n)] for _ in range(n)]) for _ in range(TIRAGES)]
 
 
 def wilson(succes, n, z=1.96):
-    """Intervalle de Wilson pour une proportion."""
+    """Wilson interval for a proportion."""
     p = succes / n
     centre = (p + z * z / (2 * n)) / (1 + z * z / n)
     demi = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / (1 + z * z / n)
@@ -52,7 +52,7 @@ def wilson(succes, n, z=1.96):
 
 
 def mcnemar_exact(gagnes, perdus):
-    """Probabilité bilatérale exacte d'un déséquilibre au moins aussi grand, si chaque changement était à pile ou face."""
+    """Exact two-sided probability of an imbalance at least as large, if each change were a coin flip."""
     n = gagnes + perdus
     k = min(gagnes, perdus)
     queue = sum(math.comb(n, i) for i in range(k + 1)) / 2 ** n
@@ -70,13 +70,13 @@ def main():
     hasard = random.Random(GRAINE)
     resultats = {"tirages": TIRAGES, "graine": GRAINE}
 
-    # 1. Kappa de la table fabriquée [[40, 10], [5, 45]] : cent paires d'annotations.
+    # 1. Kappa of the fabricated table [[40, 10], [5, 45]]: one hundred annotation pairs.
     table = [[40, 10], [5, 45]]
     paires = [(i, j) for i in range(2) for j in range(2) for _ in range(table[i][j])]
     resultats["kappa"] = {"table": table, "valeur": kappa(table)["kappa"],
                           "intervalle": intervalle(reechantillonner(paires, kappa_de_paires, hasard))}
 
-    # 2. Validation du classificateur (E05) : 24 messages, avant et après équilibrage.
+    # 2. Classifier validation (E05): 24 messages, before and after balancing.
     v = json.loads((RACINE / "outputs/E05_validation_classificateur/metadata.json").read_text(encoding="utf-8"))["results"]
     avant = [int(l["reference"] == l["prediction"]) for l in v["avant_equilibrage"]["lignes"]]
     apres = [int(l["reference"] == l["prediction"]) for l in v["apres_equilibrage"]["lignes"]]
@@ -91,7 +91,7 @@ def main():
         "difference": sum(apres) / len(apres) - sum(avant) / len(avant), "intervalle_difference": intervalle(diff),
         "messages_repares": gagnes, "messages_casses": perdus, "mcnemar_p": mcnemar_exact(gagnes, perdus)}
 
-    # 3. E07 : huit questions, rangs des deux méthodes.
+    # 3. E07: eight questions, ranks of the two methods.
     e2 = json.loads((RACINE / "outputs/E07_recherche/metadata.json").read_text(encoding="utf-8"))["results"]
     questions = list(zip(e2["lexical"]["ranks"], e2["dense"]["ranks"]))
     mrr = lambda e: sum(1 / a - 1 / b for a, b in e) / len(e)

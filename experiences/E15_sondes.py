@@ -1,19 +1,19 @@
-"""E15 : sondes linéaires : que lit-on dans les états internes, et contre quelle explication ?
+"""E15: linear probes: what can be read in the internal states, and against which explanation?
 
-Chapitre « Inspecter une prédiction ». Deux questions, mêmes représentations
-(dernier token de la phrase, treize lectures de GPT-2) :
+Chapter 8. Two questions, same representations
+(last token of the sentence, thirteen GPT-2 readings):
 
-1. Sonde de sujet : phrases « capitale d'un pays » contre phrases de préférence
-   personnelle. Explication rivale : les mots eux-mêmes suffisent. Témoin : un
-   classificateur lexical (TF-IDF) sur les mêmes plis.
-2. Sonde de connaissance : le pays appartient-il à l'Europe ? Le continent
-   n'est écrit nulle part dans la phrase. Les plis sont groupés par pays : un
-   pays du test n'a jamais été vu à l'entraînement. Témoins : classificateur
-   lexical sur caractères, étiquettes permutées (plis identiques) et « tâche de
-   contrôle » attribuant à chaque pays une étiquette arbitraire.
+1. Subject probe: "capital of a country" sentences versus sentences of personal
+   preference. Rival explanation: the words themselves suffice. Control: a
+   lexical classifier (TF-IDF) on the same folds.
+2. Knowledge probe: does the country belong to Europe? The continent
+   is written nowhere in the sentence. Folds are grouped by country: a
+   test country has never been seen in training. Controls: character-level
+   lexical classifier, permuted labels (identical folds) and a "control
+   task" assigning each country an arbitrary label.
 
-Usage : python experiences/E15_sondes.py
-Sortie : outputs/E15_sondes/metadata.json
+Usage: python experiences/E15_sondes.py
+Output: outputs/E15_sondes/metadata.json
 """
 import time
 
@@ -43,17 +43,17 @@ N_PERMUTATIONS = 20
 
 
 def etats(m, tok, phrases):
-    """Pour chaque phrase, l'état du dernier token à chacune des treize lectures."""
+    """For each sentence, the state of the last token at each of the thirteen readings."""
     lignes = []
     for phrase in phrases:
         with torch.no_grad():
             h = m(**tok(phrase, return_tensors="pt"), output_hidden_states=True).hidden_states
         lignes.append(torch.stack([x[0, -1] for x in h]).numpy())
-    return np.stack(lignes, axis=1)            # (lectures, phrases, largeur)
+    return np.stack(lignes, axis=1)            # (readings, sentences, width)
 
 
 def exactitude_croisee(X, y, plis, fabrique):
-    """Exactitude moyenne sur des plis fixés d'avance (mêmes indices pour tous les témoins)."""
+    """Mean accuracy over folds fixed in advance (same indices for all controls)."""
     scores = []
     for entrainement, test in plis:
         modele = fabrique().fit(X[entrainement] if not isinstance(X, list) else [X[i] for i in entrainement],
@@ -68,7 +68,7 @@ def sonde():
 
 
 def profil(representations, y, plis, generateur, controle_par_groupe=None):
-    """Exactitude réelle, moyenne des permutations et tâche de contrôle, lecture par lecture."""
+    """Real accuracy, mean over permutations and control task, reading by reading."""
     lignes = []
     for lecture, X in enumerate(representations):
         reel = exactitude_croisee(X, y, plis, sonde)
@@ -89,7 +89,7 @@ def main():
     generateur = np.random.default_rng(42)
     pays = EUROPE + AILLEURS
 
-    # 1. Sonde de sujet : 40 phrases de capitale contre 40 phrases de préférence.
+    # 1. Subject probe: 40 capital sentences versus 40 preference sentences.
     capitales = [GABARITS_PAYS[0].format(p) for p in pays]
     phrases_sujet = capitales + PREFERENCES
     y_sujet = np.array([1] * len(capitales) + [0] * len(PREFERENCES))
@@ -99,12 +99,12 @@ def main():
                                        lambda: make_pipeline(TfidfVectorizer(), LogisticRegression(max_iter=2000)))
     profil_sujet = profil(etats(m, tok, phrases_sujet), y_sujet, plis_sujet, generateur)
 
-    # 2. Sonde de connaissance : Europe ou non, deux gabarits, plis groupés par pays.
+    # 2. Knowledge probe: Europe or not, two templates, folds grouped by country.
     phrases_pays = [g.format(p) for p in pays for g in GABARITS_PAYS]
     y_pays = np.array([1 if p in EUROPE else 0 for p in pays for _ in GABARITS_PAYS])
     groupes_pays = np.array([i for i in range(len(pays)) for _ in GABARITS_PAYS])
     ordre = generateur.permutation(len(pays))
-    groupes_melanges = ordre[groupes_pays]      # répartition des pays entre plis, fixée une fois
+    groupes_melanges = ordre[groupes_pays]      # assignment of countries to folds, fixed once
     plis_pays = list(GroupKFold(N_PLIS).split(phrases_pays, y_pays, groupes_melanges))
     etiquette_arbitraire = generateur.integers(0, 2, len(pays))
     controle = etiquette_arbitraire[groupes_pays]

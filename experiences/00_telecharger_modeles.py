@@ -1,4 +1,4 @@
-"""Préparer les révisions verrouillées ; aucun téléchargement en mode vérification."""
+"""Prepare the locked revisions; no download in verification mode."""
 from pathlib import Path
 import argparse,json,os
 
